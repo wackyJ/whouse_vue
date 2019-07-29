@@ -14,14 +14,14 @@ export default routeMain
 
 
 
-routeMain.beforeEach((to, from, next) => {
-    let codelist = api 
-    if(to.meta.code==='1001'){
-      console.log('你的权限不足');
-      next({name:'about'})
-    }else{
-      next()
-    }
+// routeMain.beforeEach((to, from, next) => {
+//     let codelist = api 
+//     if(to.meta.code==='1001'){
+//       console.log('你的权限不足');
+//       next({name:'about'})
+//     }else{
+//       next()
+//     }
     
-    })
+//     })
     

@@ -5,9 +5,9 @@ const routeConfig = [
     {
       path: '/',
       name: 'home',
-      meta:{
-          code:'1001'
-      },
+      // meta:{
+      //     code:'1001'
+      // },
       component: Home
     },
     {
