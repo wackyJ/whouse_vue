@@ -2,7 +2,7 @@
   <div class="home"  :style="note">
     <table></table>
         <div id="h1" style="text-align:right">
-                <a href="">已有账号？</a>
+                <a id="a1" href="">已有账号？</a>
                 <a id="h2" href="">登录</a>
         </div>
         <div>
@@ -76,6 +76,7 @@ export default {
         
         #black{margin:120px auto;}
         .home a{color:#fff;text-decoration:none;font-size:3px;}
+        #a1{ margin-right:15px;}
         #h2{border:1px solid #fff;
         background:rgbd(0,0,0,0);
         padding-left:27px;
@@ -104,7 +105,7 @@ export default {
      table button{
       width:100%;height:37px;
       border:0;
-      background:#e8e8e8;
+      background:#0aa1ed;
       margin-top:10px;
       color:#fff;}
       
@@ -124,7 +125,6 @@ export default {
             }
          }
         //获取焦点时，在span中提示用户名6-12位
-        
     </script>
 
 
