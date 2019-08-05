@@ -3,7 +3,7 @@
     <table></table>
         <div id="h1" style="text-align:right">
                 <a id="a1" href="">已有账号？</a>
-                <a id="h2" href="">登录</a>
+                <a id="a2" href="">登录</a>
         </div>
         <div>
             
@@ -77,8 +77,8 @@ export default {
         #black{margin:120px auto;}
         .home a{color:#fff;text-decoration:none;font-size:3px;}
         #a1{ margin-right:15px;}
-        #h2{border:1px solid #fff;
-        background:rgbd(0,0,0,0);
+        #a2{border:1px solid #fff;
+        background:rgba(0,0,0,0.3);
         padding-left:27px;
         padding-right:27px;
         padding-top:6px;
