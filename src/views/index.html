@@ -5,42 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>whouse主页</title>
-  <link rel="stylesheet" href="iconfont/iconfont.css">
-  <style>
-    *{
-      margin:0;
-      padding:0;
-    }
-    aside{
-      width:80px;
-      background-color:dodgerblue;
-    }
-    ul{
-      list-style: none;
-      text-align: center;
-    }
-    li{
-      height:80px;
-    }
-    a{
-      text-decoration: none;
-      color:#fff;
-      font-size:14px;
-    }
-    .iconfont{
-      font-size:30px;
-    }
-    a span:last-child{
-      display: block;
-    }
-    ul li:last-child{
-      margin-top:450px;
-    }
-  </style>
+  <link rel="stylesheet" href="../iconfont/iconfont.css">
+  <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
+  <!-- 左侧边栏部分 -->
   <aside>
     <ul>
+      <li>
+        <a href="javascript:;">
+          <span class="iconfont">&#xe796;</span>
+        </a>
+      </li>
       <li>
         <a href="javascript:;">
           <span class="iconfont">&#xe78b;</span>订单
@@ -73,10 +49,24 @@
       </li>
     </ul>
   </aside>
-  <section>
-    <header>
-
-    </header>
-  </section>
+  <!-- 右侧主体部分 -->
+  <div class="wrap">
+    <!-- 右侧主体--header部分 -->
+    <header>右侧主体头部分</header>
+    <!-- 右侧主体--section部分 -->
+    <div class="section">
+      <!-- section--summary信息展示部分 -->
+      <div class="summary">主页数据</div>
+      <!-- section--info信息展示部分 -->
+      <div class="info">
+        <div class="carousel">轮播图</div>
+        <div class="tool">工具项</div>
+        <div class="msg">系统提示信息</div>
+        <div class="finance">财务报表部分</div>
+        <div class="log">日志部分</div>
+        <div class="service">服务中心</div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
