@@ -7,6 +7,8 @@
   <title>whouse主页</title>
   <link rel="stylesheet" href="../iconfont/iconfont.css">
   <link rel="stylesheet" href="../css/index.css">
+  <script src="../assets/javascripts/jquery-1.11.3.js"></script>
+  <script src="../assets/javascripts/echarts.min.js"></script>
 </head>
 <body>
   <!-- 左侧边栏部分 -->
@@ -62,11 +64,16 @@
         <div class="carousel">轮播图</div>
         <div class="tool">工具项</div>
         <div class="msg">系统提示信息</div>
-        <div class="finance">财务报表部分</div>
+        <div class="finance">
+            <a href="javascript:sale()">月销售额报表</a>
+            <div id="financeChart"></div>
+        </div>
         <div class="log">日志部分</div>
         <div class="service">服务中心</div>
       </div>
     </div>
   </div>
+  <!-- 引入生成财务报表的js文件 -->
+  <script src="../assets/javascripts/finance.js"></script>
 </body>
 </html>
