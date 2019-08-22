@@ -6,9 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>whouse主页</title>
   <link rel="stylesheet" href="../iconfont/iconfont.css">
-  <link rel="stylesheet" href="../css/index.css">
-  <script src="../assets/javascripts/jquery-1.11.3.js"></script>
-  <script src="../assets/javascripts/echarts.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <script src="../assets/js/jquery-1.11.3.js"></script>
+  <script src="../assets/js/echarts.min.js"></script>
+  <script src="../assets/js/vue.js"></script>
+  <script src="../components/Log.vue"></script>
 </head>
 <body>
   <!-- 左侧边栏部分 -->
@@ -58,17 +60,117 @@
     <!-- 右侧主体--section部分 -->
     <div class="section">
       <!-- section--summary信息展示部分 -->
-      <div class="summary">主页数据</div>
+      <ul class="summary">
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;待付款
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;待审核
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;异常
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;未发货
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;今日发货
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;发货失败
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;普通退货
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;已收货待确认
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+      </ul>
       <!-- section--info信息展示部分 -->
       <div class="info">
         <div class="carousel">轮播图</div>
-        <div class="tool">工具项</div>
+        <ul class="tool">
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>订单
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>商品库存
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>采购入库
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>销售出库
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>新手入门
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>供应链
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>客户群
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <span class="iconfont">&#xe7a7;</span>1688淘管家
+            </a>
+          </li>
+        </ul>
         <div class="msg">系统提示信息</div>
         <div class="finance">
             <a href="javascript:sale()">月销售额报表</a>
             <div id="financeChart"></div>
         </div>
-        <div class="log">日志部分</div>
+        <div class="log">
+          <div>
+            <h1>待办事项日志</h1>
+            <input type="text"><button>+</button>
+          </div>
+          <ul>
+            <li>未发货订单即使处理</li>
+            <li>1.未发货订单即使处理</li>
+            <li>1.未发货订单即使处理</li>
+          </ul>
+        </div>
         <div class="service">服务中心</div>
       </div>
     </div>

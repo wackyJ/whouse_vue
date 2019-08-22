@@ -20,7 +20,7 @@ aside a{
   color:#fff;
   font-size:14px;
 }
-.iconfont{
+aside .iconfont{
   font-size:30px;
 }
 aside a span:last-child{
@@ -54,6 +54,27 @@ header{
   color:#000;
   background-color:#fff;
 }
+.summary li{
+  float:left;
+  width:12%;
+  height:75px;
+  text-align: center;
+  padding-top:15px;
+}
+.summary .sum_sp1 span{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background-color:#f00;
+}
+.summary .sum_sp1{
+  font-size:15px;
+}
+.summary .sum_sp2{
+  display:block;
+  font-size:32px;
+}
 /* section--info信息展示 */
 .info{
   margin-top:20px;
@@ -61,6 +82,7 @@ header{
   flex-wrap: wrap;
   justify-content: space-between;
 }
+/* info信息展示内部子元素的宽高样式 */
 .carousel,.tool,.log,.finance,#financeChart{
   width:36%;
   min-width:400px;
@@ -78,6 +100,29 @@ header{
   margin-top:15px;
   background-color:#fff;
 }
+/* 工具项 */
+.tool{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: space-around;
+  padding:2% 0;
+  box-sizing: border-box;
+}
+.tool li{
+  width:21%;
+  text-align:center;
+}
+.tool li a{
+  display:block;
+  color:#6a6a6a;
+  margin-top:20%;
+  font-size:14px;
+}
+.tool .iconfont{
+  display:block;
+  font-size:40px;
+}
+/* 财务报表 */
 #financeChart{
   height:410px;
 }
