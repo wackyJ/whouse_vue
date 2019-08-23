@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="../iconfont/iconfont.css">
   <link rel="stylesheet" href="../assets/css/index.css">
   <script src="../assets/js/jquery-1.11.3.js"></script>
-  <script src="../assets/js/echarts.min.js"></script>
+  <script src="../../public/js/echarts.min.js"></script>
   <script src="../assets/js/vue.js"></script>
   <script src="../components/Log.vue"></script>
+  <script src="../components/Charts.vue"></script>
 </head>
 <body>
   <!-- 左侧边栏部分 -->
@@ -156,10 +157,11 @@
           </li>
         </ul>
         <div class="msg">系统提示信息</div>
+        <!-- 财务报表 -->
         <div class="finance">
-            <a href="javascript:sale()">月销售额报表</a>
-            <div id="financeChart"></div>
+          <charts>财务报表图</charts>
         </div>
+        <!-- 日志 -->
         <div class="log">
           <div>
             <h1>待办事项日志</h1>
@@ -175,7 +177,10 @@
       </div>
     </div>
   </div>
-  <!-- 引入生成财务报表的js文件 -->
-  <script src="../assets/javascripts/finance.js"></script>
+  <script>
+    new Vue({
+      router
+    })
+  </script>
 </body>
 </html>
