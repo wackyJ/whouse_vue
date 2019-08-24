@@ -1,43 +1,41 @@
 <template>
-  <aside>
-    <ul>
-      <li>
-        <a href="javascript:;">
-          <span class="iconfont">&#xe796;</span>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="iconfont">&#xe78b;</span>订单
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="iconfont">&#xe79d;</span>商品
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="iconfont">&#xe78b;</span>采购
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="iconfont">&#xe7b6;</span>库存
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="iconfont">&#xe78b;</span>供应
-        </a>
-      </li>
-      <li>
-        <a href="javascript:;">
-          <span class="iconfont">&#xe7b8;</span>设置
-        </a>
-      </li>
-    </ul>
-  </aside>
+  <ul class="aside">
+    <li>
+      <a href="javascript:;">
+        <span class="iconfont">&#xe796;</span>
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;">
+        <span class="iconfont">&#xe78b;</span>订单
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;">
+        <span class="iconfont">&#xe79d;</span>商品
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;">
+        <span class="iconfont">&#xe78b;</span>采购
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;">
+        <span class="iconfont">&#xe7b6;</span>库存
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;">
+        <span class="iconfont">&#xe78b;</span>供应
+      </a>
+    </li>
+    <li>
+      <a href="javascript:;">
+        <span class="iconfont">&#xe7b8;</span>设置
+      </a>
+    </li>
+  </ul>
 </template>
 <script>
 export default {
@@ -45,30 +43,27 @@ export default {
 }
 </script>
 <style scoped>
-  aside{
-    float:left;
-    width:4%;
-    height:950px;
-    background-color:dodgerblue;
-  }
-  aside ul{
+  /* .aside {
     text-align: center;
-  }
-  aside ul li{
+    height:100%;
+    position:fixed;
+    // border:1px #000 solid; 
+  } */
+  .aside li{
     height:80px;
   }
-  aside ul li:first-child{line-height: 80px;}
-  aside a{
+  .aside li:first-child{line-height: 80px;}
+  .aside li a{
     color:#fff;
     font-size:14px;
   }
-  aside .iconfont{
+  .aside .iconfont{
     font-size:30px;
   }
-  aside a span:last-child{
+  .aside a span:last-child{
     display: block;
   }
-  aside ul li:last-child{
+  .aside li:last-child{
     margin-top:380px;
   }
 </style>

@@ -7,9 +7,10 @@ export default {
 }
 </script>
 <style scoped>
-  header{
-    height:45px;
+  /* header{
+    position:fixed;
+    height:42px;
     background-color:#f3f3f3;
     border-bottom:3px #e3e3e3 solid;
-  }
+  } */
 </style>

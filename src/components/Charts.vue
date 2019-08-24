@@ -12,6 +12,7 @@
 
 <script>
   export default {
+    name: 'Charts',
     methods:{
       sale(date,targetId){
         this.axios.get(`/finance/v1/${date}lySales`).then(result=>{
