@@ -6,12 +6,15 @@ import store from './store'
 import axios from 'axios'
 import MainHeader from './components/MainHeader'
 import MainAside from './components/MainAside'
+import echarts from 'echarts'
 
+Vue.prototype.$echarts = echarts ;
 Vue.config.productionTip = false
 axios.defaults.baseURL = "http://localhost:3000";
 Vue.prototype.axios = axios;
 Vue.component("main-header",MainHeader);
 Vue.component("main-aside",MainAside);
+
 
 new Vue({
   router,
