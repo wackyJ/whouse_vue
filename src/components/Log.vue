@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="log">
     <h1>待办事项日志</h1>
     <input type="text"><button>+</button>
     <ul>
@@ -17,5 +17,11 @@ export default {
 </script>
 
 <style scoped>
-
+  .log{
+    width:36%;
+    min-width:400px;
+    height:420px;
+    margin-top:15px;
+    background-color:#fff;
+  }
 </style>
