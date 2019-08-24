@@ -11,11 +11,10 @@
 </template>
 
 <script>
-// import { readSync } from 'fs';
   export default {
     methods:{
       sale(date,targetId){
-        this.axios.get(`http://127.0.0.1:3000/finance/v1/${date}lySales`).then(result=>{
+        this.axios.get(`/finance/v1/${date}lySales`).then(result=>{
           let _text="";
           if(date=="month"){_text="月"}
           else if(date=="week"){_text="周"}
