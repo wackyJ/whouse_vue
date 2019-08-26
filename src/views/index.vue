@@ -1,9 +1,9 @@
 <template>
   <div>
     <!-- 侧边栏 子组件 -->
-    <main-aside class="aside"></main-aside>
+    <main-aside></main-aside>
     <!-- 右侧 header部分 子组件 -->
-    <main-header class="header"></main-header>
+    <main-header></main-header>
     <!-- 右侧主体部分 -->
     <!-- 右侧主体--section部分 -->
     <div class="section">
@@ -130,21 +130,6 @@ export default {
 </script>
 
 <style scoped>
-  .aside{
-    width:4%;
-    height:100%;
-    position:fixed;
-    background-color:dodgerblue;
-  }
-  .header{
-    height:45px;
-    width:96%;
-    position:fixed;
-    left:4%;
-    background-color:#f3f3f3;
-    border-bottom:3px #e3e3e3 solid;
-    z-index:1;
-  }
   /* 右侧主体--section部分 */
   .section{
     width:95%;

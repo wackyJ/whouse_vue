@@ -43,12 +43,12 @@ export default {
 }
 </script>
 <style scoped>
-  /* .aside {
-    text-align: center;
+  .aside{
+    width:4%;
     height:100%;
     position:fixed;
-    // border:1px #000 solid; 
-  } */
+    background-color:dodgerblue;
+  }
   .aside li{
     height:80px;
   }
