@@ -5,8 +5,9 @@
     <div class="repertory">
       <el-table
         :data="tableData"
-        style="width: 100%"
-        max-height="800">
+        :style="{width: '100%',position:''}"
+        :max-height="maxheight"
+        min-height="500">
         <el-table-column
           fixed
           prop="pid"
@@ -112,6 +113,11 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :page-count="pcount" @prev-click="changePage(-1)" @next-click="changePage(1)">
+      </el-pagination>
       <h6> 
         <ul class="pagination">
           <li class="page-item" :class="{disabled:pno==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(-1)">上一页</a></li>
@@ -145,14 +151,17 @@
           this.tableData=result.data.data;
           this.pno=result.data.pno;
           this.pcount=result.data.pageCount;
+          console.log(this.maxheight)
         });
       }
     },
     created(){
+      this.maxheight=parseInt(window.screen.availHeight)/1.1;
       this.load();
     },
     data() {
       return {
+        maxheight:0,
         tableData: [],
         pno:0,
         pcount:0
@@ -172,6 +181,7 @@
     box-sizing: border-box; 
     /* border:1px #000 solid; */
     background-color:#eceff3;
+    padding-bottom:100;
   }
   .pagination {
     display: -webkit-box;
