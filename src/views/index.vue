@@ -70,9 +70,9 @@
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <router-link :to="'/repertory'">
               <span class="iconfont">&#xe7a7;</span>商品库存
-            </a>
+            </router-link>
           </li>
           <li>
             <a href="javascript:;">

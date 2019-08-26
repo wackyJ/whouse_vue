@@ -3,27 +3,115 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="repertory">
-      <h2>欢迎来到库存页面</h2>
-      <ul class="tab" v-for="(product,index) of products" :key="index">
-        <li>{{product.pid}}</li>
-        <li>{{product.family_id}}</li>
-        <li :title="product.title">{{product.title}}</li>
-        <li :title="product.price">{{product.price}}</li>
-        <!-- <li :title="product.promise">{{product.promise}}</li> -->
-        <li :title="product.spec">{{product.spec}}</li>
-        <li :title="product.lname">{{product.lname}}</li>
-        <li :title="product.os">{{product.os}}</li>
-        <li :title="product.memory">{{product.memory}}</li>
-        <li :title="product.resolution">{{product.resolution}}</li>
-        <li :title="product.video_card">{{product.video_card}}</li>
-        <li :title="product.cpu">{{product.cpu}}</li>
-        <li :title="product.category">{{product.category}}</li>
-        <li :title="product.disk">{{product.disk}}</li>
-        <li :title="new Date(product.shelf_time).toLocaleString()">{{new Date(product.shelf_time).toLocaleString()}}</li>
-        <li>{{product.sold_count}}</li>
-        <li>{{product.is_onsale}}</li>
-        <li>{{product.pv_id}}</li>
-      </ul>
+      <el-table
+        :data="tableData"
+        style="width: 100%"
+        max-height="800">
+        <el-table-column
+          fixed
+          prop="pid"
+          label="商品ID"
+          width="70">
+        </el-table-column>
+        <el-table-column
+          prop="family_id"
+          label="系列ID"
+          width="70">
+        </el-table-column>
+        <el-table-column
+          prop="pname"
+          label="商品名称"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="price"
+          label="价格"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="spec"
+          label="规格/颜色"
+          width="300">
+        </el-table-column>
+        <el-table-column
+          prop="os"
+          label="操作系统"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="memory"
+          label="内存容量"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="resolution"
+          label="分辨率"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="video_card"
+          label="显卡型号"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="cpu"
+          label="处理器"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="video_memory"
+          label="显存容量"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="category"
+          label="所属分类"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="disk"
+          label="硬盘容量及类型"
+          width="140">
+        </el-table-column>
+        <el-table-column
+          prop="shelf_time"
+          label="上架时间"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="sold_count"
+          label="已售出的数量"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="repertory_count"
+          label="库存数量"
+          width="120">
+        </el-table-column>
+        <el-table-column
+          prop="is_onsale"
+          label="是否促销中"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          prop="pv_id"
+          label="供应商ID"
+          width="100">
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="操作"
+          width="120">
+          <template slot-scope="scope">
+            <el-button
+              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              type="text"
+              size="small">
+              移除
+            </el-button>
+          </template>
+        </el-table-column>
+      </el-table>
       <h6> 
         <ul class="pagination">
           <li class="page-item" :class="{disabled:pno==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(-1)">上一页</a></li>
@@ -36,42 +124,45 @@
 </template>
 
 <script>
-export default {
-  data(){
-    return{
-      pno:0,
-      pcount:0,
-      products:[]
-    }
-  },
-  methods:{
-    changePage(i){
+  export default {
+    methods: {
+      deleteRow(index, rows) {
+        rows.splice(index, 1);
+      },
+      changePage(i){
       this.load(parseInt(this.pno)+i);
-    },
-    load(i){
-      this.axios.get(
-        "/product/v1/repertory",
-        {
-          params:{
-            pno:i
+      },
+      load(i){
+        this.axios.get(
+          "/product/v1/repertory",
+          {
+            params:{
+              pno:i
+            }
           }
-        }
-      ).then(result=>{
-        console.log(result.data);
-        this.products=result.data.data;
-        this.pno=result.data.pno;
-        this.pcount=result.data.pageCount;
-      });
+        ).then(result=>{
+          console.log(result.data);
+          this.tableData=result.data.data;
+          this.pno=result.data.pno;
+          this.pcount=result.data.pageCount;
+        });
+      }
+    },
+    created(){
+      this.load();
+    },
+    data() {
+      return {
+        tableData: [],
+        pno:0,
+        pcount:0
+      }
     }
-  },
-  created(){
-    this.load();
   }
-}
 </script>
 
 <style scoped>
-  .repertory{
+.repertory{
     width:95%;  
     height:100%;
     position:relative;
@@ -79,32 +170,8 @@ export default {
     top:48px; 
     /* padding:28px 65px 30px 65px; */
     box-sizing: border-box; 
-    border:1px #000 solid;
+    /* border:1px #000 solid; */
     background-color:#eceff3;
-  }
-  .repertory ul{
-    padding:0 2%;
-    display: flex;
-    font-size: 20px;
-  }
-  .tab{
-    justify-content: space-between;
-  }
- .tab li:first-child,.tab li:nth-child(2),.tab li:nth-child(8),.tab li:nth-child(16),.tab li:last-child{
-    width: 50px;
-  }
-  .tab>li:nth-child(4),.tab>li:nth-child(15){
-    width: 100px;
-  }
-  .repertory .tab>li{
-    border:1px solid black;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 200px;
-  }
-   .repertory .tab li+li{
-    border-left:none;
   }
   .pagination {
     display: -webkit-box;
