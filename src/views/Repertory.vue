@@ -1,10 +1,10 @@
 <template>
   <div>
     <main-aside></main-aside>
+    <main-header></main-header>
     <div class="repertory">
-      <main-header></main-header>
       <h2>欢迎来到库存页面</h2>
-      <ul v-for="(product,index) of products" :key="index">
+      <ul class="tab" v-for="(product,index) of products" :key="index">
         <li>{{product.pid}}</li>
         <li>{{product.family_id}}</li>
         <li :title="product.title">{{product.title}}</li>
@@ -24,16 +24,14 @@
         <li>{{product.is_onsale}}</li>
         <li>{{product.pv_id}}</li>
       </ul>
+      <h6> 
+        <ul class="pagination">
+          <li class="page-item" :class="{disabled:pno==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(-1)">上一页</a></li>
+          <li v-for="i of pcount" :key="i" class="page-item" :class="{active:parseInt(pno)+1==i}"><a class="page-link" :class="parseInt(pno)+1==i?'border':'bg-transparent'" href="javascript:;" @click="load(i-1)">{{i}}</a></li>
+          <li class="page-item" :class="{disabled:pno==pcount-1||pcount==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(1)">下一页</a></li>
+        </ul>
+      </h6>
     </div>
-    <!-- <h6 class="mb-3 p-2 text-muted small"> -->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination mb-0 justify-content-end">
-            <li class="page-item" :class="{disabled:pno==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(-1)">上一页</a></li>
-            <li v-for="i of pcount" :key="i" class="page-item" :class="{active:parseInt(pno)+1==i}"><a class="page-link" :class="parseInt(pno)+1==i?'border':'bg-transparent'" href="javascript:;" @click="load(i-1)">{{i}}</a></li>
-            <li class="page-item" :class="{disabled:pno==pcount-1||pcount==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(1)">下一页</a></li>
-          </ul>
-        </nav>
-      <!-- </h6> -->
   </div>
 </template>
 
@@ -41,15 +39,28 @@
 export default {
   data(){
     return{
+      pno:0,
+      pcount:0,
       products:[]
     }
   },
   methods:{
-    load(){
-      this.axios.get("/product/v1/repertory").then(result=>{
+    changePage(i){
+      this.load(parseInt(this.pno)+i);
+    },
+    load(i){
+      this.axios.get(
+        "/product/v1/repertory",
+        {
+          params:{
+            pno:i
+          }
+        }
+      ).then(result=>{
         console.log(result.data);
         this.products=result.data.data;
-
+        this.pno=result.data.pno;
+        this.pcount=result.data.pageCount;
       });
     }
   },
@@ -61,27 +72,93 @@ export default {
 
 <style scoped>
   .repertory{
-    width:96%;
-    /* float: left; */
+    width:95%;  
+    height:100%;
+    position:relative;
+    left:4%;
+    top:48px; 
+    /* padding:28px 65px 30px 65px; */
+    box-sizing: border-box; 
+    border:1px #000 solid;
+    background-color:#eceff3;
   }
   .repertory ul{
     padding:0 2%;
     display: flex;
     font-size: 20px;
-    justify-content: space-between;
-
   }
-  li:first-child,li:nth-child(2),li:nth-child(8),li:nth-child(16),li:last-child{
+  .tab{
+    justify-content: space-between;
+  }
+ .tab li:first-child,.tab li:nth-child(2),.tab li:nth-child(8),.tab li:nth-child(16),.tab li:last-child{
     width: 50px;
   }
-  li:nth-child(4),li:nth-child(15){
+  .tab>li:nth-child(4),.tab>li:nth-child(15){
     width: 100px;
   }
-  .repertory li{
+  .repertory .tab>li{
     border:1px solid black;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 200px;
   }
-</style>>
+   .repertory .tab li+li{
+    border-left:none;
+  }
+  .pagination {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+    justify-content:flex-end;
+  }
+  .page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    font-size: 20px;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+  }
+  .page-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+  }
+  .page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  .page-link:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+  .page-item:first-child .page-link {
+    margin-left: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+  }
+  .page-item:last-child .page-link {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+  .page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6;
+  }
+</style>
