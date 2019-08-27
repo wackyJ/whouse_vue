@@ -136,8 +136,8 @@ export default {
 <style scoped>
   .wrap {
     width:96%;
-    height:100%;
-    position:fixed;
+    height:970px;
+    position:relative;
     left:4%;
     background-color:#eceff3;
   }
