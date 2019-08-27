@@ -66,42 +66,42 @@
         <ul class="tool">
           <li>
             <a href="javascript:;">
-              <span class="iconfont">&#xe7a7;</span>订单
+              <span class="iconfont">&#xe60d;</span>订单
             </a>
           </li>
           <li>
             <router-link :to="'/repertory'">
-              <span class="iconfont">&#xe7a7;</span>商品库存
+              <span class="iconfont">&#xe680;</span>商品库存
             </router-link>
           </li>
           <li>
             <a href="javascript:;">
-              <span class="iconfont">&#xe7a7;</span>采购入库
+              <span class="iconfont">&#xe605;</span>采购入库
             </a>
           </li>
           <li>
             <a href="javascript:;">
-              <span class="iconfont">&#xe7a7;</span>销售出库
+              <span class="iconfont">&#xe618;</span>销售出库
             </a>
           </li>
           <li>
             <a href="javascript:;">
-              <span class="iconfont">&#xe7a7;</span>新手入门
+              <span class="iconfont">&#xe72f;</span>新手入门
             </a>
           </li>
           <li>
             <a href="javascript:;">
-              <span class="iconfont">&#xe7a7;</span>供应链
+              <span class="iconfont">&#xe604;</span>供应链
             </a>
           </li>
           <li>
             <a href="javascript:;">
-              <span class="iconfont">&#xe7a7;</span>客户群
+              <span class="iconfont">&#xe696;</span>客户群
             </a>
           </li>
           <li>
             <a href="javascript:;">
-              <span class="iconfont">&#xe7a7;</span>1688淘管家
+              <span class="iconfont">&#xe655;</span>1688淘管家
             </a>
           </li>
         </ul>
@@ -162,8 +162,15 @@ export default {
     width:12px;
     height:12px;
     border-radius:50%;
-    background-color:#f00;
   }
+  .summary li:nth-child(1)>span span {background-color:#5bccff;}
+  .summary li:nth-child(2)>span span {background-color:#fe7328;}
+  .summary li:nth-child(3)>span span {background-color:#53bf8a;}
+  .summary li:nth-child(4)>span span {background-color:#6dcbcd;}
+  .summary li:nth-child(5)>span span {background-color:#e9bb89;}
+  .summary li:nth-child(6)>span span {background-color:#00aaee;}
+  .summary li:nth-child(7)>span span {background-color:#53bf8a;}
+  .summary li:nth-child(8)>span span {background-color:#6dc6cd;}
   .summary .sum_sp1{
     font-size:15px;
   }
@@ -201,7 +208,7 @@ export default {
   }
   .tool .iconfont{
     display:block;
-    font-size:40px;
+    font-size:36px;
   }
   /* 服务中心 */
   .service{
