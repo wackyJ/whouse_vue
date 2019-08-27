@@ -2,27 +2,27 @@
   <ul class="aside">
     <li>
       <router-link :to="'/'">
-        <img src="img/logo_pic.png">
+        <span class="iconfont">&#xe606;</span>
       </router-link>
     </li>
     <li>
       <router-link :to="'/orderpage'">
-        <span class="iconfont">&#xe78b;</span>订单
+        <span class="iconfont">&#xe60d;</span>订单
       </router-link>
     </li>
     <li>
       <router-link :to="'/productpage'">
-        <span class="iconfont">&#xe79d;</span>商品
+        <span class="iconfont">&#xe67b;</span>商品
       </router-link>
     </li>
     <li>
       <router-link :to="'/repertory'">
-        <span class="iconfont">&#xe7b6;</span>库存
+        <span class="iconfont">&#xe680;</span>库存
       </router-link>
     </li>
     <li>
       <router-link :to="'/setpage'">
-        <span class="iconfont">&#xe7b8;</span>设置
+        <span class="iconfont">&#xe607;</span>设置
       </router-link>
     </li>
   </ul>
@@ -44,23 +44,28 @@ export default {
   .aside li{
     width:100%;
     height:80px;
+    /* border:1px #000 solid; */
   }
-  .aside li a img {
-    width:60%;
-    height:45px; 
-    margin-top:15px;
+  .aside li:first-child a{
+    margin-top:25px;
   }
   .aside li a{
     color:#fff;
     font-size:14px;
     display:block;
+    /* margin-top:10px; */
+    /* border:1px #000 solid; */
   }
   .aside .iconfont{
-    font-size:30px;
+    font-size:28px;
     display: block;
+    margin-bottom:5px;
+  }
+  .aside li:first-child .iconfont{
+    font-size:34px;
   }
   .aside li:last-child{
     position:absolute;
-    bottom:5px;
+    bottom:10px;
   }
 </style>

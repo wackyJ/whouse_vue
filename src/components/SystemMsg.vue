@@ -1,6 +1,6 @@
 <template>
   <div class="msg">
-    <h3>系统提示</h3>
+    <h4>系统提示</h4>
     <el-timeline class="tLine">
       <el-timeline-item class="item"
         v-for="(activity, index) in activities"
@@ -53,9 +53,11 @@
     background-color:#fff;
     text-align: left;
   }
+  .msg h4 {
+    font-size:18px;
+  }
   .msg .tLine{
-    width:80%;
     margin-left:5%;
-    margin-top:5%;
+    margin-top:3%;
   }
 </style>
