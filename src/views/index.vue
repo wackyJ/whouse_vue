@@ -113,7 +113,7 @@
           <!-- 子组件 日志 -->
           <log></log>
           <!-- 服务中心 -->
-          <div class="service">服务中心</div>
+          <service></service>
         </div>
       </div>
     </div>
@@ -125,9 +125,10 @@ import Carousel from '../components/Carousel'
 import SystemMsg from '../components/SystemMsg'
 import Charts from '../components/Charts'
 import Log from '../components/Log'
+import Service from '../components/Service'
 export default {
   components:{
-    Carousel,SystemMsg,Charts,Log
+    Carousel,SystemMsg,Charts,Log,Service
   }
 }
 </script>
