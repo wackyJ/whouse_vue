@@ -1,12 +1,10 @@
 <template>
   <div class="charts">
-    <button @click="sale('week','financeChart')">生成周销售额报表</button>
-    <button @click="sale('month','financeChart')">生成月销售额报表</button>
-    <button @click="sale('year','financeChart')">生成年销售额报表</button>
+    <el-button type="primary" plain @click="sale('week','financeChart')">周销售额报表</el-button>
+    <el-button type="primary" plain @click="sale('month','financeChart')">月销售额报表</el-button>
+    <el-button type="primary" plain @click="sale('year','financeChart')">年销售额报表</el-button>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="financeChart" style="width: 400px;height:420px;">
-      <h1>财务报表图</h1>
-    </div>
+    <div id="financeChart"></div>
   </div>
 </template>
 
@@ -21,19 +19,17 @@
       sale(date,targetId){
         this.axios.get(`/finance/v1/${date}lySales`).then(result=>{
           let _text="";
-          console.log(result.data);
+          // console.log(result.data);
           if(date=="month"){_text="月"}
           else if(date=="week"){_text="周"}
           else if(date=="year"){_text="年"}
-          else{_text=""};
+          else{_text=""}
           let sales=result.data.map(v=>v["total"]);
           let productNames=result.data.map(v=>v[`${date}(delivery_date)`]+_text);
           // console.log(sales);
           // console.log(productNames);
           // 基于准备好的dom，初始化echarts实例
           var myChart = this.$echarts.init(document.getElementById(targetId),null,{ renderer : 'svg' });
-
-         
           // 指定图表的配置项和数据
           var option = {
             title: {
@@ -61,6 +57,11 @@
   }
 </script>
 <style scoped>
+  #financeChart{
+    width: 400px;
+    height:420px;
+    left:calc(50% - 180px);
+  }
   .charts{
     width:36%;
     height:420px;
