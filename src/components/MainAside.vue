@@ -1,29 +1,29 @@
 <template>
   <ul class="aside">
     <li>
-      <a href="javascript:;">
+      <router-link :to="'/'">
         <img src="img/logo_pic.png">
-      </a>
+      </router-link>
     </li>
     <li>
-      <a href="javascript:;">
+      <router-link :to="'/orderpage'">
         <span class="iconfont">&#xe78b;</span>订单
-      </a>
+      </router-link>
     </li>
     <li>
-      <a href="javascript:;">
+      <router-link :to="'/productpage'">
         <span class="iconfont">&#xe79d;</span>商品
-      </a>
+      </router-link>
     </li>
     <li>
-      <a href="javascript:;">
+      <router-link :to="'/repertory'">
         <span class="iconfont">&#xe7b6;</span>库存
-      </a>
+      </router-link>
     </li>
     <li>
-      <a href="javascript:;">
+      <router-link :to="'/setpage'">
         <span class="iconfont">&#xe7b8;</span>设置
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>
@@ -39,7 +39,7 @@ export default {
     min-width:60px;
     position:fixed;
     background-color:dodgerblue;
-    z-index:2;
+    z-index:99;
   }
   .aside li{
     width:100%;
