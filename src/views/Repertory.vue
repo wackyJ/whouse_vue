@@ -7,7 +7,10 @@
         :data="tableData"
         :style="{width: '100%',position:''}"
         :max-height="maxheight"
-        min-height="500">
+        min-height="500"
+        @cell-dblclick="edit" :border=true
+        :cell-style="{'padding-left':0,'text-align':'center'}"
+        :header-cell-style="{'text-align':'center'}">
         <el-table-column
           fixed
           prop="pid"
@@ -37,7 +40,7 @@
         <el-table-column
           prop="os"
           label="操作系统"
-          width="120">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="memory"
@@ -116,15 +119,8 @@
       <el-pagination
         background
         layout="prev, pager, next"
-        :page-count="pcount" @prev-click="changePage(-1)" @next-click="changePage(1)">
+        :page-count="pcount" @current-change="changePage">
       </el-pagination>
-      <h6> 
-        <ul class="pagination">
-          <li class="page-item" :class="{disabled:pno==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(-1)">上一页</a></li>
-          <li v-for="i of pcount" :key="i" class="page-item" :class="{active:parseInt(pno)+1==i}"><a class="page-link" :class="parseInt(pno)+1==i?'border':'bg-transparent'" href="javascript:;" @click="load(i-1)">{{i}}</a></li>
-          <li class="page-item" :class="{disabled:pno==pcount-1||pcount==0}"><a class="page-link bg-transparent" href="javascript:;" @click="changePage(1)">下一页</a></li>
-        </ul>
-      </h6>
     </div>
   </div>
 </template>
@@ -132,11 +128,34 @@
 <script>
   export default {
     methods: {
+      edit(row,column,cell,event){
+        var element=event.target;
+        if(element.nodeName=="DIV"){
+          let newobj = document.createElement('input');//创建一个input元素
+          let oldhtml=element.innerHTML;//获得元素之前的内容
+          newobj.type = 'text';//为newobj元素添加类型
+          newobj.value=oldhtml;
+          newobj.style.cssText=`
+            width:${element.parentNode.offsetWidth-30}px;
+            height:41px;
+          `;
+          element.innerHTML='';//设置元素内容为空
+          element.appendChild(newobj);//添加子元素
+          newobj.focus();//获得焦点
+          //设置newobj失去焦点的事件
+          newobj.onblur = function(){
+            //下面应该判断是否做了修改并使用ajax代码请求服务端将id与修改后的数据提交
+            // alert(element.id);
+            //当触发时判断newobj的值是否为空，为空则不修改，并返回oldhtml
+            element.innerHTML = this.value ? this.value : oldhtml;
+          }
+        }
+      },
       deleteRow(index, rows) {
         rows.splice(index, 1);
       },
       changePage(i){
-      this.load(parseInt(this.pno)+i);
+        this.load(i-1);
       },
       load(i){
         this.axios.get(
@@ -147,11 +166,9 @@
             }
           }
         ).then(result=>{
-          console.log(result.data);
           this.tableData=result.data.data;
           this.pno=result.data.pno;
           this.pcount=result.data.pageCount;
-          console.log(this.maxheight)
         });
       }
     },
@@ -162,7 +179,7 @@
     data() {
       return {
         maxheight:0,
-        tableData: [],
+        tableData:[],
         pno:0,
         pcount:0
       }
@@ -171,71 +188,14 @@
 </script>
 
 <style scoped>
-.repertory{
+  .repertory{
     width:95%;  
     height:100%;
     position:relative;
     left:4%;
     top:48px; 
-    /* padding:28px 65px 30px 65px; */
     box-sizing: border-box; 
-    /* border:1px #000 solid; */
     background-color:#eceff3;
     padding-bottom:100;
-  }
-  .pagination {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding-left: 0;
-    list-style: none;
-    border-radius: 0.25rem;
-    justify-content:flex-end;
-  }
-  .page-link {
-    position: relative;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    margin-left: -1px;
-    font-size: 20px;
-    color: #007bff;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-  }
-  .page-link:hover {
-    color: #0056b3;
-    text-decoration: none;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
-  }
-  .page-link:focus {
-    z-index: 2;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
-  .page-link:not(:disabled):not(.disabled) {
-    cursor: pointer;
-  }
-  .page-item:first-child .page-link {
-    margin-left: 0;
-    border-top-left-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-  }
-  .page-item:last-child .page-link {
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-  }
-  .page-item.active .page-link {
-    z-index: 1;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  .page-item.disabled .page-link {
-    color: #6c757d;
-    pointer-events: none;
-    cursor: auto;
-    background-color: #fff;
-    border-color: #dee2e6;
   }
 </style>
