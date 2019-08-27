@@ -60,8 +60,8 @@
       </ul>
       <!-- section--info信息展示部分 -->
       <div class="info">
-        <!-- 轮播图 -->
-        <div class="carousel">轮播图</div>
+        <!-- 子组件 轮播图 -->
+        <Carousel></Carousel>
         <!-- 工具项 -->
         <ul class="tool">
           <li>
@@ -105,12 +105,13 @@
             </a>
           </li>
         </ul>
-        <!-- 系统提示信息 子组件 -->
-        <system-msg class="msg">系统提示信息</system-msg>
-        <!-- 财务报表 子组件 -->
-        <charts class="chart">财务报表图</charts>
-        <!-- 日志 子组件-->
-        <log class="log"></log>
+        <!-- 子组件 系统提示信息 -->
+        <system-msg></system-msg>
+        <!-- 子组件 财务报表 -->
+        <charts></charts>
+        <!-- 子组件 日志 -->
+        <log></log>
+        <!-- 服务中心 -->
         <div class="service">服务中心</div>
       </div>
     </div>
@@ -118,13 +119,13 @@
 </template>
 
 <script>
-import SystemMsg from '../components/SystemMsg'
 import Carousel from '../components/Carousel'
+import SystemMsg from '../components/SystemMsg'
 import Charts from '../components/Charts'
 import Log from '../components/Log'
 export default {
   components:{
-    SystemMsg,Carousel,Charts,Log
+    Carousel,SystemMsg,Charts,Log
   }
 }
 </script>
@@ -132,20 +133,21 @@ export default {
 <style scoped>
   /* 右侧主体--section部分 */
   .section{
-    width:95%;
+    width:96%;
     height:100%;
+    min-width:1300px;
     position:relative;
     left:4%;
     top:48px; 
     padding:28px 65px 30px 65px;
     box-sizing: border-box;
-    border:1px #000 solid;
     background-color:#eceff3;
   }
   /* section--summary信息展示 */
   .summary{
     height:90px;
     color:#000;
+    min-width:930px;
     background-color:#fff;
   }
   .summary li{
@@ -173,70 +175,14 @@ export default {
   .info{
     margin-top:20px;
     display:flex;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
     justify-content: space-between;
-  }
-  /* info信息展示的内部子元素的宽高样式 */
-  /*
-  .carousel {
-    width:36%;
-    min-width:400px;
-    height:300px;
-    background-color:#fff;
-  }
-  .tool {
-    width:36%;
-    min-width:400px;
-    height:300px;
-    background-color:#fff;
-  }
-  .log {
-    width:36%;
-    min-width:400px;
-    height:420px;
-    margin-top:15px;
-    background-color:#fff;
-  }
-  .chart {
-    width:36%;
-    min-width:400px;
-    height:420px;
-    margin-top:15px;
-    background-color:#fff;
-  }
-  .msg {
-    width:26%;
-    min-width:300px;
-    height:300px;
-    background-color:#fff;
-  }
-  .service {
-    width:26%;
-    min-width:300px;
-    height:420px;
-    margin-top:15px;
-    background-color:#fff;
-  }
-  */
-  .carousel,.tool,.log,.chart{
-    width:36%;
-    min-width:400px;
-  }
-  .msg,.service{
-    width:26%;
-    min-width:300px;
-  }
-  .carousel,.tool,.msg{
-    height:300px;
-    background-color:#fff;
-  }
-  .chart,.log,.service{
-    height:420px;
-    margin-top:15px;
-    background-color:#fff;
   }
   /* 工具项 */
   .tool{
+    width:36%;
+    height:300px;
+    background-color:#fff;
     display:flex;
     flex-wrap:wrap;
     justify-content: space-around;
@@ -256,5 +202,12 @@ export default {
   .tool .iconfont{
     display:block;
     font-size:40px;
+  }
+  /* 服务中心 */
+  .service{
+    width:26%;
+    height:420px;
+    margin-top:15px;
+    background-color:#fff;
   }
 </style>

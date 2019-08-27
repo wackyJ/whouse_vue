@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="charts">
     <button @click="sale('week','financeChart')">生成周销售额报表</button>
     <button @click="sale('month','financeChart')">生成月销售额报表</button>
     <button @click="sale('year','financeChart')">生成年销售额报表</button>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="financeChart" style="width: 400px;height:420px;">
-        <h1>财务报表图</h1>
+      <h1>财务报表图</h1>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
   export default {
     name: 'Charts', 
     mounted(){
-      this.sale();
+      this.sale('week','financeChart');
     },
     methods:{
       sale(date,targetId){
@@ -58,3 +58,11 @@
     }
   }
 </script>
+<style scoped>
+  .charts{
+    width:36%;
+    height:420px;
+    background-color:#fff;
+    margin-top:15px;
+  }
+</style>

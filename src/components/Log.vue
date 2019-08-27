@@ -19,7 +19,6 @@ export default {
 <style scoped>
   .log{
     width:36%;
-    min-width:400px;
     height:420px;
     margin-top:15px;
     background-color:#fff;

@@ -2,7 +2,7 @@
   <ul class="aside">
     <li>
       <a href="javascript:;">
-        <span class="iconfont">&#xe796;</span>
+        <img src="img/logo_pic.png">
       </a>
     </li>
     <li>
@@ -17,17 +17,7 @@
     </li>
     <li>
       <a href="javascript:;">
-        <span class="iconfont">&#xe78b;</span>采购
-      </a>
-    </li>
-    <li>
-      <a href="javascript:;">
         <span class="iconfont">&#xe7b6;</span>库存
-      </a>
-    </li>
-    <li>
-      <a href="javascript:;">
-        <span class="iconfont">&#xe78b;</span>供应
       </a>
     </li>
     <li>
@@ -46,24 +36,31 @@ export default {
   .aside{
     width:4%;
     height:100%;
+    min-width:60px;
     position:fixed;
     background-color:dodgerblue;
+    z-index:2;
   }
   .aside li{
+    width:100%;
     height:80px;
   }
-  .aside li:first-child{line-height: 80px;}
+  .aside li a img {
+    width:60%;
+    height:45px; 
+    margin-top:15px;
+  }
   .aside li a{
     color:#fff;
     font-size:14px;
+    display:block;
   }
   .aside .iconfont{
     font-size:30px;
-  }
-  .aside a span:last-child{
     display: block;
   }
   .aside li:last-child{
-    margin-top:380px;
+    position:absolute;
+    bottom:5px;
   }
 </style>
