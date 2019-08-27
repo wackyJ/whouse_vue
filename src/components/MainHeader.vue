@@ -8,12 +8,13 @@ export default {
 </script>
 <style scoped>
   header{
-    height:45px;
     width:96%;
+    height:45px;
+    min-width: 1300px;
     position:fixed;
     left:4%;
+    z-index:1;
     background-color:#f3f3f3;
     border-bottom:3px #e3e3e3 solid;
-    z-index:1;
   }
 </style>
