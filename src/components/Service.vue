@@ -12,13 +12,13 @@
                 </div>
           </div> 
           <div class="service3">
-            <h3 style="margin-top:0px;margin-left:-235px;padding-bottom:10px;">*内容描述</h3>
-            <textarea style=" margin-left:-30px;min-width:240px;max-width:250px;min-height:100px;" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。"></textarea>
+            <h3 style="margin-top:0px;margin-left:-194px;padding-bottom:5px;">*内容描述:</h3>
+            <textarea style=" margin-left:0px;min-width:247px;max-width:250px;min-height:100px;" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。"></textarea>
            
             <table>
               <tr >
                 <td colspan="2" style="padding-left:22px;padding-top:10px;">选择分类:
-                  <select   style="width:180px;" name="city" size="1" >
+                  <select   style="width:180px;padding:3px;border-radius:5%;" name="city" size="1" >
                     <option value="xq">需求</option>
                     <option value="gj">改进建议</option>
                     <option value="cx">程序错误</option>
@@ -32,14 +32,14 @@
               <tr>
                 <td colspan="2" style="padding-left:22px;padding-top:10px;">联系电话:
                 
-                  <input type="phone" placeholder="请输入联系方式">
+                  <input type="phone" style="padding:3px;border-radius:5%" placeholder="请输入联系方式">
               </td>
               </tr>
               <tr>
                 <td colspan="2" style="padding-top:10px;"><input type="file" name="pic"  id='file'
                    style="visibility:hidden;height:0px;display:block">
                   <button>上传图片</button>
-                   <span style="font-size:5px;">仅限"jpg","png"图片</span>
+                   <span style="font-size:10px;">仅限"jpg","png"图片</span>
                </td>
                </tr>
                 <tr>
