@@ -108,5 +108,5 @@ export default {
   .phone1{padding-left:22px;padding-top:10px;}
   .phonestyle{padding:3px;border-radius:5%}
   .file{visibility:hidden;height:0px;display:block}
-  .submit{margin-left:240px;margin-top:10px;}
+  .submit{margin-left:240px;margin-top:10px;padding:3px;border-radius: 5%;padding-left:5px;padding-right:5px;}
 </style>
