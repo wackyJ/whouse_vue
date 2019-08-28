@@ -115,15 +115,10 @@
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
-      }
-    },
-    watch:{
-      total(){
-        return this.sell_price;
+      //  console.log('submit!');
       }
     }
-  };
+  }
 </script>
 
 <style scoped>
@@ -137,5 +132,5 @@
     padding:28px 65px 30px 65px;
     box-sizing: border-box;
     background-color:#eceff3;
-  }
+  } 
 </style>

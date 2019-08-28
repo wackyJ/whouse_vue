@@ -126,9 +126,10 @@ import SystemMsg from '../components/SystemMsg'
 import Charts from '../components/Charts'
 import Log from '../components/Log'
 import Service from '../components/Service'
+
 export default {
   components:{
-    Carousel,SystemMsg,Charts,Log,Service
+    Carousel,SystemMsg,Charts,Log,Service 
   }
 }
 </script>
