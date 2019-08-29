@@ -6,12 +6,15 @@
       <el-tabs type="border-card">
         <el-tab-pane label="订单提交">
           <el-form ref="form" :model="sizeForm" label-width="100px" size="small " > 
-            <el-form-item label="订单编号">
+            <div style="display:flex;">
+            <el-form-item label="订单编号" style="width:100px;display:inline-block;">
               <el-input v-model="sizeForm.onum"></el-input>
             </el-form-item>
-            <el-form-item label="商品编号">
+            <el-form-item label="商品编号" style="width:100px;display:inline-block;">
               <el-input v-model="sizeForm.pid"></el-input>
             </el-form-item>
+            </div>
+            <div style="display:flex;">
             <el-form-item label="商品单价">
               <el-input v-model="sizeForm.sell_price"></el-input>
             </el-form-item>
@@ -19,8 +22,9 @@
               <el-input v-model="sizeForm.ocount"></el-input>
             </el-form-item>
             <el-form-item label="商品总价">
-              <el-input v-model="sizeForm.total"></el-input>
+              <el-input v-model="sizeForm.total" :disabled=true></el-input>
             </el-form-item>
+            </div>
             <el-form-item label="客户编号">
               <el-input v-model="sizeForm.cid"></el-input>
             </el-form-item>
@@ -62,13 +66,13 @@
                 <el-time-picker placeholder="选择时间" v-model="sizeForm.delivery_date" style="width: 100%;"></el-time-picker>
               </el-col>
             </el-form-item>
-            <el-form-item label="活动性质">
+            <!-- <el-form-item label="活动性质">
               <el-checkbox-group v-model="sizeForm.type">
                 <el-checkbox-button label="美食/餐厅线上活动" name="type"></el-checkbox-button>
                 <el-checkbox-button label="地推活动" name="type"></el-checkbox-button>
                 <el-checkbox-button label="线下主题活动" name="type"></el-checkbox-button>
               </el-checkbox-group>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="订单状态">
               <el-radio-group v-model="sizeForm.ostatus" size="mini">
                 <el-radio border label="待付款"></el-radio>
@@ -104,18 +108,29 @@
           pid: '',
           sell_price: 0,
           ocount: 0,
-          total:'',
+          total:0,
           cid: '',
           create_date: '',
           delivery_date: '',
           ostatus:'',
           uid:''
+          // type:''
         }
       };
     },
     methods: {
       onSubmit() {
       //  console.log('submit!');
+      }
+    },
+    computed:{
+      newTotal(){
+        return Number(this.sizeForm.sell_price)*Number(this.sizeForm.ocount);
+      }
+    },
+    watch:{
+      newTotal(val){
+        this.sizeForm.total=val;
       }
     }
   }
@@ -128,9 +143,24 @@
     min-width:1300px;
     position:relative;
     left:4%;
-    top:48px; 
+    top:48px;
     padding:28px 65px 30px 65px;
     box-sizing: border-box;
     background-color:#eceff3;
-  } 
+  }
+  input.el-input__inner{
+    border:1px solid red;
+  }
+  .el-tabs{
+    /* width: 1%; */
+  }
+  .el-form{
+    width:50%;
+    /* position: fixed; */
+  }
+  .el-radio-group{
+    width:50%;
+    /* display: flex; */
+    /* flex-wrap: nowrap; */
+  }
 </style>
