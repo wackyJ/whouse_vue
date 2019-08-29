@@ -152,15 +152,15 @@
     border:1px solid red;
   }
   .el-tabs{
-    /* width: 1%; */
+    width: 1%;
   }
   .el-form{
     width:50%;
-    /* position: fixed; */
+    position: fixed;
   }
   .el-radio-group{
     width:50%;
-    /* display: flex; */
-    /* flex-wrap: nowrap; */
+    display: flex;
+    flex-wrap: nowrap;
   }
 </style>
