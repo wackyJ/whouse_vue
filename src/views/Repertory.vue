@@ -152,18 +152,27 @@
         }
       },
       deleteRow(index, rows) {
+        // console.log(index);
+        // console.log(rows);
+        // console.log(rows[index].price);
         this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          rows.splice(index, 1);
           this.axios.post("",{
             params:{
-              
+              pid:rows[index].pid
             }
           }).then(result=>{
-
+            if(result.data.code==1){
+              rows.splice(index, 1);
+            }else{
+              this.$message({
+                type: 'info',
+                message: '删除失败'
+              });  
+            }
           })
           this.$message({
             type: 'success',
