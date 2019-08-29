@@ -6,63 +6,60 @@
       <el-tabs type="border-card">
         <el-tab-pane label="订单提交">
           <el-form ref="form" :model="sizeForm" label-width="100px" size="small " > 
-            <div style="display:flex;">
-            <el-form-item label="订单编号" style="width:100px;display:inline-block;">
-              <el-input v-model="sizeForm.onum"></el-input>
-            </el-form-item>
-            <el-form-item label="商品编号" style="width:100px;display:inline-block;">
-              <el-input v-model="sizeForm.pid"></el-input>
-            </el-form-item>
+            <div class="merge">
+              <el-form-item label="订单编号">
+                <el-input v-model="sizeForm.onum"></el-input>
+              </el-form-item>
+              <el-form-item label="商品编号">
+                <el-input v-model="sizeForm.pid"></el-input>
+              </el-form-item>
             </div>
-            <div style="display:flex;">
-            <el-form-item label="商品单价">
-              <el-input v-model="sizeForm.sell_price"></el-input>
-            </el-form-item>
-            <el-form-item label="商品数量">
-              <el-input v-model="sizeForm.ocount"></el-input>
-            </el-form-item>
-            <el-form-item label="商品总价">
-              <el-input v-model="sizeForm.total" :disabled=true></el-input>
-            </el-form-item>
+            <div class="merge">
+              <el-form-item label="商品单价">
+                <el-input v-model="sizeForm.sell_price"></el-input>
+              </el-form-item>
+              <el-form-item label="商品数量">
+                <el-input v-model="sizeForm.ocount"></el-input>
+              </el-form-item>
+              <el-form-item label="商品总价">
+                <el-input v-model="sizeForm.total" :disabled=true></el-input>
+              </el-form-item>
             </div>
-            <el-form-item label="客户编号">
-              <el-input v-model="sizeForm.cid"></el-input>
-            </el-form-item>
-            <el-form-item label="客户备注">
-              <el-input v-model="sizeForm.remark"></el-input>
-            </el-form-item>
-            <el-form-item label="操作人员编号">
-              <el-input v-model="sizeForm.uid"></el-input>
-            </el-form-item>
-            <el-form-item label="收货地址">
-              <el-select v-model="sizeForm.create_date" placeholder="请选择省">
-                <el-option label="省1" value="shanghai"></el-option>
-                <el-option label="省2" value="beijing"></el-option>
-              </el-select>
-              <el-select v-model="sizeForm.create_date" placeholder="请选择市">
-                <el-option label="市1" value="shanghai"></el-option>
-                <el-option label="市2" value="beijing"></el-option>
-              </el-select>
-              <el-select v-model="sizeForm.create_date" placeholder="请选择县">
-                <el-option label="县1" value="shanghai"></el-option>
-                <el-option label="县2" value="beijing"></el-option>
-              </el-select>
+            <div class="merge">
+              <el-form-item label="客户编号">
+                <el-input v-model="sizeForm.cid"></el-input>
+              </el-form-item>
+              <el-form-item label="客户备注">
+                <el-input v-model="sizeForm.remark"></el-input>
+              </el-form-item>
+              <el-form-item label="操作人员编号">
+                <el-input v-model="sizeForm.uid"></el-input>
+              </el-form-item>
+            </div>
+            <el-form-item label="收货地址" class="merge">
+              <div class="block">
+                <el-cascader
+                  placeholder="试试搜索：北京"
+                  :options="options"
+                  filterable></el-cascader>
+                  <el-input v-model="fullAdress" placeholder="详细地址"></el-input>
+              </div>
             </el-form-item>
             <el-form-item label="创建时间">
-              <el-col :span="11">
+              <el-col :span="8">
                 <el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.create_date" style="width: 100%;"></el-date-picker>
               </el-col>
-              <el-col class="line" :span="2">-</el-col>
-              <el-col :span="11">
-                <el-time-picker placeholder="选择时间" v-model="sizeForm.create_date" style="width: 100%;"></el-time-picker>
+              <el-col class="line" :span="1">-</el-col>
+              <el-col :span="8">
+                <el-time-picker placeholder="选择时间" v-model="sizeForm.create_date" style="width: 100%;"></el-time-picker>  
               </el-col>
             </el-form-item>
              <el-form-item label="发货时间">
-              <el-col :span="11">
+              <el-col :span="8">
                 <el-date-picker type="date" placeholder="选择日期" v-model="sizeForm.delivery_date" style="width: 100%;"></el-date-picker>
               </el-col>
-              <el-col class="line" :span="2">-</el-col>
-              <el-col :span="11">
+              <el-col class="line" :span="1">-</el-col>
+              <el-col :span="8">
                 <el-time-picker placeholder="选择时间" v-model="sizeForm.delivery_date" style="width: 100%;"></el-time-picker>
               </el-col>
             </el-form-item>
@@ -100,9 +97,12 @@
 </template>
 
 <script>
+  import citysJson from "../assets/citys.json"
   export default {
     data() {
       return {
+        firstAdress:'',
+        lastAdress:'',
         sizeForm: {
           onum: '',
           pid: '',
@@ -113,9 +113,10 @@
           create_date: '',
           delivery_date: '',
           ostatus:'',
-          uid:''
-          // type:''
-        }
+          uid:'',
+          cdress:""
+        },
+        options:citysJson
       };
     },
     methods: {
@@ -126,11 +127,17 @@
     computed:{
       newTotal(){
         return Number(this.sizeForm.sell_price)*Number(this.sizeForm.ocount);
+      },
+      fullAdress(){
+        return this.firstAdress+this.lastAdress;
       }
     },
     watch:{
       newTotal(val){
         this.sizeForm.total=val;
+      },
+      fullAdress(val){
+        this.sizeForm.cdress=val;
       }
     }
   }
@@ -138,29 +145,24 @@
 
 <style scoped>
   .order-page{
-    width:96%;
-    height:100%;
+    width:98%;
     min-width:1300px;
-    position:relative;
-    left:4%;
+    position:absolute;
     top:48px;
     padding:28px 65px 30px 65px;
     box-sizing: border-box;
-    background-color:#eceff3;
+    left: 2%;
   }
-  input.el-input__inner{
+  .merge{
+    display: flex;
+  }
+  /*input.el-input__inner{
     border:1px solid red;
   }
   .el-tabs{
     width: 1%;
   }
-  .el-form{
-    width:50%;
-    position: fixed;
-  }
   .el-radio-group{
     width:50%;
-    display: flex;
-    flex-wrap: nowrap;
-  }
+  }*/
 </style>
