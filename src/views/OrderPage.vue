@@ -36,13 +36,14 @@
                 <el-input v-model="sizeForm.uid"></el-input>
               </el-form-item>
             </div>
-            <el-form-item label="收货地址" class="merge">
-              <div class="block">
+            <el-form-item label="收货地址">
+              <div class="block merge">
                 <el-cascader
                   placeholder="试试搜索：北京"
                   :options="options"
-                  filterable></el-cascader>
-                  <el-input v-model="fullAdress" placeholder="详细地址"></el-input>
+                  filterable
+                  @change="getAdress"></el-cascader>
+                  <el-input v-model="sizeForm.lastAdress" placeholder="详细地址" style="width:52%;"></el-input>
               </div>
             </el-form-item>
             <el-form-item label="创建时间">
@@ -101,8 +102,6 @@
   export default {
     data() {
       return {
-        firstAdress:'',
-        lastAdress:'',
         sizeForm: {
           onum: '',
           pid: '',
@@ -114,7 +113,8 @@
           delivery_date: '',
           ostatus:'',
           uid:'',
-          cdress:""
+          firstAdress:'',
+          lastAdress:''
         },
         options:citysJson
       };
@@ -122,22 +122,19 @@
     methods: {
       onSubmit() {
       //  console.log('submit!');
+      },
+      getAdress(val){
+        this.sizeForm.firstAdress=val;
       }
     },
     computed:{
       newTotal(){
         return Number(this.sizeForm.sell_price)*Number(this.sizeForm.ocount);
-      },
-      fullAdress(){
-        return this.firstAdress+this.lastAdress;
       }
     },
     watch:{
       newTotal(val){
         this.sizeForm.total=val;
-      },
-      fullAdress(val){
-        this.sizeForm.cdress=val;
       }
     }
   }
