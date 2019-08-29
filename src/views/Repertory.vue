@@ -5,12 +5,12 @@
     <div class="repertory">
       <el-table
         :data="tableData"
-        :style="{width: '100%',position:''}"
         :max-height="maxheight"
         min-height="500"
         @cell-dblclick="edit" :border=true
         :cell-style="{'padding-left':0,'text-align':'center'}"
-        :header-cell-style="{'text-align':'center'}">
+        :header-cell-style="{'text-align':'center'}"
+        :highlight-current-row=true >
         <el-table-column
           fixed
           prop="pid"
@@ -152,7 +152,29 @@
         }
       },
       deleteRow(index, rows) {
-        rows.splice(index, 1);
+        this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          rows.splice(index, 1);
+          this.axios.post("",{
+            params:{
+              
+            }
+          }).then(result=>{
+
+          })
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
       },
       changePage(i){
         this.load(i-1);
@@ -197,5 +219,8 @@
     box-sizing: border-box; 
     background-color:#eceff3;
     padding-bottom:100;
+  }
+  .el-table{
+    width:100%;
   }
 </style>
