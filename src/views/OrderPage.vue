@@ -40,12 +40,12 @@
             </div>
             <el-form-item label="收货地址">
               <div class="block merge">
-                <el-cascader
+                <el-cascader style="width:50%;"
                   placeholder="试试搜索：北京"
                   :options="options"
                   filterable
                   @change="getAdress"></el-cascader>
-                  <el-input v-model="orderForm.lastAdress" placeholder="详细地址" style="width:100%;"></el-input>
+                  <el-input v-model="orderForm.lastAdress" placeholder="详细地址"></el-input>
               </div>
             </el-form-item>
             <el-form-item label="创建时间">
@@ -125,14 +125,23 @@
       };
     },
     methods: {
-      addOrderProduct(){
-        
+      addOrderProduct(e){
+        this.i++;
+        var parent=e.target.parentNode.parentNode;
+        var newElem=document.createElement("DIV");
+        newElem.innerHTML=`
+         
+        `; 
+        parent.insertBefore( newElem, e.target.parentNode.nextSibling );
+        this.orderForm.orderProduct.push({});
       },
       onSubmit() {
         this.axios.post("/order/v1/createOrder",{
           params:{
             orderForm:this.orderForm
-          }})
+          }}).then(result=>{
+              console.log(result.data);
+          })
       },
       getAdress(val){
         this.orderForm.firstAdress=val;
@@ -169,7 +178,7 @@
     width: 70%;
     margin: 2% auto;
   }
-  .merge>div.el-form-item{
+  .merge div.el-form-item{
     /* border:1px solid red; */
     padding-right:0;
     margin-bottom:0;
