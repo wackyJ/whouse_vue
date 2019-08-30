@@ -5,7 +5,7 @@
         <a href="">
           <img src="../assets/kefu.png" alt="">
         </a>
-        <p style="font-size:15px">Tel:400-660-4299</p>
+        <p style="font-size:14px">Tel:400-660-4299</p>
       </div>
       <div class="service2" >
         <p class="p1style">日常服务时间</p>
@@ -36,7 +36,7 @@
         <tr>
           <td colspan="2" style="padding-top:10px;"><input type="file" name="pic" id='file'
               class="file">
-            <button>上传图片</button>
+            <button class="buttonstyle">上传图片</button>
             <span style="font-size:10px;">仅限"jpg","png"图片</span>
           </td>
         </tr>
@@ -90,23 +90,33 @@ export default {
     clear:left;
     margin-top: 30px;
     margin-left: 150px;
-    font-size: 15px;
+    font-size: 12px;
   }
   .s1{
     display:flex;
   }
-  .p1style{ margin-bottom:5px;}
+  .p1style{ margin-bottom:5px;
+  margin-top:9px;}
   .p2style{
-    margin-top:15px;
+    margin-top:13px;
+    margin-left: 9px;
   }
   .text{
-    margin-top:0px;margin-left:-194px;padding-bottom:5px;
+    margin-top:5px;margin-left:-165px;padding-bottom:5px;
   }
-  .textarea{margin-left:0px;min-width:247px;max-width:250px;min-height:100px;}
+  .textarea{margin-left:0px;min-width:247px;max-width:250px;min-height:100px;border-radius: 5px;}
   .select1{padding-left:22px;padding-top:10px;}
-  .selectstyle{width:180px;padding:3px;border-radius:5%;}
+  .selectstyle{width:180px;padding:2px;border-radius:5px;}
   .phone1{padding-left:22px;padding-top:10px;}
-  .phonestyle{padding:3px;border-radius:5%}
+  .phonestyle{padding:3px;border-radius:5px}
   .file{visibility:hidden;height:0px;display:block}
-  .submit{margin-left:240px;margin-top:10px;padding:3px;border-radius: 5%;padding-left:5px;padding-right:5px;}
+  .submit{margin-left:210px;margin-top:10px;
+  padding:2px;
+  border-radius: 5px;
+  padding-left:15px;
+  padding-right:15px;
+  background: aqua;}
+  .buttonstyle{
+    padding:2px;
+    border-radius: 5px;}
 </style>

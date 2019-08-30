@@ -147,7 +147,7 @@ export default {
     width:96%;
     position:relative;
     left:4%;
-    /* min-height:900px; */
+    min-height:951px;
     background-color:#eceff3;
   }
   /* 右侧主体--section部分 */
