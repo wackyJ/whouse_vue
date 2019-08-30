@@ -162,13 +162,18 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.axios.post("",{
+          this.axios.post("/product/v1/delRecord",{
             params:{
               pid:rows[index].pid
             }
           }).then(result=>{
-            if(result.data.code==1){
+            if(result.data.code==200){
               rows.splice(index, 1);
+              console.log(result.data);
+              this.$message({
+              type: 'success',
+              message: '删除成功!'
+          });
             }else{
               this.$message({
                 type: 'info',
@@ -176,10 +181,6 @@
               });  
             }
           })
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
         }).catch(() => {
           this.$message({
             type: 'info',
