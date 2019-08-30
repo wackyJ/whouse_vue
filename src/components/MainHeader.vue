@@ -3,40 +3,31 @@
     <ul>
       <li>whouse主页</li>
     </ul>
-    <div>
-      <span>whouse仓库管理系统</span>
-      <el-select v-model="value">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-    </div>
+    <el-dropdown @command="handleCommand">
+      <span class="el-dropdown-link">
+        whouse仓库管理系统<i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item command="a">退出登录</el-dropdown-item>
+        <el-dropdown-item command="b">修改密码</el-dropdown-item>
+        <el-dropdown-item command="c">下载控件</el-dropdown-item>
+        <el-dropdown-item command="d" disabled>测试工具</el-dropdown-item>
+        <el-dropdown-item command="e" divided>建议反馈</el-dropdown-item>
+        <el-dropdown-item command="f" divided>联系客服</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </header>
 </template>
 <script>
 export default {
   data(){
     return {
-      options: [{
-        value: '选项1',
-        label: '黄金糕'
-      }, {
-        value: '选项2',
-        label: '双皮奶'
-      }, {
-        value: '选项3',
-        label: '蚵仔煎'
-      }, {
-        value: '选项4',
-        label: '龙须面'
-      }, {
-        value: '选项5',
-        label: '北京烤鸭'
-      }],
-      value: ''
+      
+    }
+  },
+  methods: {
+    handleCommand(command) {
+      this.$message('click on item ' + command);
     }
   }
 }
@@ -44,7 +35,7 @@ export default {
 <style scoped>
   header{
     width:96%;
-    height:45px;
+    height:48px;
     min-width:1200px;
     position:fixed;
     left:4%;
@@ -53,6 +44,9 @@ export default {
     border-bottom:3px #e3e3e3 solid;
     display:flex;
     justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right:10px;
   }
   header ul {
     height:46px;
@@ -64,5 +58,11 @@ export default {
     box-sizing: border-box;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
     border-bottom:2px #0095ff solid;
+  }
+  .el-dropdown-link {
+    cursor: pointer;
+  }
+  .el-icon-arrow-down {
+    font-size: 16px;
   }
 </style>

@@ -16,7 +16,7 @@
                 <el-input v-model="orderForm.orderProduct[i].pid"></el-input>
               </el-form-item> 
               <el-form-item label="商品单价">
-                <el-input v-model="orderForm.orderProduct[i].sellprice"></el-input>
+                <el-input v-model="orderForm.orderProduct[i].sell_price"></el-input>
               </el-form-item>
               <el-form-item label="商品数量">
                 <el-input v-model="orderForm.orderProduct[i].ocount"></el-input>
@@ -107,19 +107,19 @@
         i:0,
         orderForm: {
           onum: '',
-          orderProduct:[{
-            pid: 0,
-            sellprice: 0,
-            ocount: 0,
-            total:0
-          }],
           cid: '',
           create_date: '',
           delivery_date: '',
           ostatus:'',
           uid:'',
           firstAdress:'',
-          lastAdress:''
+          lastAdress:'',
+          orderProduct:[{
+            pid: 0,
+            sell_price: 0,
+            ocount: 0,
+            total:0
+          }]
         },
         options:citysJson
       };
@@ -140,7 +140,7 @@
           params:{
             orderForm:this.orderForm
           }}).then(result=>{
-              console.log(result.data);
+              console.log(result);
           })
       },
       getAdress(val){
