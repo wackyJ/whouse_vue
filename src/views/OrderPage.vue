@@ -15,17 +15,17 @@
               <el-form-item label="商品编号"> 
                 <el-input v-model="orderForm.orderProdcut[0].pid"></el-input>
               </el-form-item>
-              <el-form-item label="商品单价">
+              <!--<el-form-item label="商品单价">
                 <el-input v-model="orderForm.orderProduct[0].sellprice"></el-input>
               </el-form-item>
-              <!--<el-form-item label="商品数量">
+              <el-form-item label="商品数量">
                 <el-input v-model="orderForm.orderProduct[i].ocount"></el-input>
               </el-form-item>
               <el-form-item label="商品总价">
                 <el-input v-model="orderForm.orderProduct[i].total" :disabled=true></el-input>
               </el-form-item>-->
               <i title="单击按钮增加商品" class="el-icon-circle-plus-outline"
-              @click="addOrderProduct"></i>
+              ></i>
             </div>
             <div class="merge">
               <el-form-item label="客户编号">
@@ -125,22 +125,15 @@
       };
     },
     methods: {
-      /*addOrderProduct(e){
-        var goods=e.target.parentNode;
-        // var newP=
-      }
       onSubmit() {
-        /*this.axios.post("/order/v1/createOrder",{
+        this.axios.post("/order/v1/createOrder",{
           params:{
             orderForm:this.orderForm
-          }}).then(result=>{
-
-        })
+          }})
       },
       getAdress(val){
         this.orderForm.firstAdress=val;
       }
-      }*/
     /*computed:{
       newTotal(){
         return Number(this.orderForm.orderProdcut[i].sell_price)*Number(this.orderForm.ocount);
@@ -149,9 +142,9 @@
     watch:{
       newTotal(val){
         this.orderForm.total=val;
-      }
-    }*/
-  }}
+      }*/
+    }
+  }
 </script>
 
 <style scoped>
