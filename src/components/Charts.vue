@@ -1,8 +1,8 @@
 <template>
   <div class="charts">
-    <el-button type="primary" plain @click="sale('week','financeChart')">周销售额报表</el-button>
-    <el-button type="primary" plain @click="sale('month','financeChart')">月销售额报表</el-button>
-    <el-button type="primary" plain @click="sale('year','financeChart')">年销售额报表</el-button>
+    <el-button type="primary" plain size="small" @click="sale('week','financeChart')">周销售额报表</el-button>
+    <el-button type="primary" plain size="small" @click="sale('month','financeChart')">月销售额报表</el-button>
+    <el-button type="primary" plain size="small" @click="sale('year','financeChart')">年销售额报表</el-button>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="financeChart"></div>
   </div>
@@ -58,14 +58,18 @@
 </script>
 <style scoped>
   #financeChart{
-    width: 400px;
-    height:420px;
-    left:calc(50% - 180px);
+    text-align: center;
+    width: 100%;
+    height:377px;
+    padding:5% 0 0 4%;
+    box-sizing: border-box;
   }
   .charts{
     width:36%;
     height:420px;
     background-color:#fff;
+    padding-top:10px;
     margin-top:15px;
+    box-sizing: border-box;
   }
 </style>

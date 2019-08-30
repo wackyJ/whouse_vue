@@ -34,18 +34,21 @@ export default {
   header ul {
     position:absolute;
     left:0px;
-    height:100%;
+    height:46px;
+    /* border:1px #000 solid; */
   }
   header ul li {
-    padding:10px 10px 0 10px;
     height:100%;
+    padding:10px 10px 0 10px;
     background-color:#fff;
     box-sizing: border-box;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
     border-bottom:2px #0095ff solid;
   }
   header a {
     position:absolute;
-    right:5px;
-    top:10px;
+    top:12px;
+    right:10px;
+    font-size:14px;
   }
 </style>
