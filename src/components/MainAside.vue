@@ -21,7 +21,7 @@
       </router-link>
     </li>
     <li>
-      <router-link :to="'/setpage'">
+      <router-link :to="'/setting'">
         <span class="iconfont">&#xe607;</span>设置
       </router-link>
     </li>
@@ -44,7 +44,6 @@ export default {
   .aside li{
     width:100%;
     height:80px;
-    /* border:1px #000 solid; */
   }
   .aside li:first-child a{
     margin-top:25px;
