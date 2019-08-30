@@ -6,8 +6,8 @@
       <el-table
         :data="tableData"
         min-height="500"
-        max-height="885"
-        @cell-dblclick="edit" 
+        :max-height="height"
+        @cell-dblclick="edit"
         :border=true
         :cell-style="{'padding-left':0,'text-align':'center'}"
         :header-cell-style="{'text-align':'center'}"
@@ -112,7 +112,7 @@
               @click.native.prevent="deleteRow(scope.$index, tableData)"
               type="text"
               size="small">
-              移除
+              移除{{height}}
             </el-button>
           </template>
         </el-table-column>
@@ -120,7 +120,8 @@
       <el-pagination
         background
         layout="prev, pager, next"
-        :page-count="pcount" @current-change="changePage">
+        :page-count="pcount"
+        @current-change="changePage">
       </el-pagination>
     </div>
   </div>
@@ -207,10 +208,12 @@
     created(){
       this.maxheight=parseInt(window.screen.availHeight)/1.1;
       this.load();
+      this.height=(document.body.clientHeight)-80;
     },
     data() {
       return {
         // maxheight:0,
+        height:0,
         tableData:[],
         pno:0,
         pcount:0
@@ -226,10 +229,8 @@
     left:4%;
     top:48px;
     background-color:#eceff3;
-    /* border:1px #0f0 solid; */
   }
   .el-table{
     width:100%;
-    /* border:1px solid red; */
   }
 </style>
