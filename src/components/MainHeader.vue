@@ -27,7 +27,7 @@ export default {
     min-width: 1300px;
     position:fixed;
     left:4%;
-    z-index:1;
+    z-index:99;
     background-color:#f3f3f3;
     border-bottom:3px #e3e3e3 solid;
   }

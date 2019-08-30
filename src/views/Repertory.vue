@@ -231,5 +231,11 @@
   }
   .el-table{
     width:100%;
+    border:5px solid red;
+  }
+ .el-table--scrollable-x .el-table__body-wrapper {
+    overflow: scroll !important;
+    height: 29rem !important;
+    border:1px solid black;
   }
 </style>
