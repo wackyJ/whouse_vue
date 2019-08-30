@@ -6,6 +6,7 @@ import OrderPage from './views/OrderPage'
 import SetPage from './views/SetPage'
 import ProductPage from './views/ProductPage'
 import NotFound from './views/NotFound'
+import Register from './views/Register'
 
 Vue.use(Router)
 
@@ -19,6 +20,7 @@ export default new Router({
     {path:"/orderpage",component:OrderPage},
     {path:"/setpage",component:SetPage},
     {path:"/productpage",component:ProductPage},
-    {path:"/*",component:NotFound}
+    {path:"/*",component:NotFound},
+    {path:"/register",component:Register}
   ]
 })

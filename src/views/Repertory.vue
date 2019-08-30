@@ -5,12 +5,13 @@
     <div class="repertory">
       <el-table
         :data="tableData"
-        :style="{width: '100%',position:''}"
-        :max-height="maxheight"
         min-height="500"
-        @cell-dblclick="edit" :border=true
+        :max-height="maxHeight"
+        @cell-dblclick="edit"
+        :border=true
         :cell-style="{'padding-left':0,'text-align':'center'}"
-        :header-cell-style="{'text-align':'center'}">
+        :header-cell-style="{'text-align':'center'}"
+        :highlight-current-row=true>
         <el-table-column
           fixed
           prop="pid"
@@ -30,7 +31,7 @@
         <el-table-column
           prop="price"
           label="价格"
-          width="120">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="spec"
@@ -45,7 +46,7 @@
         <el-table-column
           prop="memory"
           label="内存容量"
-          width="120">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="resolution"
@@ -105,7 +106,7 @@
         <el-table-column
           fixed="right"
           label="操作"
-          width="120">
+          width="100">
           <template slot-scope="scope">
             <el-button
               @click.native.prevent="deleteRow(scope.$index, tableData)"
@@ -119,7 +120,8 @@
       <el-pagination
         background
         layout="prev, pager, next"
-        :page-count="pcount" @current-change="changePage">
+        :page-count="pcount"
+        @current-change="changePage">
       </el-pagination>
     </div>
   </div>
@@ -152,7 +154,38 @@
         }
       },
       deleteRow(index, rows) {
-        rows.splice(index, 1);
+        // console.log(index);
+        // console.log(rows);
+        // console.log(rows[index].price);
+        this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.axios.post("",{
+            params:{
+              pid:rows[index].pid
+            }
+          }).then(result=>{
+            if(result.data.code==1){
+              rows.splice(index, 1);
+            }else{
+              this.$message({
+                type: 'info',
+                message: '删除失败'
+              });  
+            }
+          })
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
       },
       changePage(i){
         this.load(i-1);
@@ -175,10 +208,11 @@
     created(){
       this.maxheight=parseInt(window.screen.availHeight)/1.1;
       this.load();
+      this.maxHeight=(document.body.clientHeight)-80;
     },
     data() {
       return {
-        maxheight:0,
+        maxHeight:0,
         tableData:[],
         pno:0,
         pcount:0
@@ -189,13 +223,10 @@
 
 <style scoped>
   .repertory{
-    width:95%;  
-    height:100%;
+    width:96%;  
     position:relative;
     left:4%;
-    top:48px; 
-    box-sizing: border-box; 
+    top:48px;
     background-color:#eceff3;
-    padding-bottom:100;
   }
 </style>

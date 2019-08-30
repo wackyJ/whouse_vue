@@ -3,7 +3,7 @@
     <!-- 侧边栏 子组件 -->
     <main-aside></main-aside>
     <!-- 右侧 header部分 子组件 -->
-    <div class="wrap">
+    <div class="wrap" :style="{height:cHeight}">
       <main-header></main-header>
       <!-- 右侧主体部分 -->
       <!-- 右侧主体--section部分 -->
@@ -126,9 +126,18 @@ import SystemMsg from '../components/SystemMsg'
 import Charts from '../components/Charts'
 import Log from '../components/Log'
 import Service from '../components/Service'
+
 export default {
   components:{
-    Carousel,SystemMsg,Charts,Log,Service
+    Carousel,SystemMsg,Charts,Log,Service 
+  },
+  data(){
+    return {
+      cHeight:0
+    }
+  },
+  created(){
+    this.cHeight=document.body.clientHeight+'px';
   }
 }
 </script>
@@ -136,9 +145,9 @@ export default {
 <style scoped>
   .wrap {
     width:96%;
-    height:970px;
     position:relative;
     left:4%;
+    /* min-height:900px; */
     background-color:#eceff3;
   }
   /* 右侧主体--section部分 */
