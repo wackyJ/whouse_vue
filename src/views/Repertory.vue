@@ -6,7 +6,7 @@
       <el-table
         :data="tableData"
         min-height="500"
-        :max-height="height"
+        :max-height="maxHeight"
         @cell-dblclick="edit"
         :border=true
         :cell-style="{'padding-left':0,'text-align':'center'}"
@@ -112,7 +112,7 @@
               @click.native.prevent="deleteRow(scope.$index, tableData)"
               type="text"
               size="small">
-              移除{{height}}
+              移除
             </el-button>
           </template>
         </el-table-column>
@@ -208,12 +208,11 @@
     created(){
       this.maxheight=parseInt(window.screen.availHeight)/1.1;
       this.load();
-      this.height=(document.body.clientHeight)-80;
+      this.maxHeight=(document.body.clientHeight)-80;
     },
     data() {
       return {
-        // maxheight:0,
-        height:0,
+        maxHeight:0,
         tableData:[],
         pno:0,
         pcount:0
@@ -229,8 +228,5 @@
     left:4%;
     top:48px;
     background-color:#eceff3;
-  }
-  .el-table{
-    width:100%;
   }
 </style>
