@@ -13,19 +13,19 @@
             </div>
             <div class="merge">
               <el-form-item label="商品编号"> 
-                <el-input v-model="orderForm.orderProdcut[0].pid"></el-input>
-              </el-form-item>
-              <!--<el-form-item label="商品单价">
-                <el-input v-model="orderForm.orderProduct[0].sellprice"></el-input>
+                <el-input v-model="orderForm.orderProduct[i].pid"></el-input>
+              </el-form-item> 
+              <el-form-item label="商品单价">
+                <el-input v-model="orderForm.orderProduct[i].sellprice"></el-input>
               </el-form-item>
               <el-form-item label="商品数量">
                 <el-input v-model="orderForm.orderProduct[i].ocount"></el-input>
               </el-form-item>
               <el-form-item label="商品总价">
                 <el-input v-model="orderForm.orderProduct[i].total" :disabled=true></el-input>
-              </el-form-item>-->
+              </el-form-item>
               <i title="单击按钮增加商品" class="el-icon-circle-plus-outline"
-              ></i>
+              @click="addOrderProduct"></i>
             </div>
             <div class="merge">
               <el-form-item label="客户编号">
@@ -93,7 +93,7 @@
         </el-tab-pane>
         <el-tab-pane label="订单查询">订单查询</el-tab-pane>
         <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-        <el-tab-pane label="定时任务补偿">{{orderForm.orderProdcut[0].pid}}</el-tab-pane>
+        <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -107,8 +107,8 @@
         i:0,
         orderForm: {
           onum: '',
-          orderProdcut:[{
-            pid: 22222,
+          orderProduct:[{
+            pid: 0,
             sellprice: 0,
             ocount: 0,
             total:0
@@ -125,6 +125,9 @@
       };
     },
     methods: {
+      addOrderProduct(){
+        
+      },
       onSubmit() {
         this.axios.post("/order/v1/createOrder",{
           params:{
@@ -136,7 +139,7 @@
       }
     /*computed:{
       newTotal(){
-        return Number(this.orderForm.orderProdcut[i].sell_price)*Number(this.orderForm.ocount);
+        return Number(this.orderForm.orderProduct[i].sell_price)*Number(this.orderForm.ocount);
       }
     },
     watch:{
