@@ -39,7 +39,7 @@ export default {
     min-width:60px;
     position:fixed;
     background-color:dodgerblue;
-    z-index:99;
+    z-index:100;
   }
   .aside li{
     width:100%;

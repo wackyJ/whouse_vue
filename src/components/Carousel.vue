@@ -18,7 +18,7 @@ export default {
   .carousel{
     width:36%;
     background-color:#fff;
-    height:300px;
+    height:310px;
   }
   .el-carousel__item h3 {
     color: #475669;

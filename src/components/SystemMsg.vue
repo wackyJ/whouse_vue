@@ -47,7 +47,7 @@
 <style scoped>
   .msg{
     width:26%;
-    height:300px;
+    height:310px;
     padding:1%;
     box-sizing: border-box;
     background-color:#fff;
