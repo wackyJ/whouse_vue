@@ -5,12 +5,13 @@
     <div class="repertory">
       <el-table
         :data="tableData"
-        :max-height="maxheight"
         min-height="500"
-        @cell-dblclick="edit" :border=true
+        max-height="885"
+        @cell-dblclick="edit" 
+        :border=true
         :cell-style="{'padding-left':0,'text-align':'center'}"
         :header-cell-style="{'text-align':'center'}"
-        :highlight-current-row=true >
+        :highlight-current-row=true>
         <el-table-column
           fixed
           prop="pid"
@@ -30,7 +31,7 @@
         <el-table-column
           prop="price"
           label="价格"
-          width="120">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="spec"
@@ -45,7 +46,7 @@
         <el-table-column
           prop="memory"
           label="内存容量"
-          width="120">
+          width="100">
         </el-table-column>
         <el-table-column
           prop="resolution"
@@ -105,7 +106,7 @@
         <el-table-column
           fixed="right"
           label="操作"
-          width="120">
+          width="100">
           <template slot-scope="scope">
             <el-button
               @click.native.prevent="deleteRow(scope.$index, tableData)"
@@ -209,7 +210,7 @@
     },
     data() {
       return {
-        maxheight:0,
+        // maxheight:0,
         tableData:[],
         pno:0,
         pcount:0
@@ -220,22 +221,15 @@
 
 <style scoped>
   .repertory{
-    width:95%;  
-    height:100%;
+    width:96%;  
     position:relative;
     left:4%;
-    top:48px; 
-    box-sizing: border-box; 
+    top:48px;
     background-color:#eceff3;
-    padding-bottom:100;
+    /* border:1px #0f0 solid; */
   }
   .el-table{
     width:100%;
-    border:5px solid red;
-  }
- .el-table--scrollable-x .el-table__body-wrapper {
-    overflow: scroll !important;
-    height: 29rem !important;
-    border:1px solid black;
+    /* border:1px solid red; */
   }
 </style>
