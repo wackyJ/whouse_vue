@@ -1,41 +1,55 @@
 <template>
   <header>
-    <!-- <el-tabs type="border-card">
-      <el-tab-pane label="whouse欢迎你">
-        whouse欢迎你
-      </el-tab-pane>
-      <el-tab-pane label="消息中心"></el-tab-pane>
-      <el-tab-pane label="角色管理"></el-tab-pane>
-    </el-tabs> -->
     <ul>
-      <li>whouse欢迎你</li>
+      <li>whouse主页</li>
     </ul>
-    <router-link :to="''">
-      whouse仓库管理系统
-    </router-link>
+    <el-dropdown @command="handleCommand">
+      <span class="el-dropdown-link">
+        whouse仓库管理系统<i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-dropdown-item command="a">退出登录</el-dropdown-item>
+        <el-dropdown-item command="b">修改密码</el-dropdown-item>
+        <el-dropdown-item command="c">下载控件</el-dropdown-item>
+        <el-dropdown-item command="d" disabled>测试工具</el-dropdown-item>
+        <el-dropdown-item command="e" divided>建议反馈</el-dropdown-item>
+        <el-dropdown-item command="f" divided>联系客服</el-dropdown-item>
+      </el-dropdown-menu>
+    </el-dropdown>
   </header>
 </template>
 <script>
 export default {
-  
+  data(){
+    return {
+      
+    }
+  },
+  methods: {
+    handleCommand(command) {
+      this.$message('click on item ' + command);
+    }
+  }
 }
 </script>
 <style scoped>
   header{
     width:96%;
-    height:45px;
-    min-width: 1300px;
+    height:48px;
+    min-width:1200px;
     position:fixed;
     left:4%;
     z-index:99;
     background-color:#f3f3f3;
     border-bottom:3px #e3e3e3 solid;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right:10px;
   }
   header ul {
-    position:absolute;
-    left:0px;
     height:46px;
-    /* border:1px #000 solid; */
   }
   header ul li {
     height:100%;
@@ -45,10 +59,10 @@ export default {
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.1);
     border-bottom:2px #0095ff solid;
   }
-  header a {
-    position:absolute;
-    top:12px;
-    right:10px;
-    font-size:14px;
+  .el-dropdown-link {
+    cursor: pointer;
+  }
+  .el-icon-arrow-down {
+    font-size: 16px;
   }
 </style>

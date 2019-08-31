@@ -3,118 +3,116 @@
     <!-- 侧边栏 子组件 -->
     <main-aside></main-aside>
     <!-- 右侧 header部分 子组件 -->
-    <div class="wrap" :style="{height:cHeight}">
-      <main-header></main-header>
-      <!-- 右侧主体部分 -->
-      <!-- 右侧主体--section部分 -->
-      <div class="section">
-        <!-- section--summary信息展示部分 -->
-        <ul class="summary">
+    <main-header></main-header>
+    <!-- 右侧主体部分 -->
+    <!-- 右侧主体--section部分 -->
+    <div class="section" :style="{height:cHeight}">
+      <!-- section--summary信息展示部分 -->
+      <ul class="summary">
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;待付款
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;待审核
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;异常
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;未发货
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;今日发货
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;发货失败
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;普通退货
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+        <li>
+          <span class="sum_sp1">
+            <span></span>&nbsp;&nbsp;已收货待确认
+          </span>
+          <span class="sum_sp2">18</span>
+        </li>
+      </ul>
+      <!-- section--info信息展示部分 -->
+      <div class="info">
+        <!-- 子组件 轮播图 -->
+        <Carousel></Carousel>
+        <!-- 工具项 -->
+        <ul class="tool">
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;待付款
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="'/orderpage'" class="toolBar">
+              <span class="iconfont">&#xe60d;</span>订单
+            </router-link>
           </li>
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;待审核
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="'/repertory'" class="toolBar">
+              <span class="iconfont">&#xe680;</span>商品库存
+            </router-link>
           </li>
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;异常
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="''" class="toolBar">
+              <span class="iconfont">&#xe605;</span>采购入库
+            </router-link>
           </li>
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;未发货
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="''" class="toolBar">
+              <span class="iconfont">&#xe618;</span>销售出库
+            </router-link>
           </li>
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;今日发货
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="''" class="toolBar">
+              <span class="iconfont">&#xe72f;</span>新手入门
+            </router-link>
           </li>
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;发货失败
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="''" class="toolBar">
+              <span class="iconfont">&#xe604;</span>供应链
+            </router-link>
           </li>
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;普通退货
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="''" class="toolBar">
+              <span class="iconfont">&#xe696;</span>客户群
+            </router-link>
           </li>
           <li>
-            <span class="sum_sp1">
-              <span></span>&nbsp;&nbsp;已收货待确认
-            </span>
-            <span class="sum_sp2">18</span>
+            <router-link :to="''" class="toolBar">
+              <span class="iconfont">&#xe655;</span>1688淘管家
+            </router-link>
           </li>
         </ul>
-        <!-- section--info信息展示部分 -->
-        <div class="info">
-          <!-- 子组件 轮播图 -->
-          <Carousel></Carousel>
-          <!-- 工具项 -->
-          <ul class="tool">
-            <li>
-              <router-link :to="'/orderpage'" class="toolBar">
-                <span class="iconfont">&#xe60d;</span>订单
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="'/repertory'" class="toolBar">
-                <span class="iconfont">&#xe680;</span>商品库存
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="''" class="toolBar">
-                <span class="iconfont">&#xe605;</span>采购入库
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="''" class="toolBar">
-                <span class="iconfont">&#xe618;</span>销售出库
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="''" class="toolBar">
-                <span class="iconfont">&#xe72f;</span>新手入门
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="''" class="toolBar">
-                <span class="iconfont">&#xe604;</span>供应链
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="''" class="toolBar">
-                <span class="iconfont">&#xe696;</span>客户群
-              </router-link>
-            </li>
-            <li>
-              <router-link :to="''" class="toolBar">
-                <span class="iconfont">&#xe655;</span>1688淘管家
-              </router-link>
-            </li>
-          </ul>
-          <!-- 子组件 系统提示信息 -->
-          <system-msg></system-msg>
-          <!-- 子组件 财务报表 -->
-          <charts></charts>
-          <!-- 子组件 日志 -->
-          <log></log>
-          <!-- 服务中心 -->
-          <service></service>
-        </div>
+        <!-- 子组件 系统提示信息 -->
+        <system-msg></system-msg>
+        <!-- 子组件 财务报表 -->
+        <charts></charts>
+        <!-- 子组件 日志 -->
+        <log></log>
+        <!-- 服务中心 -->
+        <service></service>
       </div>
     </div>
   </div>
@@ -137,27 +135,23 @@ export default {
     }
   },
   created(){
-    this.cHeight=document.body.clientHeight+'px';
+    this.cHeight=(document.body.clientHeight-48)+'px';
   }
 }
 </script>
 
 <style scoped>
-  .wrap {
-    width:96%;
-    position:relative;
-    left:4%;
-    min-height:951px;
-    background-color:#eceff3;
-  }
   /* 右侧主体--section部分 */
   .section {
-    width:100%;
+    width:96%;
     min-width:1300px;
-    position:absolute;
+    min-height:903px;
+    position:relative;
+    left:4%;
     top:48px;
-    padding:28px 65px 30px 65px;
+    padding:28px 60px 30px 60px;
     box-sizing: border-box;
+    background-color:#eceff3;
   }
   /* section--summary信息展示 */
   .summary{
@@ -196,7 +190,7 @@ export default {
   }
   /* section--info信息展示 */
   .info{
-    margin-top:20px;
+    margin-top:15px;
     display:flex;
     flex-wrap:wrap;
     justify-content: space-between;
@@ -204,7 +198,7 @@ export default {
   /* 工具项 */
   .tool{
     width:36%;
-    height:300px;
+    height:310px;
     background-color:#fff;
     display:flex;
     flex-wrap:wrap;

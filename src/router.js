@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Index from './views/Index'
 import Repertory from './views/Repertory'
 import OrderPage from './views/OrderPage'
-import SetPage from './views/SetPage'
+import Setting from './views/Setting'
 import ProductPage from './views/ProductPage'
 import NotFound from './views/NotFound'
 import Register from './views/Register'
@@ -18,7 +18,7 @@ export default new Router({
     {path:"/index",component:Index},
     {path:"/repertory",component:Repertory},
     {path:"/orderpage",component:OrderPage},
-    {path:"/setpage",component:SetPage},
+    {path:"/setting",component:Setting},
     {path:"/productpage",component:ProductPage},
     {path:"/register",component:Register},
     {path:"/*",component:NotFound}

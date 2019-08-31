@@ -132,6 +132,7 @@
     methods: {
       edit(row,column,cell,event){
         var element=event.target;
+        console.log(row);
         if(element.nodeName=="DIV"){
           let newobj = document.createElement('input');//创建一个input元素
           let oldhtml=element.innerHTML;//获得元素之前的内容
@@ -145,30 +146,54 @@
           element.appendChild(newobj);//添加子元素
           newobj.focus();//获得焦点
           //设置newobj失去焦点的事件
-          newobj.onblur = function(){
-            //下面应该判断是否做了修改并使用ajax代码请求服务端将id与修改后的数据提交
-            // alert(element.id);
+          newobj.onblur = ()=>{
+            //下面应该判断是否做了修改并使用ajax代码请求服务端将对应属性名与修改后的数据提交
             //当触发时判断newobj的值是否为空，为空则不修改，并返回oldhtml
-            element.innerHTML = this.value ? this.value : oldhtml;
+            if(newobj.value){
+              element.innerHTML = newobj.value;
+              this.axios.post("",{
+                params:{
+                  pid:row.pid,
+                  propName:column.property,
+                  value:this.value
+                }
+              }).then(result=>{
+                if(result.data.code==200){
+                  this.$message({
+                    type: 'success',
+                    message: '修改成功!'
+                  });
+            }else{
+                  this.$message({
+                    type: 'info',
+                    message: '修改失败'
+                  }); 
+                }
+              })
+            }else{
+              element.innerHTML=oldhtml;
+            }
           }
         }
       },
       deleteRow(index, rows) {
-        // console.log(index);
-        // console.log(rows);
-        // console.log(rows[index].price);
         this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          this.axios.post("",{
+          this.axios.delete("/product/v1/deldata",{
             params:{
               pid:rows[index].pid
-            }
+            } 
           }).then(result=>{
-            if(result.data.code==1){
+            if(result.data.code==200){
               rows.splice(index, 1);
+              console.log(result.data);
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
             }else{
               this.$message({
                 type: 'info',
@@ -176,10 +201,6 @@
               });  
             }
           })
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
         }).catch(() => {
           this.$message({
             type: 'info',
