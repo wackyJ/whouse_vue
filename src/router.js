@@ -20,7 +20,7 @@ export default new Router({
     {path:"/orderpage",component:OrderPage},
     {path:"/setpage",component:SetPage},
     {path:"/productpage",component:ProductPage},
-    {path:"/*",component:NotFound},
-    {path:"/register",component:Register}
+    {path:"/register",component:Register},
+    {path:"/*",component:NotFound}
   ]
 })

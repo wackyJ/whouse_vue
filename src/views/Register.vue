@@ -41,7 +41,7 @@
                    </tr>
                <tr>
                    <td colspan="2">
-                       <button>注册</button>
+                       <button @click="reg">注册</button>
                    </td>
                </tr>
            </table>
@@ -53,7 +53,25 @@
     </div>
 </template>
  <script>
-    export default {
+    // export default {
+    //     data(){
+    //         return{
+    //             uname:"",
+    //             upwd:""
+    //         }
+    //     },
+    //     methods:{
+    //         reg(){
+    //             this.axios.post("",{
+    //                 params:{
+    //                     uname:this.uname,
+    //                     upwd:this.upwd
+    //                 }
+    //             }).then(result=>{
+                    
+    //             })
+    //         }
+    //     }
 //         $(":text").blur(function(){
 // 			//调用验证函数，传入规定的四个参数
 // 			vali($(this),3,9,"用户名必须介于3-9位之间")
@@ -91,7 +109,7 @@
 // 				alert("注册成功")
          //	}
 // 		})
- }
+//  }
 </script>
 <style scoped>
     *{margin:0;padding:0;}
