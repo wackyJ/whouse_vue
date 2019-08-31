@@ -132,10 +132,9 @@
     methods: {
       edit(row,column,cell,event){
         var element=event.target;
-        console.log(row);
         if(element.nodeName=="DIV"){
-          let newobj = document.createElement('input');//创建一个input元素
-          let oldhtml=element.innerHTML;//获得元素之前的内容
+          var newobj = document.createElement('input');//创建一个input元素
+          var oldhtml=element.innerHTML;//获得元素之前的内容
           newobj.type = 'text';//为newobj元素添加类型
           newobj.value=oldhtml;
           newobj.style.cssText=`
@@ -147,30 +146,43 @@
           newobj.focus();//获得焦点
           //设置newobj失去焦点的事件
           newobj.onblur = ()=>{
-            //下面应该判断是否做了修改并使用ajax代码请求服务端将对应属性名与修改后的数据提交
+            //下面应该判断是否做了修改并使用axios代码请求服务端将对应属性名与修改后的数据提交
             //当触发时判断newobj的值是否为空，为空则不修改，并返回oldhtml
             if(newobj.value){
-              element.innerHTML = newobj.value;
-              this.axios.post("",{
-                params:{
-                  pid:row.pid,
-                  propName:column.property,
-                  value:this.value
-                }
-              }).then(result=>{
-                if(result.data.code==200){
-                  this.$message({
-                    type: 'success',
-                    message: '修改成功!'
-                  });
+              if(newobj.value!==oldhtml){
+                this.axios.post("/product/v1/updata",{
+                  params:{
+                    pid:row.pid,
+                    propName:column.property,
+                    value:newobj.value
+                  }
+                }).then(result=>{
+                  if(result.data.code==200){
+                    this.$message({
+                      type: 'success',
+                      message: '修改成功!'
+                    });
+                    element.innerHTML = newobj.value;
+                  }else{
+                    this.$message({
+                      type: 'info',
+                      message: '数据库修改失败'
+                    }); 
+                    element.innerHTML=oldhtml;
+                  }
+                })
+              }else{
+                this.$message({
+                  type: 'info',
+                  message: '修改失败'
+                }); 
+                element.innerHTML=oldhtml;
+              }
             }else{
-                  this.$message({
-                    type: 'info',
-                    message: '修改失败'
-                  }); 
-                }
-              })
-            }else{
+              this.$message({
+                type: 'info',
+                message: '修改失败'
+              }); 
               element.innerHTML=oldhtml;
             }
           }
@@ -189,7 +201,7 @@
           }).then(result=>{
             if(result.data.code==200){
               rows.splice(index, 1);
-              console.log(result.data);
+              // console.log(result.data);
               this.$message({
                 type: 'success',
                 message: '删除成功!'
