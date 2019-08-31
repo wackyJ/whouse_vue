@@ -1,162 +1,96 @@
 <template>
-    <div>
-         <div class="home">
-    <table></table>
-        <div id="h1" style="text-align:right">
-                <a id="a1" href="">已有账号？</a>
-                <a id="a2" href="">登录</a>
-        </div>
-        <div>
-            
-       <div id="black">
-            <h4 style="text-align: center">欢迎注册Mhouse</h4>
-           <table id="table" >
-               <tr>
-                   <td colspan="2">
-                   	<input name="uname" id="uname" placeholder="请输入登录名">
-					           <div id="uname-msg"></div>
-                   </td>                
-              
-               <tr>
-                   <td colspan="2">
-                        <input type="password" id="phone" name="phone" placeholder="请输入手机号">
-					              <div id="password-msg"></div>
-                       
-                   </td>
-              
-               <tr>
-                   <td>
-                   <input type="text" id="cpwd" name="cpwd" placeholder="请输入验证码">
-                   </td>
-                   <td><a class="" href="">获取验证码</a></td>
-               </tr>
-               <tr>
-                   <td colspan="2"><input type="text" id="password" name="password" minlength="8" maxlength="18" placeholder="设置8-18位数字和字母组合的密码"></td>
-                   
-               </tr>
-               <tr>
-                   <td colspan="2">
-                    <input type="checkbox"   name="hobby" value ="eat">同意《用户协议》和《客户隐私》
-                   </td>
-                   </tr>
-               <tr>
-                   <td colspan="2">
-                       <button @click="reg">注册</button>
-                   </td>
-               </tr>
-           </table>
-       </div>
-        </div>
-     
-    
-  </div>
-    </div>
+  <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+    <el-form-item label="密码" prop="pass">
+      <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="确认密码" prop="checkPass">
+      <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+    </el-form-item>
+    <el-form-item label="年龄" prop="age">
+      <el-input v-model.number="ruleForm.age"></el-input>
+    </el-form-item>
+    <el-form-item>
+      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+      <el-button @click="resetForm('ruleForm')">重置</el-button>
+    </el-form-item>
+  </el-form>
 </template>
- <script>
-    // export default {
-    //     data(){
-    //         return{
-    //             uname:"",
-    //             upwd:""
-    //         }
-    //     },
-    //     methods:{
-    //         reg(){
-    //             this.axios.post("",{
-    //                 params:{
-    //                     uname:this.uname,
-    //                     upwd:this.upwd
-    //                 }
-    //             }).then(result=>{
-                    
-    //             })
-    //         }
-    //     }
-//         $(":text").blur(function(){
-// 			//调用验证函数，传入规定的四个参数
-// 			vali($(this),3,9,"用户名必须介于3-9位之间")
-// 		})
-// 		//封装函数
-// 		function vali($txt,minlen,maxlen,msg){
-// 			//3.查找要修改的元素
-// 			var $span=$txt.next();
-// 			//4.修改元素
-// 			//获得当前文本框的内容
-// 			var value=$txt.val();
-// 			//没参数就执行获取
-// 			//如果验证当前文本框内容正确
-// 			if(value.length>=minlen&&value.length<=maxlen){
-// 				$span.html(`<img src="src/assets/ok.png">`);
-// 				return true;
-// 			}else{
-// 				$span.html(`<img src="src/assets/err.png">${msg}`);
-// 				return false;
-// 			}
-// 		}
-// 		$(":password").blur(function(){
-// 			vali($(this),9,11,"请注意手机号格式")
-// 		});
-//         $(":button").click(function(){
-// 			//如果验证姓名文本框不通过
-// 			var $txtName=$(":text");
-// 			var $txtPwd=$(":password");
-// 			if(!vali($txtName,3,9,"用户名必须介于3-9位之间")){
-// 				//让姓名文本框获得焦点
-// 				$txtName.focus();
-// 			}else if(!vali($txtPwd,6,16,"密码必须介于6-16位之间")){
-// 				$txtPwd.focus();
-// 			}else {
-// 				alert("注册成功")
-         //	}
-// 		})
-//  }
-</script>
-<style scoped>
-    *{margin:0;padding:0;}
-    .home{
-            width:100%;height:780px;
-            margin:0 auto;
-            background-image:url("/img/login_bg.png");
-           
-            background-repeat: no-repeat;
-            background-size: cover;
-		}
-        
-        #black{margin:120px auto;}
-        .home a{color:#fff;text-decoration:none;font-size:3px;}
-        #a1{ margin-right:15px;}
-        #a2{border:1px solid #fff;
-        background:rgba(0,0,0,0.3);
-        padding-left:27px;
-        padding-right:27px;
-        padding-top:6px;
-        padding-bottom:6px;
-        font-size:1rem; 
-       }
-       #h1{margin-top:25px;margin-right:25px;}
-      table{margin:auto;}
-      
-     #uname,#phone,#cpwd,#password{
-        width:100%;height:40px;
-        background:#fff no-repeat 97% center;
-        box-sizing:border-box;
-        margin:15px 0;
-        font-size:15px;
-        padding:5px  10px;
-        border-top:0;
-        border-left:0;
-        border-right:0;
-        
-        outline: none;
-        background:#b3cce2;
-}
-     table button{
-      width:100%;height:37px;
-      border:0;
-      background:#0aa1ed;
-      margin-top:10px;
-      color:#fff;}
-      #uname-msg,#password-msg{
-          color:red;
+
+<script>
+  export default {
+    data() {
+      var checkAge = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('年龄不能为空'));
+        }
+        setTimeout(() => {
+          if (!Number.isInteger(value)) {
+            callback(new Error('请输入数字值'));
+          } else {
+            if (value < 18) {
+              callback(new Error('必须年满18岁'));
+            } else {
+              callback();
+            }
+          }
+        }, 1000);
+      };
+      var validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          if (this.ruleForm.checkPass !== '') {
+            this.$refs.ruleForm.validateField('checkPass');
+          }
+          callback();
+        }
+      };
+      var validatePass2 = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.ruleForm.pass) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
+      return {
+        ruleForm: {
+          pass: '',
+          checkPass: '',
+          age: ''
+        },
+        rules: {
+          pass: [
+            { validator: validatePass, trigger: 'blur' }
+          ],
+          checkPass: [
+            { validator: validatePass2, trigger: 'blur' }
+          ],
+          age: [
+            { validator: checkAge, trigger: 'blur' }
+          ]
+        }
+      };
+    },
+    methods: {
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
+    }
+  }
+</script>
+
+<style scoped>
+
 </style>
