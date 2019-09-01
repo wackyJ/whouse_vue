@@ -29,7 +29,7 @@
           width="120">
         </el-table-column>
         <el-table-column
-          prop="price"
+          prop="sell_price"
           label="价格"
           width="100">
         </el-table-column>
@@ -149,7 +149,7 @@
             //下面应该判断是否做了修改并使用axios代码请求服务端将对应属性名与修改后的数据提交
             //当触发时判断newobj的值是否为空，为空则不修改，并返回oldhtml
             if(newobj.value){
-              if(newobj.value!==oldhtml){
+              if(newobj.value!==oldhtml){ //如果新值跟旧值不相同
                 this.axios.post("/product/v1/updata",{
                   params:{
                     pid:row.pid,
@@ -171,7 +171,8 @@
                     element.innerHTML=oldhtml;
                   }
                 })
-              }else{
+              }else{//如果新值跟旧值相同，则提示“修改失败”
+                console.log(203);
                 this.$message({
                   type: 'info',
                   message: '修改失败'
