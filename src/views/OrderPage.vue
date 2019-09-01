@@ -11,7 +11,8 @@
           :options="options"></order-submission>
         </el-tab-pane>
         <el-tab-pane label="订单查询">
-          <order-search></order-search>
+          <order-search
+          :search_options="search_options"></order-search>
         </el-tab-pane>
         <el-tab-pane label="角色管理">角色管理</el-tab-pane>
         <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
@@ -71,7 +72,6 @@
             value: '选项7',
             label: '神舟'
           }],
-        value: ''
       };
     }
   }
