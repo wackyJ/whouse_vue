@@ -1,3 +1,5 @@
+
+
 <template>
   <div>
     <main-aside></main-aside>
@@ -86,5 +88,13 @@
     padding-left:2%;
     box-sizing: border-box;
     left: 2%;
+  }
+  .el-tabs{
+    box-shadow: none;
+    border:none;
+  }
+  .el-tab-pane{
+    width: 70%;
+    margin: 2% auto;
   }
 </style>
