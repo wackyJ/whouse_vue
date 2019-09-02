@@ -14,6 +14,11 @@
         :highlight-current-row=true>
         <el-table-column
           fixed
+          prop="repertory_count"
+          label="库存数量"
+          width="100">
+        </el-table-column>
+        <el-table-column
           prop="pid"
           label="商品ID"
           width="70">
@@ -33,15 +38,10 @@
           label="价格"
           width="100">
         </el-table-column>
-        <el-table-column
-          prop="spec"
-          label="规格/颜色"
-          width="300">
-        </el-table-column>
-        <el-table-column
-          prop="os"
-          label="操作系统"
-          width="100">
+               <el-table-column
+          prop="sold_count"
+          label="已售出的数量"
+          width="120">
         </el-table-column>
         <el-table-column
           prop="memory"
@@ -51,11 +51,6 @@
         <el-table-column
           prop="resolution"
           label="分辨率"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="video_card"
-          label="显卡型号"
           width="120">
         </el-table-column>
         <el-table-column
@@ -79,21 +74,6 @@
           width="140">
         </el-table-column>
         <el-table-column
-          prop="shelf_time"
-          label="上架时间"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="sold_count"
-          label="已售出的数量"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="repertory_count"
-          label="库存数量"
-          width="120">
-        </el-table-column>
-        <el-table-column
           prop="is_onsale"
           label="是否促销中"
           width="100">
@@ -102,19 +82,6 @@
           prop="pv_id"
           label="供应商ID"
           width="100">
-        </el-table-column>
-        <el-table-column
-          fixed="right"
-          label="操作"
-          width="100">
-          <template slot-scope="scope">
-            <el-button
-              @click.native.prevent="deleteRow(scope.$index, tableData)"
-              type="text"
-              size="small">
-              移除
-            </el-button>
-          </template>
         </el-table-column>
       </el-table>
       <el-pagination
@@ -187,38 +154,6 @@
             }
           }
         }
-      },
-      deleteRow(index, rows) {
-        this.$confirm('此操作将永久删除该记录, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.axios.delete("/product/v1/deldata",{
-            params:{
-              pid:rows[index].pid
-            } 
-          }).then(result=>{
-            if(result.data.code==200){
-              rows.splice(index, 1);
-              // console.log(result.data);
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              });
-            }else{
-              this.$message({
-                type: 'info',
-                message: '删除失败'
-              });  
-            }
-          })
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          });          
-        });
       },
       changePage(i){
         this.load(i-1);

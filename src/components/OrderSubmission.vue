@@ -144,7 +144,17 @@ export default {
             orderForm:this.orderForm,
             orderDetail:this.orderDetail
           }}).then(result=>{
-              console.log(result);
+              if(result.data.code==200){
+                this.$message({
+                  type: 'success',
+                  message: '订单提交成功!'
+                });
+              }else{
+                this.$message({
+                  type: 'info',
+                  message: '订单提交失败!'
+                });
+              }
           })
       },
       getAdress(val){
