@@ -1,5 +1,6 @@
 <template>
-    <el-form ref="form" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true> 
+  <div @input="inputInfo">
+    <el-form ref="form" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true > 
       <div class="merge">
         <el-form-item label="订单编号" :required=true>
           <el-input v-model="orderForm.onum" :required=true></el-input>
@@ -13,7 +14,7 @@
           <el-input v-model="orderDetail[0].sell_price"></el-input>
         </el-form-item>
         <el-form-item label="商品数量">
-          <el-input v-model="orderDetail[0].ocount"></el-input>
+          <el-input v-model="orderDetail[0].pcount"></el-input>
         </el-form-item>
         <el-form-item label="商品总价">
           <el-input v-model="orderDetail[0].total" :disabled=true></el-input>
@@ -77,6 +78,7 @@
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
+  </div>
 </template>
 
 <script>
@@ -88,8 +90,19 @@ export default {
     }
   },
   methods: {
+    inputInfo(e){
+      if(e.target.dataset.i){ 
+        let i = e.target.dataset.i;
+        let propname = e.target.dataset.prop;
+        this.orderDetail[i][propname]=e.target.value;
+        this.orderDetail[i]['total']=this.orderDetail[i]['sell_price']*this.orderDetail[i]['pcount'];
+        document.querySelector(`[data-i='${i}'][data-prop='total']`).value=this.orderDetail[i]['total'];
+      }
+    },
     addorderDetail(e){
       this.i++;
+      let i=this.i;
+      this.orderDetail.push({pid: 0,sell_price: 0,pcount: 0,total:0});
       var parent=e.target.parentNode.parentNode;
       var newElem=document.createElement("DIV");
       newElem.innerHTML=`
@@ -98,7 +111,7 @@ export default {
             <label class="el-form-item__label" style="width: 100px;">商品编号</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
               <div  class="el-input el-input--small ">
-                <input data-i="${this.i}" data-prop="pid" type="text" autocomplete="off" class="el-input__inner">
+                <input value="${this.orderDetail[i]['pid']}" data-i="${i}" data-prop="pid" type="text" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
@@ -106,7 +119,7 @@ export default {
             <label class="el-form-item__label" style="width: 100px;">商品单价</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
               <div  class="el-input el-input--small ">
-                <input data-i="${this.i}" data-prop="sell_price" type="text" autocomplete="off" class="el-input__inner">
+                <input value="${this.orderDetail[i]['sell_price']}" data-i="${i}" data-prop="sell_price" type="text" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
@@ -114,7 +127,7 @@ export default {
             <label class="el-form-item__label" style="width: 100px;">商品数量</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
               <div  class="el-input el-input--small ">
-                <input data-i="${this.i}" data-prop="pcount" type="text" autocomplete="off" class="el-input__inner">
+                <input value="${this.orderDetail[i]['pcount']}" data-i="${i}" data-prop="pcount" type="text" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
@@ -122,17 +135,16 @@ export default {
             <label class="el-form-item__label" style="width: 100px;">商品总价</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
               <div  class="el-input el-input--small  is-disabled">
-                <input data-i="${this.i}" data-prop="total" type="text" disabled="disabled" autocomplete="off" class="el-input__inner">
+                <input value="${this.orderDetail[i]['total']}" data-i="${i}" data-prop="total" type="text" disabled="disabled" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
         </div>
       `; 
       parent.insertBefore( newElem, document.getElementById("clientInfo") );
-      this.orderDetail.push({});
     },
     onSubmit() {
-      this.axios.post("/order/v1/createOrder",{
+      this.axios.post("/order/v1/OrderSubmission",{
         params:{
           orderForm:this.orderForm,
           orderDetail:this.orderDetail
@@ -151,7 +163,7 @@ export default {
             }else{
               this.$message({
                 type: 'info',
-                message: '订单提交失败!'
+                message: '错误，订单提交失败!'
               });
             }
         })
@@ -159,16 +171,17 @@ export default {
     getAdress(val){
       this.orderForm.firstAdress=val;
     }
-  }
-  /*computed:{
+  },
+  computed:{
     newTotal(){
-      return Number(this.orderForm.orderDetail[i].sell_price)*Number(this.orderForm.ocount);
+      return Number(this.orderDetail[0].sell_price)*Number(this.orderDetail[0].pcount);
     }
   },
   watch:{
     newTotal(val){
-      this.orderForm.total=val;
-  }*/
+      this.orderDetail[0].total=val;
+    }
+  }
 }
 </script>
 

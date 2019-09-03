@@ -16,8 +16,6 @@
           <order-search
           :search_options="search_options"></order-search>
         </el-tab-pane>
-        <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-        <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -47,7 +45,7 @@
         orderDetail:[{
           pid: 0,
           sell_price: 0,
-          ocount: 0,
+          pcount: 0,
           total:0
         }],
         options:citysJson,
