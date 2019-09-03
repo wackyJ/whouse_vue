@@ -102,7 +102,7 @@ export default {
     addorderDetail(e){
       this.i++;
       let i=this.i;
-      this.orderDetail.push({pid: 0,sell_price: 0,pcount: 0,total:0});
+      this.orderDetail.push({did:null,pid: 0,sell_price: 0,pcount: 0,total:0});
       var parent=e.target.parentNode.parentNode;
       var newElem=document.createElement("DIV");
       newElem.innerHTML=`

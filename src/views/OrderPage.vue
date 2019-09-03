@@ -33,8 +33,10 @@
       return {
         // 订单提交标签页数据
         orderForm: {
+          oid:null,
           onum: '',
           cid: '',
+          remark:null,
           create_date: '',
           delivery_date: '',
           ostatus:'',
@@ -43,6 +45,7 @@
           lastAdress:'',
         },
         orderDetail:[{
+          did:null,
           pid: 0,
           sell_price: 0,
           pcount: 0,
