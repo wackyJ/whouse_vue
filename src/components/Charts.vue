@@ -23,8 +23,8 @@
               type: 'info',
               message: '请先登录'
             });
-            console.log(result.data);
-            // this.$router.push("/login");
+            // console.log(result.data);
+            this.$router.push("/login");
           }
           let _text="";
           // console.log(result.data);

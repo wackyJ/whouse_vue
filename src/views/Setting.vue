@@ -27,7 +27,7 @@
               label="权限" prop="token_id">
             </el-table-column>
             <el-table-column align="right">
-              <template slot="header" slot-scope="scope">
+              <template slot="header" :slot-scope="scope">
                 <el-input
                   v-model="search"
                   size="mini"
@@ -73,15 +73,15 @@ export default {
     load(){
 
     },
-    handleClick(tab, event) {
-      console.log(tab, event);
-    },
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    }
+    // handleClick(tab, event) {
+    //   // console.log(tab, event);
+    // },
+    // handleEdit(index, row) {
+    //   // console.log(index, row);
+    // },
+    // handleDelete(index, row) {
+    //   // console.log(index, row);
+    // }
   },
   created() {
     this.cHeight=(document.body.clientHeight-48)+"px";

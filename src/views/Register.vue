@@ -79,7 +79,7 @@
           if (valid) {
             alert('submit!');
           } else {
-            console.log('error submit!!');
+            // console.log('error submit!!');
             return false;
           }
         });

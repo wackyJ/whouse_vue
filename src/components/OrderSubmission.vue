@@ -143,11 +143,6 @@ export default {
                 message: '请先登录'
               });
               this.$router.push("/login");
-            }else if(result.data.code == -1){
-              this.$messagebox("提示","请先登录")
-              .then(result=>{
-                this.$router.push("/login");
-              })
             }else if(result.data.code==200){
               this.$message({
                 type: 'success',
