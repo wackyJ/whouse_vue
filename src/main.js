@@ -10,13 +10,20 @@ import echarts from 'echarts'
 //引入ElementUI组件
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
 Vue.use(ElementUI);
+
 
 Vue.prototype.$echarts = echarts ;
 Vue.config.productionTip = false
+
+//每次请求，无论是否跨域，都带上cookie信息
+axios.defaults.withCredentials = true;
+//配置请求基础路径
 axios.defaults.baseURL = "http://localhost:3000";
+// 注册
 Vue.prototype.axios = axios;
+
+
 Vue.component("main-header",MainHeader);
 Vue.component("main-aside",MainAside);
 

@@ -124,7 +124,13 @@
                     value:newobj.value
                   }
                 }).then(result=>{
-                  if(result.data.code==200){
+                  if(result.data.code == -1){
+                    this.$message({
+                      type: 'info',
+                      message: '请先登录'
+                    });
+                    this.$router.push("/login");
+                  }else if(result.data.code==200){
                     this.$message({
                       type: 'success',
                       message: '修改成功!'
@@ -167,6 +173,13 @@
             }
           }
         ).then(result=>{
+          if(result.data.code == -1){
+            this.$message({
+              type: 'info',
+              message: '请先登录'
+            });
+            this.$router.push("/login");
+          }
           this.tableData=result.data.data;
           this.pno=result.data.pno;
           this.pcount=result.data.pageCount;

@@ -18,6 +18,14 @@
     methods:{
       sale(date,targetId){
         this.axios.get(`/finance/v1/${date}lySales`).then(result=>{
+          if(result.data.code== -1){
+            this.$message({
+              type: 'info',
+              message: '请先登录'
+            });
+            console.log(result.data);
+            // this.$router.push("/login");
+          }
           let _text="";
           // console.log(result.data);
           if(date=="month"){_text="月"}

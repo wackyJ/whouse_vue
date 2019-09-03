@@ -232,6 +232,13 @@
             }
           }
         ).then(result=>{
+          if(result.data.code== -1){
+            this.$message({
+              type:"info",
+              msg:"请先登录！"
+            });
+            this.$router.push("/login");
+          }
           this.tableData=result.data.data;
           this.pno=result.data.pno;
           this.pcount=result.data.pageCount;

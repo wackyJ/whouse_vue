@@ -7,21 +7,21 @@
       </div>
       <div class="merge">
         <el-form-item label="商品编号"> 
-          <el-input v-model="orderDetail[i].pid"></el-input>
+          <el-input v-model="orderDetail[0].pid"></el-input>
         </el-form-item> 
         <el-form-item label="商品单价">
-          <el-input v-model="orderDetail[i].sell_price"></el-input>
+          <el-input v-model="orderDetail[0].sell_price"></el-input>
         </el-form-item>
         <el-form-item label="商品数量">
-          <el-input v-model="orderDetail[i].ocount"></el-input>
+          <el-input v-model="orderDetail[0].ocount"></el-input>
         </el-form-item>
         <el-form-item label="商品总价">
-          <el-input v-model="orderDetail[i].total" :disabled=true></el-input>
+          <el-input v-model="orderDetail[0].total" :disabled=true></el-input>
         </el-form-item>
         <i title="单击按钮增加商品" class="el-icon-circle-plus-outline"
         @click="addorderDetail"></i>
       </div>  
-      <div class="merge">
+      <div class="merge" id="clientInfo">
         <el-form-item label="客户编号">
           <el-input v-model="orderForm.cid"></el-input>
         </el-form-item>
@@ -60,13 +60,6 @@
           <el-time-picker placeholder="选择时间" v-model="orderForm.delivery_date" style="width: 100%;"></el-time-picker>
         </el-col>
       </el-form-item>
-      <!-- <el-form-item label="活动性质">
-        <el-checkbox-group v-model="orderForm.type">
-          <el-checkbox-button label="美食/餐厅线上活动" name="type"></el-checkbox-button>
-          <el-checkbox-button label="地推活动" name="type"></el-checkbox-button>
-          <el-checkbox-button label="线下主题活动" name="type"></el-checkbox-button>
-        </el-checkbox-group>
-      </el-form-item> -->
       <el-form-item label="订单状态">
         <el-radio-group v-model="orderForm.ostatus" size="mini">
           <el-radio border label="待付款"></el-radio>
@@ -88,88 +81,99 @@
 
 <script>
 export default {
-    props:["orderForm","orderDetail","options"],
-    data(){
-        return{
-            i:0
-        }
-    },
-    methods: {
-      addorderDetail(e){
-        this.i++;
-        var parent=e.target.parentNode.parentNode;
-        var newElem=document.createElement("DIV");
-        newElem.innerHTML=`
-          <div style="display:flex;">
-            <div  class="el-form-item is-no-asterisk el-form-item--small ">
-              <label class="el-form-item__label" style="width: 100px;">商品编号</label>
-              <div class="el-form-item__content" style="margin-left: 100px;">
-                <div  class="el-input el-input--small ">
-                  <input type="text" autocomplete="off" class="el-input__inner">
-                </div>
-              </div>
-            </div>
-            <div  class="el-form-item is-no-asterisk el-form-item--small ">
-              <label class="el-form-item__label" style="width: 100px;">商品单价</label>
-              <div class="el-form-item__content" style="margin-left: 100px;">
-                <div  class="el-input el-input--small ">
-                  <input type="text" autocomplete="off" class="el-input__inner">
-                </div>
-              </div>
-            </div>
-            <div  class="el-form-item is-no-asterisk el-form-item--small ">
-              <label class="el-form-item__label" style="width: 100px;">商品数量</label>
-              <div class="el-form-item__content" style="margin-left: 100px;">
-                <div  class="el-input el-input--small ">
-                  <input type="text" autocomplete="off" class="el-input__inner">
-                </div>
-              </div>
-            </div>
-            <div  class="el-form-item is-no-asterisk el-form-item--small ">
-              <label class="el-form-item__label" style="width: 100px;">商品总价</label>
-              <div class="el-form-item__content" style="margin-left: 100px;">
-                <div  class="el-input el-input--small  is-disabled">
-                  <input type="text" disabled="disabled" autocomplete="off" class="el-input__inner">
-                </div>
+  props:["orderForm","orderDetail","options"],
+  data(){
+    return{
+      i:0
+    }
+  },
+  methods: {
+    addorderDetail(e){
+      this.i++;
+      var parent=e.target.parentNode.parentNode;
+      var newElem=document.createElement("DIV");
+      newElem.innerHTML=`
+        <div style="display:flex;">
+          <div  class="el-form-item is-no-asterisk el-form-item--small ">
+            <label class="el-form-item__label" style="width: 100px;">商品编号</label>
+            <div class="el-form-item__content" style="margin-left: 100px;">
+              <div  class="el-input el-input--small ">
+                <input data-i="${this.i}" data-prop="pid" type="text" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
-        `; 
-        parent.insertBefore( newElem, e.target.parentNode.nextSibling );
-        this.orderForm.orderDetail.push({});
-      },
-      onSubmit() {
-        this.axios.post("/order/v1/createOrder",{
-          params:{
-            orderForm:this.orderForm,
-            orderDetail:this.orderDetail
-          }}).then(result=>{
-              if(result.data.code==200){
-                this.$message({
-                  type: 'success',
-                  message: '订单提交成功!'
-                });
-              }else{
-                this.$message({
-                  type: 'info',
-                  message: '订单提交失败!'
-                });
-              }
-          })
-      },
-      getAdress(val){
-        this.orderForm.firstAdress=val;
-      }
-    }
-    /*computed:{
-      newTotal(){
-        return Number(this.orderForm.orderDetail[i].sell_price)*Number(this.orderForm.ocount);
-      }
+          <div  class="el-form-item is-no-asterisk el-form-item--small ">
+            <label class="el-form-item__label" style="width: 100px;">商品单价</label>
+            <div class="el-form-item__content" style="margin-left: 100px;">
+              <div  class="el-input el-input--small ">
+                <input data-i="${this.i}" data-prop="sell_price" type="text" autocomplete="off" class="el-input__inner">
+              </div>
+            </div>
+          </div>
+          <div  class="el-form-item is-no-asterisk el-form-item--small ">
+            <label class="el-form-item__label" style="width: 100px;">商品数量</label>
+            <div class="el-form-item__content" style="margin-left: 100px;">
+              <div  class="el-input el-input--small ">
+                <input data-i="${this.i}" data-prop="pcount" type="text" autocomplete="off" class="el-input__inner">
+              </div>
+            </div>
+          </div>
+          <div  class="el-form-item is-no-asterisk el-form-item--small ">
+            <label class="el-form-item__label" style="width: 100px;">商品总价</label>
+            <div class="el-form-item__content" style="margin-left: 100px;">
+              <div  class="el-input el-input--small  is-disabled">
+                <input data-i="${this.i}" data-prop="total" type="text" disabled="disabled" autocomplete="off" class="el-input__inner">
+              </div>
+            </div>
+          </div>
+        </div>
+      `; 
+      parent.insertBefore( newElem, document.getElementById("clientInfo") );
+      this.orderDetail.push({});
     },
-    watch:{
-      newTotal(val){
-        this.orderForm.total=val;
-    }*/
+    onSubmit() {
+      this.axios.post("/order/v1/createOrder",{
+        params:{
+          orderForm:this.orderForm,
+          orderDetail:this.orderDetail
+        }}).then(result=>{
+            if(result.data.code == -1){
+              this.$message({
+                type: 'info',
+                message: '请先登录'
+              });
+              this.$router.push("/login");
+            }else if(result.data.code == -1){
+              this.$messagebox("提示","请先登录")
+              .then(result=>{
+                this.$router.push("/login");
+              })
+            }else if(result.data.code==200){
+              this.$message({
+                type: 'success',
+                message: '订单提交成功!'
+              });
+            }else{
+              this.$message({
+                type: 'info',
+                message: '订单提交失败!'
+              });
+            }
+        })
+    },
+    getAdress(val){
+      this.orderForm.firstAdress=val;
+    }
+  }
+  /*computed:{
+    newTotal(){
+      return Number(this.orderForm.orderDetail[i].sell_price)*Number(this.orderForm.ocount);
+    }
+  },
+  watch:{
+    newTotal(val){
+      this.orderForm.total=val;
+  }*/
 }
 </script>
 
