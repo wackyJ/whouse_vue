@@ -1,7 +1,7 @@
 <template>
   <ul class="aside">
     <li>
-      <router-link :to="'/'">
+      <router-link :to="'/index'">
         <span class="iconfont">&#xe606;</span>
       </router-link>
     </li>

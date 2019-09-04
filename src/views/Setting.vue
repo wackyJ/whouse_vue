@@ -3,10 +3,10 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="section" :style="{height:cHeight}">
-      <el-tabs v-model="activeName" @tab-click="handleClick">
+      <el-tabs v-model="activeName">
         <el-tab-pane label="用户管理" name="first">
-          <el-table
-            :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+          <el-table 
+            :data="tableData.filter(data => !search || data.uname.toLowerCase().includes(search.toLowerCase()))"
             style="width: 100%">
             <el-table-column
               label="员工编号" prop="uid">
@@ -27,7 +27,7 @@
               label="权限" prop="token_id">
             </el-table-column>
             <el-table-column align="right">
-              <template slot="header" :slot-scope="scope">
+              <template slot-scope="scope" slot="header">
                 <el-input
                   v-model="search"
                   size="mini"
@@ -36,11 +36,13 @@
               <template slot-scope="scope">
               <el-button
                 size="mini"
-                @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+                @click="handleEdit(scope.$index, scope.row)"
+                >编辑</el-button>
               <el-button
                 size="mini"
+                @click="handleDelete(scope.$index, scope.row)"
                 type="danger"
-                @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                >删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -70,18 +72,60 @@ export default {
     }
   },
   methods: {
-    load(){
-
+    load(i){
+      this.axios.get("/setting/v1/userList",{params:{pno:i}}).then(result=>{
+        if(result.data.code == -1){
+          this.$message({
+            type:"info",
+            message:"请先登录"
+          });
+          this.$router.push("/login");
+        }
+        // if(result.data.data.gender==1){
+        //   result.data.data.gender="男";
+        // }else{
+        //   result.data.data.gender="女";
+        // }
+        this.tableData = result.data.data;
+        this.pno = result.data.pno;
+        this.pcount=result.data.pageCount;
+      })
     },
-    // handleClick(tab, event) {
-    //   // console.log(tab, event);
-    // },
-    // handleEdit(index, row) {
-    //   // console.log(index, row);
-    // },
-    // handleDelete(index, row) {
-    //   // console.log(index, row);
-    // }
+    changePage(i){
+      this.load(i-1);
+    },
+    handleEdit(index, row) {
+      
+    },
+    handleDelete(index,row) {
+      this.$confirm(`此操作将永久删除该文件, 请谨慎操作, 是否继续?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+        center: true
+      }).then(()=>{
+        this.axios.get("/setting/v1/deluser",{params:{uid:row.uid}})
+      .then(result => {
+        if(result.data.code == 200){
+          this.tableData.splice(index,1);
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }else{
+          this.$message({
+            type: 'info',
+            message: '删除失败!'
+          });
+        }
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
+    }
   },
   created() {
     this.cHeight=(document.body.clientHeight-48)+"px";
