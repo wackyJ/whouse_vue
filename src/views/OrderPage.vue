@@ -46,7 +46,7 @@
         },
         orderDetail:[{
           did:null,
-          pid: 0,
+          pid:null,
           sell_price: 0,
           pcount: 0,
           total:0

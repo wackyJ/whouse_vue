@@ -1,5 +1,5 @@
 <template>
-  <div @input="inputInfo">
+  <div @input="inputInfo" @change="unitPrice">
     <el-form ref="form" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true > 
       <div class="merge">
         <el-form-item label="订单编号" :required=true>
@@ -8,16 +8,16 @@
       </div>
       <div class="merge">
         <el-form-item label="商品编号"> 
-          <el-input v-model="orderDetail[0].pid"></el-input>
+          <el-input data-i="0" data-prop="pid" v-model="orderDetail[0]['pid']"></el-input>
         </el-form-item> 
         <el-form-item label="商品单价">
-          <el-input v-model="orderDetail[0].sell_price"></el-input>
+          <el-input placeholder="0" data-i="0" data-prop="sell_price" :disabled=true></el-input>
         </el-form-item>
         <el-form-item label="商品数量">
-          <el-input v-model="orderDetail[0].pcount"></el-input>
+          <el-input data-i="0" data-prop="pcount" v-model="orderDetail[0]['pcount']"></el-input>
         </el-form-item>
         <el-form-item label="商品总价">
-          <el-input v-model="orderDetail[0].total" :disabled=true></el-input>
+          <el-input placeholder="0" data-i="0" data-prop="total" :disabled=true></el-input>
         </el-form-item>
         <i title="单击按钮增加商品" class="el-icon-circle-plus-outline"
         @click="addorderDetail"></i>
@@ -90,13 +90,44 @@ export default {
     }
   },
   methods: {
+    // 封装一个函数，用来清空对应商品信息输入框的值,并清除对应数组对象中的值
+    clearInput(index,propname,){
+      this.orderDetail[index][propname]=0;
+      document.querySelector(`[data-i='${index}'][data-prop=${propname}]`).value="";
+    },
+    // 封装一个函数,用来计算对应行的商品总价，并存入对应数组对象中
+    calcTotal(index){
+      // 计算总价并存入数组中
+      this.orderDetail[index]['total']=this.orderDetail[index]['sell_price']*this.orderDetail[index]['pcount'];
+      // 根据数组中的值改名显示的商品总价
+      document.querySelector(`[data-i='${index}'][data-prop='total']`).value=this.orderDetail[index]['total'];
+    },
+    unitPrice(e){
+      if(e.target.dataset.prop=="pid"){
+        let i=e.target.dataset.i;
+        let pid=this.orderDetail[i]['pid'];
+        this.axios.get("order/v1/unitPrice",{params:{pid}}).then(result=>{
+          if(result.data.code==200){
+            this.orderDetail[i]['sell_price']=result.data.data[0].sell_price;
+            // 根据输入的商品id修改显示的商品单价
+            document.querySelector(`[data-i='${i}'][data-prop='sell_price']`).value=this.orderDetail[i]['sell_price'];
+            this.calcTotal(i);
+          }else{
+            this.$message({type: 'info',message: '商品ID不存在'});
+            this.clearInput(i,'pid');
+            this.clearInput(i,'sell_price');
+            this.clearInput(i,'pcount');
+            this.clearInput(i,'total');
+          }
+        })
+      }
+    },
     inputInfo(e){
       if(e.target.dataset.i){ 
         let i = e.target.dataset.i;
         let propname = e.target.dataset.prop;
         this.orderDetail[i][propname]=e.target.value;
-        this.orderDetail[i]['total']=this.orderDetail[i]['sell_price']*this.orderDetail[i]['pcount'];
-        document.querySelector(`[data-i='${i}'][data-prop='total']`).value=this.orderDetail[i]['total'];
+        this.calcTotal(i);
       }
     },
     addorderDetail(e){
@@ -111,15 +142,15 @@ export default {
             <label class="el-form-item__label" style="width: 100px;">商品编号</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
               <div  class="el-input el-input--small ">
-                <input value="${this.orderDetail[i]['pid']}" data-i="${i}" data-prop="pid" type="text" autocomplete="off" class="el-input__inner">
+                <input data-i="${i}" data-prop="pid" type="text" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
           <div  class="el-form-item is-no-asterisk el-form-item--small ">
             <label class="el-form-item__label" style="width: 100px;">商品单价</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
-              <div  class="el-input el-input--small ">
-                <input value="${this.orderDetail[i]['sell_price']}" data-i="${i}" data-prop="sell_price" type="text" autocomplete="off" class="el-input__inner">
+              <div  class="el-input el-input--small is-disabled">
+                <input placeholder="0" data-i="${i}" data-prop="sell_price" type="text" autocomplete="off" class="el-input__inner" disabled="disabled">
               </div>
             </div>
           </div>
@@ -127,7 +158,7 @@ export default {
             <label class="el-form-item__label" style="width: 100px;">商品数量</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
               <div  class="el-input el-input--small ">
-                <input value="${this.orderDetail[i]['pcount']}" data-i="${i}" data-prop="pcount" type="text" autocomplete="off" class="el-input__inner">
+                <input placeholder="0" data-i="${i}" data-prop="pcount" type="text" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
@@ -135,7 +166,7 @@ export default {
             <label class="el-form-item__label" style="width: 100px;">商品总价</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
               <div  class="el-input el-input--small  is-disabled">
-                <input value="${this.orderDetail[i]['total']}" data-i="${i}" data-prop="total" type="text" disabled="disabled" autocomplete="off" class="el-input__inner">
+                <input placeholder="0" data-i="${i}" data-prop="total" type="text" disabled="disabled" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
@@ -160,6 +191,8 @@ export default {
                 type: 'success',
                 message: '订单提交成功!'
               });
+              this.orderForm={};
+              this.orderDetail=[{did:null,pid: 0,sell_price: 0,pcount: 0,total:0}];
             }else{
               this.$message({
                 type: 'info',
