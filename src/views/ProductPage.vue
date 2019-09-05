@@ -3,32 +3,33 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="repertory">
-      <select class="selectstyle" name="city" size="1"  v-model="kw" @keydown.13="search" >
-              <option value="AppleMacBook Air">AppleMacBook Air</option>
-              <option value="小米">小米</option>
-              <option value="ThinkPad">ThinkPad</option>
-              <option value="华硕">华硕</option>
-              <option value="联想">联想</option>
-              <option value="戴尔">戴尔</option>
-              <option value="神舟">神舟</option>
-            </select>
+      <div class="order-page">
+      <el-tabs type="border-card">
+      </el-tabs>
+    </div>
+         <el-select v-model="kw" filterable placeholder="请选择" @change="search">
+          <el-option
+            v-for="item in search_options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.label">
+          </el-option>
+        </el-select>
            <el-button type="primary" @click="search">搜索</el-button>
-         
-      <el-table 
-      
-        :data="tableData"
-        min-height="500"
-        :max-height="maxHeight"
-        @cell-dblclick="edit"
-        :border=true
-        :cell-style="{'padding-left':0,'text-align':'center'}"
-        :header-cell-style="{'text-align':'center'}"
-        :highlight-current-row=true>
-        <el-table-column
-          fixed
-          prop="pid"
-          label="商品ID"
-          width="70">
+         <el-table 
+            :data="tableData"
+            min-height="500"
+            :max-height="maxHeight"
+            @cell-dblclick="edit"
+            :border=true
+            :cell-style="{'padding-left':0,'text-align':'center'}"
+            :header-cell-style="{'text-align':'center'}"
+            :highlight-current-row=true>
+          <el-table-column
+            fixed
+            prop="pid"
+            label="商品ID"
+            width="70">
         </el-table-column>
         <el-table-column
           prop="family_id"
@@ -279,7 +280,29 @@
         tableData:[],
         pno:0,
         pcount:0,
-        kw:""
+        kw:"",
+        search_options: [{
+        value: '选项1',
+        label: 'AppleMacBook Air'
+      }, {
+        value: '选项2',
+        label: '小米'
+      }, {
+        value: '选项3',
+        label: 'ThinkPad'
+      }, {
+        value: '选项4',
+        label: '华硕'
+      }, {
+        value: '选项5',
+        label: '联想'
+      }, {
+        value: '选项6',
+        label: '戴尔'
+      }, {
+        value: '选项7',
+        label: '神舟'
+      }]
       }
     }
   }

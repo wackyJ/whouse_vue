@@ -13,9 +13,14 @@
       </div>
     </div> 
     <div class="service3">
-      <h4 class="text">*内容描述:</h4>
-      <textarea class="textarea" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。"></textarea>
+      
       <table>
+        <tr>
+          <td colspan="2">
+              <h4 class="text">*内容描述:</h4>
+              <textarea class="textarea" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。"></textarea>
+          </td>
+        </tr>
         <tr>
           <td colspan="2" class="select1">
             选择分类:
@@ -102,19 +107,36 @@ export default {
     margin-left: 9px;
   }
   .text{
-    margin-top:5px;margin-left:-165px;padding-bottom:5px;
+    margin-top:10px;margin-left:-165px;padding-bottom:5px;
   }
-  .textarea{margin-left:0px;min-width:247px;max-width:250px;min-height:100px;}
-  .select1{padding-left:22px;padding-top:10px;}
-  .selectstyle{width:180px;padding:2px;}
-  .phone1{padding-left:22px;padding-top:10px;}
-  .phonestyle{padding:2px;width: 172px;}
-  .file{visibility:hidden;height:0px;display:block}
-  .submit{margin-left:210px;margin-top:10px;
-  padding:2px;
-  border-radius: 5px;
-  padding-left:15px;
-  padding-right:15px;
+  .textarea{margin-left:22px;
+      min-width:247px;
+      max-width:250px;
+      min-height:100px;
+      margin-top:10px;}
+  .select1{padding-left:22px;
+      padding-top:10px;
+  }
+  .selectstyle{
+    width:180px;
+    padding:2px;}
+  .phone1{
+    padding-left:22px;
+    padding-top:10px;}
+  .phonestyle{
+    padding:2px;
+    width: 172px;}
+  .file{
+    visibility:hidden;
+    height:0px;
+    display:block}
+  .submit{
+    margin-left:210px;
+    margin-top:10px;
+    padding:2px;
+    border-radius: 5px;
+    padding-left:15px;
+    padding-right:15px;
  }
   .buttonstyle{
     padding:2px;
