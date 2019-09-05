@@ -19,6 +19,21 @@ Vue.prototype.axios = instance;
 Vue.component("main-header",MainHeader);
 Vue.component("main-aside",MainAside);
 
+router.beforeEach((to, from, next) => {
+  //后期完善： 由于后期可能添加修改头像等会改变个人信息的接口
+  //          所有路由拦截里应该 写一个请求个人信息的接口
+  if (to.path === '/'|| to.path === '/login') {
+    next()
+  } else {
+    // !store.state.userinfo.id
+    if (!store.state.user) {
+      next({ path: '/login' })
+    } else {
+      next()
+    }
+  }
+})
+
 new Vue({
   router,
   store,

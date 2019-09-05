@@ -11,18 +11,20 @@ import NotFound from './views/NotFound'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   // base: process.env.BASE_URL,
   routes: [
-    {path:"/",component:Login},
+    {path:"/",component:Login,},
     {path:"/login",component:Login},
     {path:"/register",component:Register},
-    {path:"/index",component:Index},
-    {path:"/repertory",component:Repertory},
-    {path:"/orderpage",component:OrderPage},
-    {path:"/setting",component:Setting},
-    {path:"/productpage",component:ProductPage},
+    {path:"/index",component:Index,meta: {requireLogin: true}},
+    {path:"/repertory",component:Repertory,meta: {requireLogin: true}},
+    {path:"/orderpage",component:OrderPage,meta: {requireLogin: true}},
+    {path:"/setting",component:Setting,meta: {requireLogin: true}},
+    {path:"/productpage",component:ProductPage,meta: {requireLogin: true}},
     {path:"/*",component:NotFound}
   ]
 })
+
+export default router;

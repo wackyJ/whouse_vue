@@ -3,6 +3,7 @@
   <el-input placeholder="请输入内容" v-model="uname" clearable></el-input>
   <el-input placeholder="请输入密码" v-model="upwd" show-password></el-input>
   <el-button @click="login">登录</el-button>
+  <!-- 后期完善：保存密码 -->
 </div>
 </template>
 
@@ -27,8 +28,10 @@
               type: 'success',
               message: '登录成功!'
             });
+            this.$store.commit("login");
             this.$router.push("/index");
           }else{
+            //完善 后期错误信息由后台提供
             this.$message({
               type: 'info',
               message: '用户名或者密码错误!'

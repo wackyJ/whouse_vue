@@ -30,7 +30,7 @@ export default {
         sessionStorage.clear();
         //清除缓存
         // this.$cache.reset();
-        console.log(this.$cache);
+        // console.log(this.$cache);
         //跳往登录页面
         this.$router.push({
           path: "/login",

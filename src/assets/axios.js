@@ -28,6 +28,7 @@ instance.interceptors.response.use(
     }
   },
   error => {
+    router.push("/*");
     return Promise.reject(error);
   }
 
