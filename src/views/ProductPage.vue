@@ -3,7 +3,19 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="repertory">
-      <el-table
+      <select class="selectstyle" name="city" size="1"  v-model="kw" @keydown.13="search" >
+              <option value="AppleMacBook Air">AppleMacBook Air</option>
+              <option value="小米">小米</option>
+              <option value="ThinkPad">ThinkPad</option>
+              <option value="华硕">华硕</option>
+              <option value="联想">联想</option>
+              <option value="戴尔">戴尔</option>
+              <option value="神舟">神舟</option>
+            </select>
+           <el-button type="primary" @click="search">搜索</el-button>
+         
+      <el-table 
+      
         :data="tableData"
         min-height="500"
         :max-height="maxHeight"
@@ -29,7 +41,7 @@
           width="120">
         </el-table-column>
         <el-table-column
-          prop="sell_price"
+          prop="price"
           label="价格"
           width="100">
         </el-table-column>
@@ -129,6 +141,7 @@
 
 <script>
   export default {
+   
     methods: {
       edit(row,column,cell,event){
         var element=event.target;
@@ -223,22 +236,27 @@
       changePage(i){
         this.load(i-1);
       },
+      search(){
+        this.axios.get("/product/v1/search",{
+          params:{
+            kw:this.kw
+          }
+        }).then(result=>{
+          this.tableData=result.data.data;
+          this.pno=result.data.pno;
+          this.pcount=result.data.pageCount;
+        })
+      },
       load(i){
         this.axios.get(
           "/product/v1/allProduct",
           {
             params:{
+              kw:this.kw,
               pno:i
             }
           }
         ).then(result=>{
-          if(result.data.code== -1){
-            this.$message({
-              type:"info",
-              msg:"请先登录！"
-            });
-            this.$router.push("/login");
-          }
           this.tableData=result.data.data;
           this.pno=result.data.pno;
           this.pcount=result.data.pageCount;
@@ -250,12 +268,18 @@
       this.load();
       this.maxHeight=(document.body.clientHeight)-80;
     },
+    // watch:{
+    // kw(){
+      // this.search();
+    // }
+  // },
     data() {
       return {
         maxHeight:0,
         tableData:[],
         pno:0,
-        pcount:0
+        pcount:0,
+        kw:""
       }
     }
   }
@@ -268,5 +292,21 @@
     left:4%;
     top:48px;
     background-color:#eceff3;
+  }
+  .selectstyle{
+    background-color: #FFF;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: 0;
+    padding: 0 15px;
+    width:220px;
   }
 </style>
