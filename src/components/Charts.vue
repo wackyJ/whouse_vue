@@ -18,22 +18,14 @@
     methods:{
       sale(date,targetId){
         this.axios.get(`/finance/v1/${date}lySales`).then(result=>{
-          if(result.data.code== -1){
-            this.$message({
-              type: 'info',
-              message: '请先登录'
-            });
-            // console.log(result.data);
-            this.$router.push("/login");
-          }
           let _text="";
           // console.log(result.data);
           if(date=="month"){_text="月"}
           else if(date=="week"){_text="周"}
           else if(date=="year"){_text="年"}
           else{_text=""}
-          let sales=result.data.map(v=>v["total"]);
-          let productNames=result.data.map(v=>v[`${date}(delivery_date)`]+_text);
+          let sales=result.data.data.map(v=>v["total"]);
+          let productNames=result.data.data.map(v=>v[`${date}(delivery_date)`]+_text);
           // console.log(sales);
           // console.log(productNames);
           // 基于准备好的dom，初始化echarts实例
