@@ -101,6 +101,7 @@
           </li>
           <li>
             <router-link :to="''" class="toolBar">
+              {{$store.getters.getUser+""}}
               <span class="iconfont">&#xe655;</span>1688淘管家
             </router-link>
           </li>

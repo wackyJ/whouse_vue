@@ -18,11 +18,11 @@ const router = new Router({
     {path:"/",component:Login,},
     {path:"/login",component:Login},
     {path:"/register",component:Register},
-    {path:"/index",component:Index,meta: {requireLogin: true}},
-    {path:"/repertory",component:Repertory,meta: {requireLogin: true}},
-    {path:"/orderpage",component:OrderPage,meta: {requireLogin: true}},
-    {path:"/setting",component:Setting,meta: {requireLogin: true}},
-    {path:"/productpage",component:ProductPage,meta: {requireLogin: true}},
+    {path:"/index",component:Index},
+    {path:"/repertory",component:Repertory},
+    {path:"/orderpage",component:OrderPage},
+    {path:"/setting",component:Setting},
+    {path:"/productpage",component:ProductPage},
     {path:"/*",component:NotFound}
   ]
 })

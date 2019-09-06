@@ -25,12 +25,16 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/'|| to.path === '/login') {
     next()
   } else {
-    // !store.state.userinfo.id
-    if (!store.state.user) {
-      next({ path: '/login' })
-    } else {
-      next()
-    }
+    instance.get("/users/v1/userInfo").then(result=>{
+    store.state.userInfo=result.data.data;
+    if (!store.state.userInfo.uid) {
+    next({ path: '/login' })
+      }else{
+    next()
+      }
+    }).catch(()=>{
+    next({ path: '/login' })
+    })
   }
 })
 
