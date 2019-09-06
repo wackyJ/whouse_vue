@@ -40,21 +40,18 @@
       this.getCookie();
     },
     methods: {
-      submitForm(formName) {
+      submitForm() {
         const self = this;
         //判断复选框是否被勾选 勾选则调用配置cookie方法
         if (self.checked == true) {
-          console.log("checked == true");
           //传入账号名，密码，和保存天数3个参数
           self.setCookie(self.ruleForm.username, self.ruleForm.password, 7);
         }else {
-          console.log("清空Cookie");
           //清空Cookie
           self.clearCookie();
         }
         //与后端请求代码
         this.login();
-        console.log("登陆成功");
       },
       //设置cookie
       setCookie(c_name, c_pwd, exdays) {
@@ -96,7 +93,7 @@
               type: 'success',
               message: '登录成功!'
             });
-            this.$store.state.userInfo=result.data.data;
+            // this.$store.state.userInfo=result.data.data;
             this.$router.push("/index");
           }else{
             //完善 后期错误信息由后台提供

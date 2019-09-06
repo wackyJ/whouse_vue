@@ -24,16 +24,24 @@ router.beforeEach((to, from, next) => {
   //          所有路由拦截里应该 写一个请求个人信息的接口
   if (to.path === '/'|| to.path === '/login') {
     next()
-  } else {
+  }else {
     instance.get("/users/v1/userInfo").then(result=>{
-    store.state.userInfo=result.data.data;
-    if (!store.state.userInfo.uid) {
-    next({ path: '/login' })
+      let oldStatus = store.state.userInfo.status;
+      let newStatus = result.data.data.status;
+      if(!(from.path=='/'||from.path=='/login')){
+        if(oldStatus!==newStatus){
+          alert("重复登录账号，您已被迫退出登录");
+          next({ path: '/login' })
+        }
+      }
+      store.state.userInfo=result.data.data;
+      if (!store.state.userInfo.uid) {
+        next({ path: '/login' })
       }else{
-    next()
+        next()
       }
     }).catch(()=>{
-    next({ path: '/login' })
+      next({ path: '/login' })
     })
   }
 })
