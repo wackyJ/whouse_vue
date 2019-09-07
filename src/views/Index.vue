@@ -85,7 +85,7 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="''" class="toolBar">
+            <router-link :to="'/newbie'" class="toolBar">
               <span class="iconfont">&#xe72f;</span>新手入门
             </router-link>
           </li>

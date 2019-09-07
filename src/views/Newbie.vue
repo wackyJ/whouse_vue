@@ -104,7 +104,7 @@ export default {
     },
     methods: {
       handleClick(tab, event) {
-        console.log(tab, event);
+        // console.log(tab, event);
       }
     }
   };
@@ -118,8 +118,8 @@ export default {
     width: 1000px;
     height: 500px;
     left:  250px;
-    right: 200px;
     top: 100px; 
+    right: 200px;
     
   }
   .el-tab-pane{
