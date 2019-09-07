@@ -20,7 +20,7 @@ export default {
     background-color:#fff;
     height:310px;
   }
-  .el-carousel,.el-carousel__container {
+  .el-carousel{
     width:100%;
     height:310px;
   }
