@@ -8,7 +8,7 @@
         whouse仓库管理系统<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="a">退出登录</el-dropdown-item>
+        <el-dropdown-item command="exit">退出登录</el-dropdown-item>
         <el-dropdown-item command="b">修改密码</el-dropdown-item>
         <el-dropdown-item command="c">下载控件</el-dropdown-item>
         <el-dropdown-item command="d" disabled>测试工具</el-dropdown-item>
@@ -27,6 +27,11 @@ export default {
   },
   methods: {
     handleCommand(command) {
+      if(command=="exit"){
+        this.axios.post("/users/v1/clearUser").then(()=>{
+          this.$router.push("/login");
+        })
+      }
       this.$message('click on item ' + command);
     }
   }

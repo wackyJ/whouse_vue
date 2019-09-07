@@ -23,24 +23,38 @@ router.beforeEach((to, from, next) => {
   //后期完善： 由于后期可能添加修改头像等会改变个人信息的接口
   //          所有路由拦截里应该 写一个请求个人信息的接口
   if (to.path === '/'|| to.path === '/login') {
+    // console.log("目标路由是登录页！！")
     next()
   }else {
+    // console.log("目标路由不是登录页");
     instance.get("/users/v1/userInfo").then(result=>{
-      let oldStatus = store.state.userInfo.status;
-      let newStatus = result.data.data.status;
+      // console.log("获取用户信息")
       if(!(from.path=='/'||from.path=='/login')){
+        // console.log("来源页不是登录页");
+        let oldStatus = store.state.userInfo.status;
+        let newStatus = result.data.data.status;
         if(oldStatus!==newStatus){
-          alert("重复登录账号，您已被迫退出登录");
+          Vue.prototype.$alert(
+            '禁止重复登录账号，您已被迫退出！', 
+            '用户重复登录', 
+            { confirmButtonText: '确定'}
+            );
           next({ path: '/login' })
         }
       }
+      // console.log(1111111111);
       store.state.userInfo=result.data.data;
+      // console.log(2222222222);
       if (!store.state.userInfo.uid) {
+        // console.log("vuex用户信息不存在");
         next({ path: '/login' })
       }else{
+        // console.log("vuex用户信息存在!!");
         next()
       }
-    }).catch(()=>{
+    }).catch(err=>{
+      // console.log("catch");
+      // console.log(err);
       next({ path: '/login' })
     })
   }

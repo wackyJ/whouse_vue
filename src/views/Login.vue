@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { constants } from 'crypto';
   export default {
     data() {
       return {
@@ -93,7 +94,7 @@
               type: 'success',
               message: '登录成功!'
             });
-            // this.$store.state.userInfo=result.data.data;
+            console.log(33333333);
             this.$router.push("/index");
           }else{
             //完善 后期错误信息由后台提供
