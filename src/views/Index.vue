@@ -100,10 +100,9 @@
             </router-link>
           </li>
           <li>
-            <router-link :to="''" class="toolBar">
-              {{$store.getters.getUser+""}}
+            <a href="https://page.1688.com/" target="_blank" class="toolBar">
               <span class="iconfont">&#xe655;</span>1688淘管家
-            </router-link>
+            </a>
           </li>
         </ul>
         <!-- 子组件 系统提示信息 -->
