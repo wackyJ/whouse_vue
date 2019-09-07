@@ -38,15 +38,15 @@ export default {
     };
   },
   methods:{
-    load(){
-      let newActive = {content:"",timestamp:""};
-      this.activities.push(newActive);
-      this.axios.get("/setting/v1")
-    }
-  },
-  created(){
-    this.load();
+    // load(){
+    //   let newActive = {content:"",timestamp:""};
+    //   this.activities.push(newActive);
+    //   this.axios.get("/setting/v1")
+    // }
   }
+  // created(){
+  //   this.load();
+  // }
 }
 </script>
 
