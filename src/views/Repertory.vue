@@ -3,14 +3,14 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="repertory">
-      <el-tabs type="border-card">
-        <el-tab-pane label="采购入库">
+      <el-tabs type="border-card" v-model="activeName">
+        <el-tab-pane label="采购入库" name="purchase">
           <purchase-table
-          :orderForm="orderForm"
-          :orderDetail="orderDetail"
+            :orderForm="orderForm"
+            :orderDetail="orderDetail"
           ></purchase-table>
         </el-tab-pane>
-        <el-tab-pane label="库存信息">
+        <el-tab-pane label="库存信息" name="goods">
           <el-table
             :data="tableData"
             min-height="500"
@@ -201,6 +201,7 @@
     data() {
       return {
         maxHeight:0,
+        activeName: this.$store.state.setOptionVal,
         tableData:[],
         pno:0,
         pcount:0,

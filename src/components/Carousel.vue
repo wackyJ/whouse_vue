@@ -1,8 +1,8 @@
 <template>
   <div class="carousel">
     <el-carousel :interval="5000">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <img src="img/rc_01.png">
+      <el-carousel-item v-for="(item,index) in list" :key="index">
+        <img :src="item">
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -10,15 +10,20 @@
 
 <script>
 export default {
-  name: 'Carousel'
+  name: 'Carousel',
+  data(){
+    return{
+      list:["img/1.png","img/2.png","img/3.png","img/4.png"]
+    }
+  }
 }
 </script>
 
 <style scoped>
   .carousel{
     width:36%;
-    background-color:#fff;
     height:310px;
+    background-color:#fff;
   }
   .el-carousel{
     width:100%;

@@ -12,6 +12,9 @@ export default new Vuex.Store({
   getters:{
     getUserToken(state){
       return state.userInfo.token_id;
+    },
+    getOption(state){
+      return state.setOptionVal;
     }
   },
   mutations: {

@@ -7,16 +7,13 @@
         <el-tab-pane label="个人信息" name="userInfo">
           个人信息
         </el-tab-pane>
-        <el-tab-pane label="修改密码" name="first">
-          修改密码
-        </el-tab-pane>
-        <el-tab-pane label="供应商管理" name="second" v-if="token_id==1||token_id==2">
+        <el-tab-pane label="供应商管理" name="provider" v-if="token_id==1||token_id==2">
           <setting-provide></setting-provide>
         </el-tab-pane>
-        <el-tab-pane label="客户管理" name="third" v-if="token_id==1||token_id==2">
+        <el-tab-pane label="客户管理" name="clients" v-if="token_id==1||token_id==2">
           <setting-client></setting-client>
         </el-tab-pane>
-        <el-tab-pane label="用户管理" name="four" v-if="token_id==1">
+        <el-tab-pane label="用户管理" name="users" v-if="token_id==1">
           <setting-user></setting-user>
         </el-tab-pane>
       </el-tabs>

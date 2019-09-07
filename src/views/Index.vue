@@ -69,18 +69,18 @@
               <span class="iconfont">&#xe60d;</span>订单
             </router-link>
           </li>
-          <li>
+          <li @click="setOption('goods')">
             <router-link :to="'/repertory'" class="toolBar">
               <span class="iconfont">&#xe680;</span>商品库存
             </router-link>
           </li>
-          <li>
-            <router-link :to="''" class="toolBar">
+          <li @click="setOption('purchase')">
+            <router-link :to="'/repertory'" class="toolBar">
               <span class="iconfont">&#xe605;</span>采购入库
             </router-link>
           </li>
           <li>
-            <router-link :to="''" class="toolBar">
+            <router-link :to="'/orderpage'" class="toolBar">
               <span class="iconfont">&#xe618;</span>销售出库
             </router-link>
           </li>
@@ -89,12 +89,12 @@
               <span class="iconfont">&#xe72f;</span>新手入门
             </router-link>
           </li>
-          <li @click="setOption('second')">
+          <li @click="setOption('provider')">
             <router-link :to="'/setting'"  class="toolBar">
               <span class="iconfont">&#xe604;</span>供应链
             </router-link>
           </li>
-          <li @click="setOption('third')">
+          <li @click="setOption('clients')">
             <router-link :to="'/setting'" class="toolBar">
               <span class="iconfont">&#xe696;</span>客户群
             </router-link>
