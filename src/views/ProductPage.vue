@@ -4,9 +4,7 @@
     <main-header></main-header>
     <div class="repertory">
       <div class="order-page">
-      <el-tabs type="border-card">
-      </el-tabs>
-    </div>
+        </div>
          <el-select v-model="kw" filterable placeholder="请选择" @change="search">
           <el-option
             v-for="item in search_options"

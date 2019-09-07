@@ -12,7 +12,8 @@
         </el-tab-pane>
         <el-tab-pane label="订单查询">
           <order-search
-          :search_options="search_options"></order-search>
+          :search_options="search_options"
+          :token_id="token_id"></order-search>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -51,6 +52,7 @@
         }],
         options:citysJson,
         //订单查询标签页数据
+        token_id:this.$store.getters.getUserToken,
         search_options: [{
             value: '选项1',
             label: 'AppleMacBook Air'
@@ -91,9 +93,5 @@
   .el-tabs{
     box-shadow: none;
     border:none;
-  }
-  .el-tab-pane{
-    width: 70%;
-    margin: 2% auto;
   }
 </style>

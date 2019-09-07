@@ -45,15 +45,11 @@ router.beforeEach((to, from, next) => {
       // console.log(1111111111);
       store.state.userInfo=result.data.data;
       let uid=store.state.userInfo.uid;
-      let token_id=store.state.userInfo.token_id;
       // console.log(2222222222);
       if (!uid) {
         // console.log("vuex用户信息不存在");
         next({ path: '/login' })
       }else{
-        if(to.path=='/setting'){
-          token_id==1||token_id==2||token_id==3?next():next('/limit');
-        }
         // console.log("vuex用户信息存在!!");
         next()
       }
