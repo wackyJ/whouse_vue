@@ -89,13 +89,13 @@
               <span class="iconfont">&#xe72f;</span>新手入门
             </router-link>
           </li>
-          <li>
-            <router-link :to="''" class="toolBar">
+          <li @click="setOption('second')">
+            <router-link :to="'/setting'"  class="toolBar">
               <span class="iconfont">&#xe604;</span>供应链
             </router-link>
           </li>
-          <li>
-            <router-link :to="''" class="toolBar">
+          <li @click="setOption('third')">
+            <router-link :to="'/setting'" class="toolBar">
               <span class="iconfont">&#xe696;</span>客户群
             </router-link>
           </li>
@@ -136,6 +136,11 @@ export default {
   },
   created(){
     this.cHeight=(document.body.clientHeight-48)+'px';
+  },
+  methods:{
+    setOption(val){
+      this.$store.state.setOptionVal=val;
+    }
   }
 }
 </script>

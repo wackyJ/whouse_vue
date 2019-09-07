@@ -30,9 +30,10 @@ export default {
       if(command=="exit"){
         this.axios.post("/users/v1/clearUser").then(()=>{
           this.$router.push("/login");
+          this.$message('退出成功！');
         })
       }
-      this.$message('click on item ' + command);
+      // this.$message('click on item ' + command);
     }
   }
 }

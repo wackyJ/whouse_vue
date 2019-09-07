@@ -20,7 +20,7 @@
         <span class="iconfont">&#xe680;</span>库存
       </router-link>
     </li>
-    <li>
+    <li @click="setOption('userInfo')">
       <router-link :to="'/setting'">
         <span class="iconfont">&#xe607;</span>设置
       </router-link>
@@ -29,7 +29,11 @@
 </template>
 <script>
 export default {
-  
+  methods:{
+    setOption(val){
+      this.$store.state.setOptionVal=val;
+    }
+  }
 }
 </script>
 <style scoped>

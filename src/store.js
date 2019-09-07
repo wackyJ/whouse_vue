@@ -6,7 +6,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userInfo:''
+    userInfo:'',
+    setOptionVal:''
+  },
+  getters:{
+    getUserToken(state){
+      return state.userInfo.token_id;
+    }
   },
   mutations: {
 

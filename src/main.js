@@ -52,7 +52,7 @@ router.beforeEach((to, from, next) => {
         next({ path: '/login' })
       }else{
         if(to.path=='/setting'){
-          token_id==1?next():next('/limit');
+          token_id==1||token_id==2||token_id==3?next():next('/limit');
         }
         // console.log("vuex用户信息存在!!");
         next()
