@@ -9,6 +9,7 @@ import Setting from './views/Setting'
 import ProductPage from './views/ProductPage'
 import Limit from './views/Limit'
 import NotFound from './views/NotFound'
+import Newbie from './views/Newbie'
 
 Vue.use(Router)
 
@@ -25,6 +26,7 @@ const router = new Router({
     {path:"/setting",component:Setting},
     {path:"/productpage",component:ProductPage},
     {path:"/limit",component:Limit},
+    {path:"/newbie",component:Newbie},
     {path:"/*",component:NotFound}
   ]
 })
