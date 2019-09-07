@@ -7,6 +7,7 @@ import Repertory from './views/Repertory'
 import OrderPage from './views/OrderPage'
 import Setting from './views/Setting'
 import ProductPage from './views/ProductPage'
+import Limit from './views/Limit'
 import NotFound from './views/NotFound'
 
 Vue.use(Router)
@@ -23,6 +24,7 @@ const router = new Router({
     {path:"/orderpage",component:OrderPage},
     {path:"/setting",component:Setting},
     {path:"/productpage",component:ProductPage},
+    {path:"/limit",component:Limit},
     {path:"/*",component:NotFound}
   ]
 })
