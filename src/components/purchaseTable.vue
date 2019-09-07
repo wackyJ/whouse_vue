@@ -1,9 +1,9 @@
 <template>
-  <fieldset @input="inputInfo" @change="unitPrice">
-    <legend>客户订单</legend>
+  <fieldset @input="inputInfo" @change="unitPrice" class="purchaseTable">
+    <legend>采购单</legend>
     <el-form ref="form" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true > 
       <div class="merge">
-        <el-form-item label="订单编号" :required=true>
+        <el-form-item label="采购单编号" :required=true>
           <el-input v-model="orderForm.onum" :required=true></el-input>
         </el-form-item>
       </div>
@@ -24,27 +24,17 @@
         @click="addorderDetail"></i>
       </div>  
       <div class="merge" id="clientInfo">
-        <el-form-item label="客户编号">
+        <el-form-item label="供应商编号">
           <el-input v-model="orderForm.cid"></el-input>
         </el-form-item>
-        <el-form-item label="客户备注">
+        <el-form-item label="供应商备注">
           <el-input v-model="orderForm.remark"></el-input>
         </el-form-item>
         <el-form-item label="操作人员编号">
           <el-input v-model="orderForm.uid"></el-input>
         </el-form-item>
       </div>
-      <el-form-item label="收货地址">
-        <div class="block merge">
-          <el-cascader style="width:50%;"
-            placeholder="试试搜索：北京"
-            :options="options"
-            filterable
-            @change="getAdress"></el-cascader>
-            <el-input v-model="orderForm.lastAdress" placeholder="详细地址"></el-input>
-        </div>
-      </el-form-item>
-      <el-form-item label="创建时间">
+      <el-form-item label="填单时间">
         <el-col :span="11">
           <el-date-picker type="date" placeholder="选择日期" v-model="orderForm.create_date" style="width: 100%;"></el-date-picker>
         </el-col>
@@ -52,27 +42,6 @@
         <el-col :span="11">
           <el-time-picker placeholder="选择时间" v-model="orderForm.create_date" style="width: 100%;"></el-time-picker>  
         </el-col>
-      </el-form-item>
-        <el-form-item label="发货时间">
-        <el-col :span="11">
-          <el-date-picker type="date" placeholder="选择日期" v-model="orderForm.delivery_date" style="width: 100%;"></el-date-picker>
-        </el-col>
-        <el-col class="line" :span="2">-</el-col>
-        <el-col :span="11">
-          <el-time-picker placeholder="选择时间" v-model="orderForm.delivery_date" style="width: 100%;"></el-time-picker>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="订单状态">
-        <el-radio-group v-model="orderForm.ostatus" size="mini">
-          <el-radio border label="待付款"></el-radio>
-          <el-radio border label="待审核"></el-radio>
-          <el-radio border label="异常"></el-radio>
-          <el-radio border label="未发货"></el-radio>
-          <el-radio border label="今日发货"></el-radio>
-          <el-radio border label="发货失败"></el-radio>
-          <el-radio border label="普通退货"></el-radio>
-          <el-radio border label="已收货待确认"></el-radio>
-        </el-radio-group>
       </el-form-item>
       <el-form-item size="large">
         <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -84,7 +53,7 @@
 
 <script>
 export default {
-  props:["orderForm","orderDetail","options"],
+  props:["orderForm","orderDetail"],
   data(){
     return{
       i:0
@@ -190,14 +159,14 @@ export default {
             }else if(result.data.code==200){
               this.$message({
                 type: 'success',
-                message: '订单提交成功!'
+                message: '采购单提交成功!'
               });
               this.orderForm={};
               this.orderDetail=[{did:null,pid: 0,sell_price: 0,pcount: 0,total:0}];
             }else{
               this.$message({
                 type: 'info',
-                message: '错误，订单提交失败!'
+                message: '错误，采购单提交失败!'
               });
             }
         })
@@ -220,17 +189,17 @@ export default {
 </script>
 
 <style  scoped>
-  fieldset{
+  .purchaseTable{
     border:1px solid #ccc;
     padding:18px 18px 0 18px;
+    width: 70%;
+    margin: 10% auto;
   }
   .merge div.el-form-item{
-    /* border:1px solid red; */
     padding-right:0;
     margin-bottom:0;
   }
   .merge,.el-radio-group{
-    /* border: 2px solid black; */
     display: flex;
     align-items: center;
     margin-bottom: 18px;
@@ -239,4 +208,5 @@ export default {
   .el-radio{
     margin:0;
   }
+
 </style>

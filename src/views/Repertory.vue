@@ -3,99 +3,113 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="repertory">
-      <el-table
-        :data="tableData"
-        min-height="500"
-        :max-height="maxHeight"
-        @cell-dblclick="edit"
-        :border=true
-        :cell-style="{'padding-left':0,'text-align':'center'}"
-        :header-cell-style="{'text-align':'center'}"
-        :highlight-current-row=true>
-        <el-table-column
-          fixed
-          prop="repertory_count"
-          label="库存数量"
-          width="100">
-        </el-table-column>
-        <el-table-column
-          prop="pid"
-          label="商品ID"
-          width="70">
-        </el-table-column>
-        <el-table-column
-          prop="family_id"
-          label="系列ID"
-          width="70">
-        </el-table-column>
-        <el-table-column
-          prop="pname"
-          label="商品名称"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="sell_price"
-          label="价格"
-          width="100">
-        </el-table-column>
-               <el-table-column
-          prop="sold_count"
-          label="已售出的数量"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="memory"
-          label="内存容量"
-          width="100">
-        </el-table-column>
-        <el-table-column
-          prop="resolution"
-          label="分辨率"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="cpu"
-          label="处理器"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="video_memory"
-          label="显存容量"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="category"
-          label="所属分类"
-          width="120">
-        </el-table-column>
-        <el-table-column
-          prop="disk"
-          label="硬盘容量及类型"
-          width="140">
-        </el-table-column>
-        <el-table-column
-          prop="is_onsale"
-          label="是否促销中"
-          width="100">
-        </el-table-column>
-        <el-table-column
-          prop="pv_id"
-          label="供应商ID"
-          width="100">
-        </el-table-column>
-      </el-table>
-      <el-pagination
-        background
-        layout="prev, pager, next"
-        :page-count="pcount"
-        @current-change="changePage">
-      </el-pagination>
+      <el-tabs type="border-card">
+        <el-tab-pane label="采购入库">
+          <purchase-table
+          :orderForm="orderForm"
+          :orderDetail="orderDetail"
+          ></purchase-table>
+        </el-tab-pane>
+        <el-tab-pane label="库存信息">
+          <el-table
+            :data="tableData"
+            min-height="500"
+            :max-height="maxHeight"
+            @cell-dblclick="edit"
+            :border=true
+            :cell-style="{'padding-left':0,'text-align':'center'}"
+            :header-cell-style="{'text-align':'center'}"
+            :highlight-current-row=true>
+            <el-table-column
+              fixed
+              prop="repertory_count"
+              label="库存数量"
+              width="100">
+            </el-table-column>
+            <el-table-column
+              prop="pid"
+              label="商品ID"
+              width="70">
+            </el-table-column>
+            <el-table-column
+              prop="family_id"
+              label="系列ID"
+              width="70">
+            </el-table-column>
+            <el-table-column
+              prop="pname"
+              label="商品名称"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="sell_price"
+              label="价格"
+              width="100">
+            </el-table-column>
+                  <el-table-column
+              prop="sold_count"
+              label="已售出的数量"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="memory"
+              label="内存容量"
+              width="100">
+            </el-table-column>
+            <el-table-column
+              prop="resolution"
+              label="分辨率"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="cpu"
+              label="处理器"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="video_memory"
+              label="显存容量"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="category"
+              label="所属分类"
+              width="120">
+            </el-table-column>
+            <el-table-column
+              prop="disk"
+              label="硬盘容量及类型"
+              width="140">
+            </el-table-column>
+            <el-table-column
+              prop="is_onsale"
+              label="是否促销中"
+              width="100">
+            </el-table-column>
+            <el-table-column
+              prop="pv_id"
+              label="供应商ID"
+              width="100">
+            </el-table-column>
+          </el-table>
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            :page-count="pcount"
+            @current-change="changePage">
+          </el-pagination>
+        </el-tab-pane>
+      </el-tabs>
     </div>
   </div>
 </template>
 
 <script>
+  import purchaseTable from "../components/purchaseTable"
   export default {
+    components:{
+      purchaseTable
+    },
     methods: {
       edit(row,column,cell,event){
         var element=event.target;
@@ -180,17 +194,60 @@
       }
     },
     created(){
-      this.maxheight=parseInt(window.screen.availHeight)/1.1;
+      // this.maxheight=parseInt(window.screen.availHeight)/1.1;
       this.load();
-      this.maxHeight=(document.body.clientHeight)-80;
+      this.maxHeight=(document.body.clientHeight)-150;
     },
     data() {
       return {
         maxHeight:0,
         tableData:[],
         pno:0,
-        pcount:0
-      }
+        pcount:0,
+         // 订单提交标签页数据
+        orderForm: {
+          oid:null,
+          onum: '',
+          cid: '',
+          remark:null,
+          create_date: '',
+          delivery_date: '',
+          ostatus:'',
+          uid:'',
+          firstAdress:'',
+          lastAdress:'',
+        },
+        orderDetail:[{
+          did:null,
+          pid:null,
+          sell_price: 0,
+          pcount: 0,
+          total:0
+        }],
+        //订单查询标签页数据
+        search_options: [{
+            value: '选项1',
+            label: 'AppleMacBook Air'
+          }, {
+            value: '选项2',
+            label: '小米'
+          }, {
+            value: '选项3',
+            label: 'ThinkPad'
+          }, {
+            value: '选项4',
+            label: '华硕'
+          }, {
+            value: '选项5',
+            label: '联想'
+          }, {
+            value: '选项6',
+            label: '戴尔'
+          }, {
+            value: '选项7',
+            label: '神舟'
+          }],
+      };
     }
   }
 </script>
@@ -200,7 +257,17 @@
     width:96%;  
     position:relative;
     left:4%;
-    top:48px;
+    top:3rem;
     background-color:#eceff3;
   }
+  .el-tabs{
+    box-shadow: none;
+    border:none;
+  }
+ .el-tabs--border-card>.el-tabs__content{
+   padding: 0 !important;
+ }
+.el-tab-pane{
+  margin:0 auto;
+}
 </style>

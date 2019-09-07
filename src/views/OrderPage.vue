@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <main-aside></main-aside>
