@@ -11,7 +11,7 @@
         <el-form-item label="商品编号"> 
           <el-input data-i="0" data-prop="pid" v-model="productDetail[0]['pid']"></el-input>
         </el-form-item> 
-        <el-form-item label="商品单价">
+        <el-form-item label="商品进价">
           <el-input placeholder="0" data-i="0" data-prop="pur_price" v-model="productDetail[0]['pur_price']"></el-input>
         </el-form-item>
         <el-form-item label="商品数量">
@@ -120,10 +120,10 @@ export default {
             </div>
           </div>
           <div  class="el-form-item is-no-asterisk el-form-item--small ">
-            <label class="el-form-item__label" style="width: 100px;">商品单价</label>
+            <label class="el-form-item__label" style="width: 100px;">商品进价</label>
             <div class="el-form-item__content" style="margin-left: 100px;">
-              <div  class="el-input el-input--small is-disabled">
-                <input placeholder="0" data-i="${i}" data-prop="pur_price" type="text" autocomplete="off" class="el-input__inner" disabled="disabled">
+              <div  class="el-input el-input--small">
+                <input placeholder="0" data-i="${i}" data-prop="pur_price" type="text" autocomplete="off" class="el-input__inner">
               </div>
             </div>
           </div>
