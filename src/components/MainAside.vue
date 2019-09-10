@@ -15,7 +15,7 @@
         <span class="iconfont">&#xe67b;</span>商品
       </router-link>
     </li>
-    <li>
+    <li @click="setOption('purchase')">
       <router-link :to="'/repertory'">
         <span class="iconfont">&#xe680;</span>库存
       </router-link>
