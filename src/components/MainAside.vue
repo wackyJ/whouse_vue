@@ -15,12 +15,12 @@
         <span class="iconfont">&#xe67b;</span>商品
       </router-link>
     </li>
-    <li @click="setOption('purchase')">
+    <li @click="setOption('preference')">
       <router-link :to="'/repertory'">
         <span class="iconfont">&#xe680;</span>库存
       </router-link>
     </li>
-    <li @click="setOption('userInfo')">
+    <li @click="setOption('preference')">
       <router-link :to="'/setting'">
         <span class="iconfont">&#xe607;</span>设置
       </router-link>

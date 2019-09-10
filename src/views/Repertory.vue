@@ -4,11 +4,8 @@
     <main-header></main-header>
     <div class="repertory">
       <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane label="采购入库" name="purchase">
-          <purchase-table
-            :orderForm="orderForm"
-            :orderDetail="orderDetail"
-          ></purchase-table>
+        <el-tab-pane label="采购入库" name="preference">
+          <purchase-table></purchase-table>
         </el-tab-pane>
         <el-tab-pane label="库存信息" name="goods">
           <el-table
@@ -205,27 +202,7 @@
         tableData:[],
         pno:0,
         pcount:0,
-         // 订单提交标签页数据
-        orderForm: {
-          oid:null,
-          onum: '',
-          cid: '',
-          remark:null,
-          create_date: '',
-          delivery_date: '',
-          ostatus:'',
-          uid:'',
-          firstAdress:'',
-          lastAdress:'',
-        },
-        orderDetail:[{
-          did:null,
-          pid:null,
-          sell_price: 0,
-          pcount: 0,
-          total:0
-        }],
-        //订单查询标签页数据
+        //库存查询标签页数据
         search_options: [{
             value: '选项1',
             label: 'AppleMacBook Air'

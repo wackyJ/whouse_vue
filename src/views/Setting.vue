@@ -4,7 +4,7 @@
     <main-header></main-header>
     <div class="section" :style="{height:cHeight}">
       <el-tabs v-model="activeName">
-        <el-tab-pane label="个人信息" name="userInfo">
+        <el-tab-pane label="个人信息" name="preference">
           个人信息
         </el-tab-pane>
         <el-tab-pane label="供应商管理" name="provider" v-if="token_id==1||token_id==2">
