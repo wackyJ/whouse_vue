@@ -22,9 +22,9 @@
             :highlight-current-row=true>
           <el-table-column
             fixed
-            prop="oid"
+            prop="onum"
             label="订单编号"
-            width="80">
+            width="150">
         </el-table-column>
         <el-table-column
           prop="cid"
@@ -49,12 +49,12 @@
         <el-table-column
           prop="create_date"
           label="购买时间"
-          width="150">
+          width="200">
         </el-table-column>
         <el-table-column
           prop="delivery_date"
           label="发货时间"
-          width="150">
+          width="200">
         </el-table-column>
         <el-table-column
           prop="ostatus"
@@ -202,7 +202,7 @@
         this.load(i-1);
       },
       search(){
-        this.axios.get("/product/v1/search",{
+        this.axios.get("/order/v1/search",{
           params:{
             kw:this.kw
           }
@@ -225,11 +225,16 @@
           this.tableData=result.data.data;
           this.pno=result.data.pno;
           this.pcount=result.data.pageCount;
+          for(var i=0;i<this.tableData.length;i++){
+            this.search_options.push({
+              value:`选项${i}`,
+              label:this.tableData[i].onum
+            });
+          }
         });
       }
     },
     created(){
-      // this.maxheight=parseInt(window.screen.availHeight)/1.1;
       this.load();
       this.maxHeight=(document.body.clientHeight)-150;
     },
@@ -240,28 +245,7 @@
         pno:0,
         pcount:0,
         kw:"",
-        search_options: [{
-        value: '选项1',
-        label: 'AppleMacBook Air'
-      }, {
-        value: '选项2',
-        label: '小米'
-      }, {
-        value: '选项3',
-        label: 'ThinkPad'
-      }, {
-        value: '选项4',
-        label: '华硕'
-      }, {
-        value: '选项5',
-        label: '联想'
-      }, {
-        value: '选项6',
-        label: '戴尔'
-      }, {
-        value: '选项7',
-        label: '神舟'
-      }]
+        search_options: [{}]
       }
     }
   }

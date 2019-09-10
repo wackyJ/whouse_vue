@@ -33,7 +33,7 @@
         // 订单提交标签页数据
         orderForm: {
           oid:null,
-          onum: '',
+          // onum: '',//订单编号
           cid: '',
           remark:null,
           create_date: '',

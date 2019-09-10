@@ -2,11 +2,11 @@
   <fieldset @input="inputInfo" @change="unitPrice">
     <legend>客户订单</legend>
     <el-form ref="form" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true > 
-      <div class="merge">
+      <!-- <div class="merge">
         <el-form-item label="订单编号" :required=true>
           <el-input v-model="orderForm.onum" :required=true></el-input>
         </el-form-item>
-      </div>
+      </div> -->
       <div class="merge">
         <el-form-item label="商品编号"> 
           <el-input data-i="0" data-prop="pid" v-model="orderDetail[0]['pid']"></el-input>
@@ -188,10 +188,12 @@ export default {
               });
               this.$router.push("/login");
             }else if(result.data.code==200){
-              this.$message({
-                type: 'success',
-                message: '订单提交成功!'
-              });
+              this.$alert(
+              `订单提交成功！您的订单编号为：${result.data.data.onum}`, 
+              '订单提交', 
+              { confirmButtonText: '确定'}
+              );
+              // 重置表单
               this.orderForm={};
               this.orderDetail=[{did:null,pid: 0,sell_price: 0,pcount: 0,total:0}];
             }else{

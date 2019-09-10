@@ -193,7 +193,7 @@ export default {
     border:1px solid #ccc;
     padding:18px 18px 0 18px;
     width: 70%;
-    margin: 10% auto;
+    margin: 2% auto;
   }
   .merge div.el-form-item{
     padding-right:0;
