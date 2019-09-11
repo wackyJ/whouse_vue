@@ -53,7 +53,7 @@
   .home{
     width:100%;height:767px;
 		margin:0 auto;
-		background:url(../../../login_bg.png);
+		background-image:url("/img/login_bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
