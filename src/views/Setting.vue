@@ -5,7 +5,7 @@
     <div class="section" :style="{height:cHeight}">
       <el-tabs v-model="activeName">
         <el-tab-pane label="个人信息" name="preference">
-          个人信息
+          <setting-user-info></setting-user-info>
         </el-tab-pane>
         <el-tab-pane label="供应商管理" name="provider" v-if="token_id==1||token_id==2">
           <setting-provide></setting-provide>
@@ -25,9 +25,10 @@
 import SettingUser from "../components/SettingUser"
 import SettingProvide from "../components/SettingProvide"
 import SettingClient from "../components/SettingClient"
+import SettingUserInfo from "../components/SettingUserInfo"
 export default {
   components:{
-    SettingUser,SettingProvide,SettingClient
+    SettingUser,SettingProvide,SettingClient,SettingUserInfo
   },
   data() {
     return {

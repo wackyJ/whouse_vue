@@ -20,33 +20,77 @@ export default {
   name: "SystemMsg",
   data() {
     return {
-      activities: [{
-        content: '支持使用图标',
-        timestamp: '04-12 20:46',
-        size: 'large',
-        type: 'primary',
-        icon: 'el-icon-more'
-      }, {
-        content: '支持自定义颜色',
-        timestamp: '04-03 20:46',
-        color: '#0bbd87'
-      }, {
-        content: '支持自定义尺寸',
-        timestamp: '04-03 20:46',
-        size: 'large'
-      }]
+      activities: [
+      //   {
+      //   content: '支持使用图标',
+      //   timestamp: '04-12 20:46',
+      //   size: 'large',
+      //   type: 'primary',
+      //   icon: 'el-icon-more'
+      // }, {
+      //   content: '支持自定义颜色',
+      //   timestamp: '04-03 20:46',
+      //   color: '#0bbd87'
+      // }, {
+      //   content: '支持自定义尺寸',
+      //   timestamp: '04-03 20:46',
+      //   size: 'large'
+      // }
+      ]
     };
   },
   methods:{
-    // load(){
-    //   let newActive = {content:"",timestamp:""};
-    //   this.activities.push(newActive);
-    //   this.axios.get("/setting/v1")
-    // }
+    load(){
+      this.axios.get("/tips/v1/tipList").then(result=>{
+        var dataList = result.data.data;
+        var myTime;
+        for(var i = 0;i < dataList.length;i++){
+          myTime = this.getMyTime(dataList[i].create_time);
+          let newActive = 
+          {
+            content: dataList[i].msg,
+            timestamp: myTime,
+            size: 'large',
+            type: 'primary',
+            icon: 'el-icon-more'
+          }
+          this.activities.push(newActive);
+        }
+      })
+    },
+    getMyTime(time){
+      var clock = "";
+      time = new Date(time);
+      var m = time.getMonth()+1;
+      var d = time.getDate();
+      var h = time.getHours();
+      var min = time.getMinutes();
+      if(m<10){
+        clock += `0${m}-`;
+      }else{
+        clock += `${m}-`;
+      }
+      if(d<10){
+        clock += `0${d} `;
+      }else {
+        clock += `${d} `;
+      }
+      if(h<10){
+        clock += `0${h}:`;
+      }else{
+        clock += `${h}:`;
+      }
+      if(min<10){
+        clock += `0${min}`;
+      }else{
+        clock += min;
+      }
+      return clock;
+    }
+  },
+  created(){
+    this.load();
   }
-  // created(){
-  //   this.load();
-  // }
 }
 </script>
 
@@ -65,5 +109,10 @@ export default {
   .msg .tLine{
     margin-left:5%;
     margin-top:3%;
+  }
+  .el-timeline-item__wrapper {
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
   }
 </style>
