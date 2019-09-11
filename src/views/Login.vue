@@ -104,7 +104,7 @@
     color: #000;
   }
   .mode a{
-    margin: 20px; 
+    margin:20px; 
   }
   .mode a img{
     width: 20px;
