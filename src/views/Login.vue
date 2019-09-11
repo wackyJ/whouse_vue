@@ -1,22 +1,116 @@
 <template>
   <div class="ms-login">
+    <!-- 最外层背景图片 -->
+    <div class="home">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
+      <!-- 右上角模块 -->
+      <div class="mt-head">
+        <a href="">没有账号?</a>
+        <a class="black" href="">注册试用</a>
+      </div>
+      <!-- 登录框 -->
+      <div class="login">
+      <h1>欢迎登录精斗云</h1>
+      <br>
+      <br>
         <el-form-item prop="uname">
-            <el-input clearable v-model="ruleForm.username" placeholder="用户名"></el-input>
+            <el-input clearable v-model="ruleForm.username" placeholder="请输入账号"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-            <el-input show-password type="password" placeholder="密码"  v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
+            <el-input show-password type="password" placeholder="请输入密码"  v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
         </el-form-item>
         <!-- `checked` 为 true 或 false -->
         <el-checkbox v-model="checked">记住密码</el-checkbox>
+        <div class="float">
+          <link rel="stylesheet" href="" >忘记密码?
+        </div>
+        <br>
         <br>
         <br>
         <div class="login-btn">
             <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
         </div>
+        <br>
+        <div class="more ">
+          更多登录方式
+        </div>  
+        <br>
+        <div class="mode">
+          <a href="">
+            <img src="img/sinablog.png" alt="">
+          </a>
+          <a href="">
+            <img src="img/wechat.png" alt="">
+          </a>
+        </div>  
+      </div>  
     </el-form>
+    </div>
   </div>
 </template>
+
+<style scoped>
+  .home{
+    width:100%;height:767px;
+		margin:0 auto;
+		background:url(../../../login_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  .login{
+    position: absolute;
+    width: 380px;
+    height: 300px;
+    margin-left:520px;
+    margin-top:150px; 
+    color: #fff;
+    text-align: center;
+    }
+  .el-form-item{
+    margin-bottom: 30px;
+  }  
+  .float{
+    float: right;
+  }
+  .el-checkbox{
+    float: left;
+  }
+  .el-button{
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+  }
+  .mt-head{
+    float: right;
+    margin-top: 50px;
+    margin-right: 30px;
+    font-size: 20px;
+  }
+  .mt-head a{
+     color: #fff;  
+  }
+  .black{
+    border: 2px solid #fff;
+    background:rgba(0,0,0,0.5);
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+    color: #fff;
+  }
+  .more{
+    font-size: 20px;
+    color: #000;
+  }
+  .mode a{
+    margin: 20px; 
+  }
+  .mode a img{
+    width: 20px;
+    height: 17px;
+  }
+</style>
 
 <script>
   export default {
