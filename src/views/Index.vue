@@ -13,49 +13,49 @@
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;待付款
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_1}}</span>
         </li>
         <li>
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;待审核
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_2}}</span>
         </li>
         <li>
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;异常
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_3}}</span>
         </li>
         <li>
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;未发货
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_4}}</span>
         </li>
         <li>
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;今日发货
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_5}}</span>
         </li>
         <li>
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;发货失败
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_6}}</span>
         </li>
         <li>
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;普通退货
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_7}}</span>
         </li>
         <li>
           <span class="sum_sp1">
             <span></span>&nbsp;&nbsp;已收货待确认
           </span>
-          <span class="sum_sp2">18</span>
+          <span class="sum_sp2">{{status_8}}</span>
         </li>
       </ul>
       <!-- section--info信息展示部分 -->
@@ -131,15 +131,59 @@ export default {
   },
   data(){
     return {
-      cHeight:0
+      cHeight:0,
+      status_1:0,
+      status_2:0,
+      status_3:0,
+      status_4:0,
+      status_5:0,
+      status_6:0,
+      status_7:0,
+      status_8:0
     }
   },
   created(){
     this.cHeight=(document.body.clientHeight-48)+'px';
+    this.statusCode();
   },
   methods:{
     setOption(val){
       this.$store.state.setOptionVal=val;
+    },
+    statusCode(){//请求后台服务器，返回所有订单状态
+      this.axios.get("/order/v1/statusCode").then(result=>{
+        let statusList=result.data.data;
+        statusList.map(obj=>{
+          obj.ostatus=parseInt(obj.ostatus);
+          switch(obj.ostatus){
+            case 1:
+              this.status_1++;
+              return;
+            case 2:
+              this.status_2++;
+              return;
+            case 3:
+              this.status_3++;
+              return;
+            case 4:
+              this.status_4++;
+              return;
+            case 5:
+              this.status_5++;
+              return;
+            case 6:
+              this.status_6++;
+              return;
+            case 7:
+              this.status_7++;
+              return;
+            case 8:
+              this.status_8++;
+              return;
+            default:return;
+          }
+        })
+      })
     }
   }
 }
