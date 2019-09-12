@@ -1,7 +1,7 @@
 <template>
   <fieldset @input="inputInfo" @change="VerifyGoods" class="purchaseTable">
     <legend>采购单</legend>
-    <el-form ref="form" :model="purchaseForm" label-width="100px" size="small " :hide-required-asterisk=true > 
+    <el-form ref="purchaseForm" :model="purchaseForm" label-width="100px" size="small " :hide-required-asterisk=true > 
       <div class="merge">
         <el-form-item label="采购单编号" :required=true>
           <el-input v-model="purchaseForm.pur_num" :required=true></el-input>
@@ -45,7 +45,7 @@
       </el-form-item>
       <el-form-item size="large">
         <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="resetForm('purchaseForm')">重置</el-button>
       </el-form-item>
     </el-form>
   </fieldset>
@@ -164,8 +164,8 @@ export default {
                 type: 'success',
                 message: '采购单提交成功!'
               });
-              this.purchaseForm={};
-              this.productDetail=[{pid:null,pur_price: 0,pur_count: 0,total:0,pv_id:"",remark:null,uid:"",pur_date:""}];
+              // 重置表单
+              this.resetForm('purchaseForm');
             }else{
               this.$message({
                 type: 'info',
@@ -173,6 +173,11 @@ export default {
               });
             }
         })
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+      this.purchaseForm={};
+      this.productDetail=[{pid:null,pur_price: 0,pur_count: 0,total:0,pv_id:"",remark:null,uid:"",pur_date:""}];
     },
     getAdress(val){
       this.purchaseForm.firstAdress=val;

@@ -71,7 +71,7 @@
       </el-form-item>
       <el-form-item size="large">
         <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="reset">重置</el-button>
       </el-form-item>
     </el-form>
   </fieldset>
@@ -207,9 +207,7 @@ export default {
               { confirmButtonText: '确定'}
               );
               // 重置表单
-              this.$refs["orderForm"].resetFields();
-              this.orderForm={};
-              this.orderDetail=[{did:null,pid: 0,sell_price: 0,pcount: 0,total:0}];
+              this.reset();
             }else{
               this.$message({
                 type: 'info',
@@ -222,6 +220,11 @@ export default {
             message: `错误!${err}`
           });
         })
+    },
+    reset(){
+      this.$refs["orderForm"].resetFields();
+      this.orderForm={};
+      this.orderDetail=[{did:null,pid: 0,sell_price: 0,pcount: 0,total:0}];
     },
     getAdress(val){
       this.orderForm.firstAdress=val;
