@@ -2,28 +2,29 @@
   <div>
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="昵称" prop="uname">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.uname"></el-input>
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.email"></el-input>
       </el-form-item>
       <el-form-item label="手机号" prop="uphone">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.uphone"></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="gender">
-        <el-radio-group v-model="ruleForm.resource">
+        <el-radio-group v-model="ruleForm.gender">
           <el-radio label="男"></el-radio>
           <el-radio label="女"></el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="真实姓名" prop="real_name">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.real_name"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">修改</el-button>
         <el-button @click="resetForm('ruleForm')">取消</el-button>
       </el-form-item>
     </el-form>
+    <el-button @click="upPwd">修改密码</el-button>
   </div>
 </template>
 
@@ -61,6 +62,9 @@ export default {
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
+      },
+      upPwd(){
+        
       }
     }
 }
