@@ -84,10 +84,28 @@
 
 <script>
 export default {
-  props:["orderForm","orderDetail","options"],
+  props:["options"],
   data(){
     return{
-      i:0
+      i:0,
+      orderForm: {
+        onum: null,//订单编号
+        cid: '',
+        remark:null,
+        create_date: '',
+        delivery_date: '',
+        ostatus:'',
+        uid:'',
+        firstAdress:'',
+        lastAdress:'',
+      },
+      orderDetail:[{
+        did:null,
+        pid:null,
+        sell_price: 0,
+        pcount: 0,
+        total:0
+      }] 
     }
   },
   methods: {
@@ -189,7 +207,7 @@ export default {
               this.$router.push("/login");
             }else if(result.data.code==200){
               this.$alert(
-              `订单提交成功！您的订单编号为：${result.data.data.onum}`, 
+              `订单提交成功！您的订单编号为：${result.data.data}`, 
               '订单提交', 
               { confirmButtonText: '确定'}
               );
@@ -202,6 +220,11 @@ export default {
                 message: '错误，订单提交失败!'
               });
             }
+        }).catch(()=>{
+          this.$message({
+            type: 'info',
+            message: '错误，订单提交失败!'
+          });
         })
     },
     getAdress(val){

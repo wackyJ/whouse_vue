@@ -6,8 +6,6 @@
       <el-tabs type="border-card">
         <el-tab-pane label="订单提交">
           <order-submission
-          :orderForm="orderForm"
-          :orderDetail="orderDetail"
           :options="options"></order-submission>
         </el-tab-pane>
         <el-tab-pane label="订单查询">
@@ -30,26 +28,6 @@
     },
     data() {
       return {
-        // 订单提交标签页数据
-        orderForm: {
-          oid:null,
-          // onum: '',//订单编号
-          cid: '',
-          remark:null,
-          create_date: '',
-          delivery_date: '',
-          ostatus:'',
-          uid:'',
-          firstAdress:'',
-          lastAdress:'',
-        },
-        orderDetail:[{
-          did:null,
-          pid:null,
-          sell_price: 0,
-          pcount: 0,
-          total:0
-        }],
         options:citysJson,
         //订单查询标签页数据
         token_id:this.$store.getters.getUserToken,

@@ -20,23 +20,7 @@ export default {
   name: "SystemMsg",
   data() {
     return {
-      activities: [
-      //   {
-      //   content: '支持使用图标',
-      //   timestamp: '04-12 20:46',
-      //   size: 'large',
-      //   type: 'primary',
-      //   icon: 'el-icon-more'
-      // }, {
-      //   content: '支持自定义颜色',
-      //   timestamp: '04-03 20:46',
-      //   color: '#0bbd87'
-      // }, {
-      //   content: '支持自定义尺寸',
-      //   timestamp: '04-03 20:46',
-      //   size: 'large'
-      // }
-      ]
+      activities: []
     };
   },
   methods:{
@@ -45,14 +29,24 @@ export default {
         var dataList = result.data.data;
         var myTime;
         for(var i = 0;i < dataList.length;i++){
+          let newActive;
           myTime = this.getMyTime(dataList[i].create_time);
-          let newActive = 
-          {
-            content: dataList[i].msg,
-            timestamp: myTime,
-            size: 'large',
-            type: 'primary',
-            icon: 'el-icon-more'
+          if(dataList[i].type==0){
+            newActive = {
+              content: dataList[i].msg,
+              timestamp: myTime,
+              size: 'large',
+              type: 'primary',
+              icon: 'el-icon'
+            }
+          }else{
+            newActive = {
+              content: dataList[i].msg,
+              timestamp: myTime,
+              size: 'large',
+              type: 'danger',
+              icon: 'el-icon'
+            }
           }
           this.activities.push(newActive);
         }
