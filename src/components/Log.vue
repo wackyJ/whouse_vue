@@ -55,6 +55,7 @@ export default {
               message:"添加成功!"
             })
             this.input = "";
+            this.load();
           }else{
             this.$message.error("添加失败!");
           }
@@ -92,9 +93,6 @@ export default {
     }
   },
   created(){
-    this.load();
-  },
-  updated(){
     this.load();
   }
 }

@@ -40,18 +40,11 @@ export default {
         },
         rules: {
           uname: [
-            { required: true, message: '请输入昵称', trigger: 'blur' },
-            { min: 3, max: 16, message: '长度在 3 到 16 个字符', trigger: 'blur' }
-          ],
-          email: [
-            { required: true, message: '请输入邮箱', trigger: 'blur' }
-          ],
-          uphone: [
-            { required: true, message: '请输入手机号', trigger: 'blur' }
-          ],
-          real_name: [
-            { required: true, message: '请输入真实姓名', trigger: 'blur' }
-          ]
+            {required: true, message: '请输入昵称', trigger: 'blur' },
+            {min: 3,max: 16,message: '长度在 3 到 16 个字符',trigger: 'blur'}],
+          email: [{required: true,message: '请输入邮箱',trigger: 'blur'}],
+          uphone: [{required: true,message: '请输入手机号',trigger: 'blur'}],
+          real_name: [{required: true,message: '请输入真实姓名',trigger: 'blur'}]
         }
       };
     },
