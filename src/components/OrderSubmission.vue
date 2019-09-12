@@ -1,7 +1,7 @@
 <template>
   <fieldset @input="inputInfo" @change="unitPrice">
     <legend>客户订单</legend>
-    <el-form ref="form" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true > 
+    <el-form ref="orderForm" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true > 
       <!-- <div class="merge">
         <el-form-item label="订单编号" :required=true>
           <el-input v-model="orderForm.onum" :required=true></el-input>
@@ -212,6 +212,7 @@ export default {
               { confirmButtonText: '确定'}
               );
               // 重置表单
+              this.$refs["orderForm"].resetFields();
               this.orderForm={};
               this.orderDetail=[{did:null,pid: 0,sell_price: 0,pcount: 0,total:0}];
             }else{
@@ -220,10 +221,10 @@ export default {
                 message: '错误，订单提交失败!'
               });
             }
-        }).catch(()=>{
+        }).catch((err)=>{
           this.$message({
             type: 'info',
-            message: '错误，订单提交失败!'
+            message: `错误!${err}`
           });
         })
     },
