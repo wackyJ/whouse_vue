@@ -2,11 +2,6 @@
   <fieldset @input="inputInfo" @change="unitPrice">
     <legend>客户订单</legend>
     <el-form ref="orderForm" :model="orderForm" label-width="100px" size="small " :hide-required-asterisk=true > 
-      <!-- <div class="merge">
-        <el-form-item label="订单编号" :required=true>
-          <el-input v-model="orderForm.onum" :required=true></el-input>
-        </el-form-item>
-      </div> -->
       <div class="merge">
         <el-form-item label="商品编号"> 
           <el-input data-i="0" data-prop="pid" v-model="orderDetail[0]['pid']"></el-input>
