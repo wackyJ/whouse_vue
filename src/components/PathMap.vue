@@ -51,7 +51,6 @@ export default {
         PassingCity.push(Traces[i]);
       }
     }
-    // console.log(citysLatLog[0]["children"]);
     // console.log(PassingCity);
     // 查找经过城市的经纬度
     PassingCity.map(val=>{
