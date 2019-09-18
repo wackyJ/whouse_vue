@@ -173,7 +173,6 @@ export default {
             )
             this.load();
           }
-          
         } else {
           return false;
         }
