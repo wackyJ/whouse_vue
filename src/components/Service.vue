@@ -24,7 +24,7 @@
         <tr>
           <td colspan="2" class="select1">
             选择分类:
-            <select class="selectstyle" name="city" size="1" >
+            <select class="selectstyle" name="Advice" size="1" >
               <option value="xq">需求</option>
               <option value="gj">改进建议</option>
               <option value="cx">程序错误</option>
