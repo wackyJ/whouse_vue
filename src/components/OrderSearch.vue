@@ -225,16 +225,16 @@
           result.data.data=JSON.parse(JSON.stringify(result.data.data));//转为json格式，必写
           this.tableData=result.data.data;
           this.tableData.map(obj=>{
-            if(obj.firstAdress){
+            if(obj.firstAdress){//假如存在地址信息
               let ad=[];
-              let ad1=obj.firstAdress.split("/");
+              let ad1=obj.firstAdress.split("/");//切割地址为对应地址编码
               let ad2=this.options.filter(val=>val.value==ad1[0])[0];
               ad.push(ad2.label);
               let ad3=ad2.children.filter(val=>val.value==ad1[1])[0];
               ad.push(ad3.label);
               let ad4=ad3.children.filter(val=>val.value==ad1[2])[0];
               ad.push(ad4.label);
-              obj.firstAdress=ad.join("/");
+              obj.firstAdress=ad.join("/");//将数组重新转为字符串
             }
             return obj;
           })
