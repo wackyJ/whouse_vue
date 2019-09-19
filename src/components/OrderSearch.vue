@@ -107,7 +107,7 @@
 
 <script>
   export default {
-    props:["token_id"],
+    props:["token_id","options"],
     methods: {
       edit(row,column,cell,event){
         var element=event.target;
@@ -222,7 +222,23 @@
             }
           }
         ).then(result=>{
+          result.data.data=JSON.parse(JSON.stringify(result.data.data));//转为json格式，必写
           this.tableData=result.data.data;
+          this.tableData.map(obj=>{
+            if(obj.firstAdress){
+              let ad=[];
+              let ad1=obj.firstAdress.split("/");
+              let ad2=this.options.filter(val=>val.value==ad1[0])[0];
+              ad.push(ad2.label);
+              let ad3=ad2.children.filter(val=>val.value==ad1[1])[0];
+              ad.push(ad3.label);
+              let ad4=ad3.children.filter(val=>val.value==ad1[2])[0];
+              ad.push(ad4.label);
+              obj.firstAdress=ad.join("/");
+            }
+            return obj;
+          })
+          // console.log(this.tableData);
           this.pno=result.data.pno;
           this.pcount=result.data.pageCount;
           for(var i=0;i<this.tableData.length;i++){

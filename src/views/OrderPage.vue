@@ -10,6 +10,7 @@
         </el-tab-pane>
         <el-tab-pane label="订单查询">
           <order-search
+          :options="options"
           :search_options="search_options"
           :token_id="token_id"></order-search>
         </el-tab-pane>
