@@ -2,9 +2,9 @@
   <div class="service">
     <div class="s1">
       <div class="service1">
-        <a href="">
+        <span href="">
           <img src="../assets/kefu.png" alt="">
-        </a>
+        </span>
         <p style="font-size:14px">Tel:400-660-4299</p>
       </div>
       <div class="service2" >
@@ -18,13 +18,13 @@
         <tr>
           <td colspan="2">
               <h4 class="text">*内容描述:</h4>
-              <textarea class="textarea" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。"></textarea>
+              <textarea class="textarea" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。" v-model="content"></textarea>
           </td>
         </tr>
         <tr>
           <td colspan="2" class="select1">
             选择分类:
-            <select class="selectstyle" name="Advice" size="1" >
+            <select class="selectstyle" name="Advice" size="1" v-model="selectstyle">
               <option value="xq">需求</option>
               <option value="gj">改进建议</option>
               <option value="cx">程序错误</option>
@@ -35,19 +35,23 @@
         </tr>
         <tr>
           <td colspan="2" class="phone1">联系电话:
-            <input type="phone"  class="phonestyle" placeholder="请输入联系方式">
+            <input type="number" class="phonestyle" placeholder="请输入联系方式" v-model="phone">
           </td>
         </tr>
         <tr>
-          <td colspan="2" style="padding-top:10px;"><input type="file" name="pic" id='file'
-              class="file">
-            <el-button class="buttonstyle">上传图片</el-button>
-            <span style="font-size:8px;">*仅限"jpg","png"图片</span>
+          <td colspan="2" style="padding:10px 0 0 20px;text-align:left;">
+            <form action="get">
+              <input type="file" name="pic" id='file' class="file" @change="tips"/><label for="file">
+              <span  class="uploading">上传图片<i class="el-icon-upload el-icon--right"></i></span>
+              <br>
+              <span style="font-size:8px;" >{{tip}}</span>
+              </label>
+            </form>
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            <el-button type="submit" class="submit">提交</el-button>
+            <el-button  class="submit" @click="submitInfo">提交</el-button>
           </td>
         </tr>
       </table>
@@ -58,8 +62,22 @@
 export default {
     data() {
      return {
-       
+       tip:`*仅限"jpg","png"图片`,
+       content:'',
+       phone:'',
+       selectstyle:'xq'
      }
+    },
+    methods:{
+      tips(e){
+        this.tip=e.target.value;
+      },
+      submitInfo(){
+        this.content='';
+        this.phone='';
+        this.tip=`*仅限"jpg","png"图片`;
+        this.selectstyle='xq';
+      }
     }
   }
 </script>
@@ -68,11 +86,6 @@ export default {
     width:25px;
     margin-left:30px;
     margin-top:20px;
-  }
-  .service1 a{
-    margin-top:30px;
-    margin-left:10px;
-    font-size:34px;
   }
   .service-Tel{
     margin-top:18px;
@@ -129,16 +142,20 @@ export default {
   .file{
     visibility:hidden;
     height:0px;
-    display:block}
+    opacity: 0;
+    display:block;
+    }
   .submit{
     margin-left:210px;
     margin-top:10px;
-    padding:2px;
-    border-radius: 5px;
-    padding-left:15px;
-    padding-right:15px;
+    padding:5px 15px;
  }
   .buttonstyle{
     padding:2px;
     border-radius: 5px;}
+  .uploading{
+    padding:5px 15px;
+    border:1px solid black;
+    border-radius: 0.2rem;
+  }
 </style>
