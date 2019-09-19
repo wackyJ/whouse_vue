@@ -73,10 +73,27 @@ export default {
         this.tip=e.target.value;
       },
       submitInfo(){
+        if(this.content==''){
+          this.$message({
+            type: 'info',
+            message: '内容描述为空!提交失败！'
+          });
+          return;
+        }else if(this.phone==''){
+           this.$message({
+            type: 'info',
+            message: '联想电话为空!提交失败！'
+          });
+          return;
+        }
         this.content='';
         this.phone='';
         this.tip=`*仅限"jpg","png"图片`;
         this.selectstyle='xq';
+        this.$message({
+          type: 'success',
+          message: '提交成功!'
+        });
       }
     }
   }
