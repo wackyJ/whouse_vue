@@ -22,7 +22,7 @@ Vue.component("main-aside",MainAside);
 router.beforeEach((to, from, next) => {
   //后期完善： 由于后期可能添加修改头像等会改变个人信息的接口
   //          所有路由拦截里应该 写一个请求个人信息的接口
-  if (to.path === '/'|| to.path === '/login') {
+  if (to.path === '/'|| to.path === '/login'||to.path==='/register') {
     // console.log("目标路由是登录页！！")
     next()
   }else {
