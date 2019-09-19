@@ -37,7 +37,7 @@
           width="80">
         </el-table-column>
         <el-table-column
-          prop="price"
+          prop="sell_price"
           label="购买价格"
           width="80">
         </el-table-column>
