@@ -7,7 +7,6 @@
         <el-tab-pane label="订单提交">
           <order-submission
           :options="options"></order-submission>
-          {{canHeight}}
         </el-tab-pane>
         <el-tab-pane label="订单查询">
           <order-search

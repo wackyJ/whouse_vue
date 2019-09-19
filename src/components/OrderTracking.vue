@@ -1,23 +1,23 @@
 <template>
   <div class="wrap" :style="{height:canHeight}">
     <div class="queryInput">
-      <div>
-      运输公司：
-      <el-autocomplete
-        class="inline-input"
-        v-model="shipper"
-        :fetch-suggestions="querySearch"
-        placeholder="请选择运输公司"
-        @select="handleSelect"
-      ></el-autocomplete>
+      <div class="d-tran">
+        运输公司：
+        <el-autocomplete
+          class="inline-input"
+          v-model="shipper"
+          :fetch-suggestions="querySearch"
+          placeholder="请选择运输公司"
+          @select="handleSelect"
+        ></el-autocomplete>
       </div>
-      <div>
-      订单编号：
-      <el-input
-        placeholder="请输入快递单号"
-        v-model="LogisticCode"
-        clearable>
-      </el-input>
+      <div class="d-order">
+        订单编号：
+        <el-input
+          placeholder="请输入快递单号"
+          v-model="LogisticCode"
+          clearable>
+        </el-input>
       </div>
       <el-button @click="tracking">查询</el-button>
     </div>
@@ -99,7 +99,6 @@ export default {
       return ship;
     },
   },
-  
   mounted(){
     this.restaurants = this.loadAll();
     this.canHeight = (document.body.clientHeight-117)+"px";
@@ -110,19 +109,29 @@ export default {
 
 <style scoped>
   .queryInput {
-    width:60%;
-    margin-left:20%;
+    width:70%;
+    margin-left:15%;
     display:flex;
     align-items: center;
     justify-content: space-around;
     padding:15px 0;
     box-sizing:border-box;
+    /* border:1px #000 solid; */
+
+  }
+  .d-tran {
+    width:40%;
+    /* border:1px #000 solid; */
   }
   .el-autocomplete {
-    width:300px;
+    width:70%;
+  }
+  .d-order {
+    width:40%;
+    /* border:1px #000 solid; */
   }
   .el-input--suffix {
-    width:300px;
+    width:70%;
   }
   .detail {
     display:flex;
