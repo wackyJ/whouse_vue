@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="container"></div>
+    <div id="container" :data="data"></div>
     <!-- <div id="panel"></div> -->
   </div>
 </template>
@@ -9,10 +9,12 @@
 import remoteLoad from '@/utils/remoteLoad.js'
 import citysLatLog from '@/assets/citysLatLog.json'
 export default {
+  props:{
+    data:{}
+  },
   data(){
     return{
       path:[],
-      data:""
     }
   },
   methods:{

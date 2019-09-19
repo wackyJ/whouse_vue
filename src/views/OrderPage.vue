@@ -13,6 +13,9 @@
           :search_options="search_options"
           :token_id="token_id"></order-search>
         </el-tab-pane>
+        <el-tab-pane label="订单追踪">
+          <order-tracking></order-tracking>
+        </el-tab-pane>
       </el-tabs>
     </div>
   </div>
@@ -22,9 +25,10 @@
   import citysJson from "../assets/citys.json"
   import OrderSubmission from "../components/OrderSubmission"
   import OrderSearch from "../components/OrderSearch"
+  import OrderTracking from "../components/OrderTracking"
   export default {
     components:{
-      OrderSubmission,OrderSearch
+      OrderSubmission,OrderSearch,OrderTracking
     },
     data() {
       return {
