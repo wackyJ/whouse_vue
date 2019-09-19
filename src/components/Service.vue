@@ -82,7 +82,7 @@ export default {
         }else if(this.phone==''){
            this.$message({
             type: 'info',
-            message: '联想电话为空!提交失败！'
+            message: '联系电话为空!提交失败！'
           });
           return;
         }
