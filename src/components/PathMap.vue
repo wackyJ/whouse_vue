@@ -39,44 +39,49 @@ export default {
       // });
     }
   },
-  async created () {
-    //提取途径的所有城市
-    let Traces=this.data.Traces.map(obj=>{
-      let reg=/【[\u4e00-\u9fa5\w]+】/;
-      let arr=reg.exec(obj.AcceptStation);
-      return arr[0].slice(1,-2);
-    })
-    //去除重复的城市名
-    let PassingCity=[];
-    for (var i = 0; i < Traces.length; i++) {
-      if (PassingCity.indexOf(Traces[i]) === -1) {
-        PassingCity.push(Traces[i]);
-      }
-    }
-    // console.log(PassingCity);
-    // 查找经过城市的经纬度
-    PassingCity.map(val=>{
-      //判断是否为省名或直辖市名
-      citysLatLog.map(obj=>{
-        if(obj["name"]==val){
-          //如果是直接返回true，保留该对象
-          this.path.push({lnglat:[ obj["log"],obj["lat"] ]});
-          return obj;
-        }else{        //否则判断是否为其下属的城市名
-          //创建变量保存城市名所在对象数组
-          // 如果是就保存进 findCity变量
-          obj["children"].map($obj=>{
-            if($obj["name"]==val){
-              this.path.push({lnglat:[ $obj["log"],$obj["lat"] ]});
-              return $obj;
-            }else{
-              return 0;
-            }
-          });
-        }
+  watch:{
+    data(){
+            //提取途径的所有城市
+      let Traces=this.data.Traces.map(obj=>{
+        let reg=/【[\u4e00-\u9fa5\w]+】/;
+        let arr=reg.exec(obj.AcceptStation);
+        return arr[0].slice(1,-2);
       })
-    })
-    
+      //去除重复的城市名
+      let PassingCity=[];
+      for (var i = 0; i < Traces.length; i++) {
+        if (PassingCity.indexOf(Traces[i]) === -1) {
+          PassingCity.push(Traces[i]);
+        }
+      }
+      // console.log(PassingCity);
+      // 查找经过城市的经纬度
+      PassingCity.map(val=>{
+        //判断是否为省名或直辖市名
+        citysLatLog.map(obj=>{
+          if(obj["name"]==val){
+            //如果是直接返回true，保留该对象
+            this.path.push({lnglat:[ obj["log"],obj["lat"] ]});
+            return obj;
+          }else{        //否则判断是否为其下属的城市名
+            //创建变量保存城市名所在对象数组
+            // 如果是就保存进 findCity变量
+            obj["children"].map($obj=>{
+              if($obj["name"]==val){
+                this.path.push({lnglat:[ $obj["log"],$obj["lat"] ]});
+                return $obj;
+              }else{
+                return 0;
+              }
+            });
+          }
+        })
+      })
+      this.initMap()
+    }
+  },
+  async created () {
+
     // 已载入高德地图API，则直接初始化地图
     if (window.AMap && window.AMapUI) {
       this.initMap()
@@ -93,8 +98,8 @@ export default {
 <style  scoped>
 #container {
   width: 100%;
-  /* height: 100%; */
-  height: 1000px;
+  height: 100%;
+  /* height: 1000px; */
 }
 /* #panel {
     position: fixed;

@@ -2,11 +2,12 @@
   <div>
     <main-aside></main-aside>
     <main-header></main-header>
-    <div class="order-page">
-      <el-tabs type="border-card">
+    <div class="order-page" :style="{height:canHeight}">
+      <el-tabs type="border-card" :style="{height:canHeight}">
         <el-tab-pane label="订单提交">
           <order-submission
           :options="options"></order-submission>
+          {{canHeight}}
         </el-tab-pane>
         <el-tab-pane label="订单查询">
           <order-search
@@ -14,7 +15,7 @@
           :search_options="search_options"
           :token_id="token_id"></order-search>
         </el-tab-pane>
-        <el-tab-pane label="订单追踪">
+        <el-tab-pane label="订单即时查询">
           <order-tracking></order-tracking>
         </el-tab-pane>
       </el-tabs>
@@ -33,6 +34,7 @@
     },
     data() {
       return {
+        canHeight:0,
         options:citysJson,
         //订单查询标签页数据
         token_id:this.$store.getters.getUserToken,
@@ -59,6 +61,9 @@
             label: '神舟'
           }],
       };
+    },
+    created(){
+      this.canHeight = (document.body.clientHeight-48)+"px";
     }
   }
 </script>
@@ -72,9 +77,14 @@
     padding-left:2%;
     box-sizing: border-box;
     left: 2%;
+    /* border:1px #f00 solid; */
   }
   .el-tabs{
     box-shadow: none;
     border:none;
   }
+  /* .el-tabs--border-card>.el-tabs__content {
+    box-sizing: border-box;
+    padding:20px;
+  } */
 </style>

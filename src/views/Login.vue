@@ -52,6 +52,7 @@
   export default {
     data() {
       return {
+        cHeight:0,
         checked:false,
         rules:{},
         ruleForm:{

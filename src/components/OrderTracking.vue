@@ -1,32 +1,38 @@
 <template>
-  <div>
-    <!-- <input type="text" v-model="ShipperCode"> 
-    -->
-    运输公司：
-    <el-autocomplete
-      class="inline-input"
-      v-model="shipper"
-      :fetch-suggestions="querySearch"
-      placeholder="请输入运输公司"
-      @select="handleSelect"
-    ></el-autocomplete><br><br>
-    订单编号：
-    <el-input
-      placeholder="请输入快递单号"
-      v-model="LogisticCode"
-      clearable>
-    </el-input><br><br>
-    <el-button @click="tracking">查询</el-button>
-    <el-timeline>
-      <el-timeline-item
-        v-for="(good, index) in goodsinfo"
-        :key="index"
-        :color="index==goodsinfo.length-1?'#fe7328':''"
-        :timestamp="good.AcceptTime">
-        {{good.AcceptStation}}
-      </el-timeline-item>
-    </el-timeline>
-    <path-map :data="data"></path-map>
+  <div class="wrap" :style="{height:canHeight}">
+    <div class="queryInput">
+      <div>
+      运输公司：
+      <el-autocomplete
+        class="inline-input"
+        v-model="shipper"
+        :fetch-suggestions="querySearch"
+        placeholder="请选择运输公司"
+        @select="handleSelect"
+      ></el-autocomplete>
+      </div>
+      <div>
+      订单编号：
+      <el-input
+        placeholder="请输入快递单号"
+        v-model="LogisticCode"
+        clearable>
+      </el-input>
+      </div>
+      <el-button @click="tracking">查询</el-button>
+    </div>
+    <div class="detail" :style="{height:mapHeight}">
+      <path-map :data="data" class="pathMap"></path-map>
+      <el-timeline>
+        <el-timeline-item
+          v-for="(good, index) in goodsinfo"
+          :key="index"
+          :color="index==goodsinfo.length-1?'#fe7328':''"
+          :timestamp="good.AcceptTime">
+          {{good.AcceptStation}}
+        </el-timeline-item>
+      </el-timeline>
+    </div>
   </div>
 </template>
 
@@ -39,6 +45,8 @@ export default {
   },
   data(){
     return{
+      mapHeight:0,
+      canHeight:0,
       restaurants: [],
       shipper: '',
       goodsinfo:'',
@@ -66,36 +74,67 @@ export default {
       this.ShipperCode = item.shipNum;
     },
     tracking(){
+      if(this.ShipperCode==""){
+        this.ShipperCode = this.getNum(this.shipper);
+      }
       this.axios.get("/logistics/v1/immediateQuery",{
         params:{
           ShipperCode:this.ShipperCode,
           LogisticCode:this.LogisticCode
         }
       }).then(result=>{
-        this.data = result.data;
+        this.data = result.data.data;
         this.goodsinfo=result.data.data.Traces;
       })
-    }
+    },
+    getNum(val){
+      var ship;
+      var results = this.loadAll();
+      for(var i=0;i<results.length;i++){
+        if(results[i].value==val){
+          ship = results[i].shipNum;
+          break;
+        }
+      } 
+      return ship;
+    },
   },
+  
   mounted(){
     this.restaurants = this.loadAll();
+    this.canHeight = (document.body.clientHeight-117)+"px";
+    this.mapHeight = (document.body.clientHeight-187)+"px";
   }
 }
 </script>
 
 <style scoped>
-  .el-timeline {
-    margin-top:20px;
-    border:1px #000 solid;
-    width:800px;
+  .queryInput {
+    width:60%;
+    margin-left:20%;
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    padding:15px 0;
+    box-sizing:border-box;
   }
   .el-autocomplete {
     width:300px;
   }
-  .el-input--suffix{
+  .el-input--suffix {
     width:300px;
+  }
+  .detail {
+    display:flex;
+    justify-content: space-around;
+    padding-top:1%;
+    box-sizing: border-box;
+  } 
+  .pathMap {
+    width:55%;
   }
   .el-timeline {
     text-align: left;
+    width:39%;
   }
 </style>
