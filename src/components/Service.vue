@@ -41,13 +41,13 @@
         <tr>
           <td colspan="2" style="padding-top:10px;"><input type="file" name="pic" id='file'
               class="file">
-            <button class="buttonstyle">上传图片</button>
-            <span style="font-size:10px;">仅限"jpg","png"图片</span>
+            <el-button class="buttonstyle">上传图片</el-button>
+            <span style="font-size:8px;">*仅限"jpg","png"图片</span>
           </td>
         </tr>
         <tr>
           <td colspan="2">
-            <input type="submit" class="submit" value="提交">
+            <el-button type="submit" class="submit">提交</el-button>
           </td>
         </tr>
       </table>
