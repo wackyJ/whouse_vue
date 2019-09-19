@@ -1,12 +1,12 @@
 <template>
-  <div class="ms-login">
+  <div class="ms-login" :style="{height:cHeight}">
     <!-- 最外层背景图片 -->
-    <div class="home">
+    <div class="home"  >
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
       <!-- 右上角模块 -->
       <div class="mt-head">
-        <a href="">没有账号?</a>
-        <a class="black" href="">注册试用</a>
+        <a id="a1" href="">没有账号?</a>
+        <router-link to="/register" class="black" >注册试用</router-link>
       </div>
       <!-- 登录框 -->
       <div class="login">
@@ -58,6 +58,7 @@
     background-size: cover;
     position: relative;
   }
+  #a1 { margin-right:15px;font-size:15px;}
   .login{
     position: absolute;
     width: 380px;
@@ -91,13 +92,13 @@
      color: #fff;  
   }
   .black{
-    border: 2px solid #fff;
-    background:rgba(0,0,0,0.5);
-    padding: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    font-size: 20px;
-    color: #fff;
+   color:#fff;
+		background:#0aa1ed;
+		padding-left:27px;
+		padding-right:27px;
+		padding-top:6px;
+		padding-bottom:6px;
+		font-size:1rem; 
   }
   .more{
     font-size: 20px;
@@ -120,7 +121,8 @@
         rules:{},
         ruleForm:{
           username:"",
-          password:""
+          password:"",
+          	cHeight:0
         }
       }
     },
@@ -141,6 +143,9 @@
         //与后端请求代码
         this.login();
       },
+      created(){
+    this.cHeight = document.body.clientHeight+'px';
+	        },
       //设置cookie
       setCookie(c_name, c_pwd, exdays) {
         var exdate = new Date(); //获取时间
