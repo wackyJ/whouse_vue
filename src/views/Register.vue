@@ -6,7 +6,7 @@
 			<router-link to="/login" id="a2">登录</router-link>
 		</div> 
 		<div id="black">
-			<h4 style="text-align: center">欢迎注册Whouse</h4>
+			<h1 style="text-align:center;color:#fff; ">欢迎注册Whouse</h1>
 			<table id="table" >
 				<tr>
 					<td colspan="2">
@@ -67,10 +67,10 @@ export default{
 				}
 			}).then(result=>{
         // this.tableData=result.data.data;
-          this.$message({
-        type: 'success',
-        message: '注册成功!'
-      });
+            this.$message({
+        	type: 'success',
+        	message: '注册成功!'
+      				});
 			})
 		}
 	},
@@ -93,7 +93,7 @@ export default{
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	#black {margin:120px auto;}
+	#black {margin:90px auto;}
 	.home a {color:#fff;text-decoration:none;font-size:3px;}
 	#a1 { margin-right:15px;font-size:15px;}
 	#a2 {
@@ -108,7 +108,7 @@ export default{
 	#h1{margin-top:25px;margin-right:25px;}
 	table{margin:auto;}
 	#uname,#uphone,#cpwd,#upwd{
-		width:100%;height:40px;
+		width:380px;height:40px;
 		background:#fff no-repeat 97% center;
 		box-sizing:border-box;
 		margin:15px 0;
@@ -118,6 +118,7 @@ export default{
 		border-left:0;
 		border-right:0;
 		outline: none;
+		border-radius: 5px;
 	}
 	table button{
 		width:100%;height:37px;
@@ -125,6 +126,7 @@ export default{
 		background:#0aa1ed;
 		margin-top:10px;
 		color:#fff;
+		border-radius: 5px;
 	}
 	#uname-msg,#upwd-msg,#uphone-msg,#cpwd-msg{
 		color:red;
