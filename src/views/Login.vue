@@ -1,14 +1,15 @@
 <template>
-  <div class="ms-login" :style="{height:cHeight}">
-    <!-- 最外层背景图片 -->
-    <div class="home"  >
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
+<!-- 最外层背景图片 -->
+  <div class="home" :style="{height:cHeight}">
+
       <!-- 右上角模块 -->
       <div class="mt-head">
         <a id="a1" href="">没有账号?</a>
         <router-link to="/register" class="black" >注册试用</router-link>
       </div>
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
       <!-- 登录框 -->
+      <table></table>
       <div class="login">
       <h1>欢迎登录Whouse</h1>
       <br>
@@ -45,7 +46,7 @@
         </div>  
       </div>  
     </el-form>
-    </div>
+   
   </div>
 </template>
 <script>
@@ -57,14 +58,16 @@
         rules:{},
         ruleForm:{
           username:"",
-          password:"",
-          	cHeight:0
+          password:""
         }
       }
     },
     mounted() {
       this.getCookie();
     },
+    created(){
+        this.cHeight = document.body.clientHeight+'px';
+      },
     methods: {
       submitForm() {
         const self = this;
@@ -79,9 +82,6 @@
         //与后端请求代码
         this.login();
       },
-      created(){
-              this.cHeight = document.body.clientHeight+'px';
-	        },
       //设置cookie
       setCookie(c_name, c_pwd, exdays) {
         var exdate = new Date(); //获取时间
@@ -136,22 +136,23 @@
 </script>
 <style scoped>
   .home{
-    width:100%;height:767px;
-		margin:0 auto;
+   width:100%;
+		/* min-height:900px; */
+		/* height:100%; */
 		background-image:url("/img/login_bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
+		/* background-size:100%; */
+		background-repeat: no-repeat;
+		background-size: cover;
   }
   #a1 { margin-right:15px;font-size:15px;}
   .login{
-    position: absolute;
+    /* position: absolute; */
     width: 380px;
     height: 300px;
-    margin-left:520px;
-    margin-top:150px; 
+    margin:200px auto;
     color: #fff;
     text-align: center;
+
     }
   .el-form-item{
     margin-bottom: 30px;
@@ -169,9 +170,7 @@
   }
   .mt-head{
     float: right;
-    margin-top: 50px;
-    margin-right: 30px;
-    font-size: 20px;
+   margin-top:25px;margin-right:25px;
   }
   .mt-head a{
      color: #fff;  
