@@ -40,7 +40,7 @@
           width="120">
         </el-table-column>
         <el-table-column
-          prop="price"
+          prop="sell_price"
           label="价格"
           width="100">
         </el-table-column>
