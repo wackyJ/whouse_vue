@@ -1,7 +1,6 @@
 <template>
 <!-- 背景图片 -->
-	<div class="home" :style="{height:cHeight}">
-	  	<table></table>
+	<div class="home" :style="{height:cHeight}"><table></table>
 		<div id="h1" style="text-align:right">
 			<a id="a1" href="">已有账号？</a>
 			<router-link to="/login" id="a2">登录</router-link>
@@ -23,8 +22,8 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="text" id="upwd" v-model="upwd" minlength="6" maxlength="16" placeholder="设置8-16位数字和字母组合的密码">
-					  	<div id="upwd-msg"></div>
+						<input type="text" id="upwd" v-model="upwd" minlength="6" 
+						maxlength="16" placeholder="设置8-16位数字和字母组合的密码"><div id="upwd-msg"></div>
 					</td>
 				</tr>
 				<tr>
@@ -67,11 +66,8 @@ export default{
 					upwd:this.upwd
 				}
 			}).then(result=>{
-        // this.tableData=result.data.data;
-            this.$message({
-				type: 'success',
-				message: '注册成功!'
-      			});
+        this.tableData=result.data.data;
+        this.$message({type:'success',message:'注册成功!'})
 			})
 		}
 	},
