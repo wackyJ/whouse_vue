@@ -3,7 +3,7 @@ import router from "../router"
 import store from "../store"
 
 export const instance = axios.create({
-  baseURL:'http://127.0.0.1:3000',
+  baseURL:'http://49.235.127.99:80',
     headers: {
       "Content-Type": "application/json;charset=utf-8",
     },

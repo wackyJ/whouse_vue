@@ -57,6 +57,10 @@
           <el-time-picker placeholder="选择时间" v-model="orderForm.delivery_date" style="width: 100%;"></el-time-picker>
         </el-col>
       </el-form-item>
+      <!-- 物流追踪 -->
+      <el-form-item>
+        
+      </el-form-item>
       <el-form-item label="订单状态">
         <el-radio-group v-model="orderForm.ostatus" size="mini">
           <el-radio border label="待付款"></el-radio>
