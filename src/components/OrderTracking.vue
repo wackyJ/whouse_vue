@@ -116,21 +116,11 @@ export default {
     justify-content: space-around;
     padding:15px 0;
     box-sizing:border-box;
-    /* border:1px #000 solid; */
-
   }
-  .d-tran {
+  .d-tran,.d-tran {
     width:40%;
-    /* border:1px #000 solid; */
   }
-  .el-autocomplete {
-    width:70%;
-  }
-  .d-order {
-    width:40%;
-    /* border:1px #000 solid; */
-  }
-  .el-input--suffix {
+  .el-autocomplete,.el-input--suffix {
     width:70%;
   }
   .detail {
@@ -138,12 +128,13 @@ export default {
     justify-content: space-around;
     padding-top:1%;
     box-sizing: border-box;
-  } 
+  }
   .pathMap {
     width:55%;
   }
   .el-timeline {
     text-align: left;
     width:39%;
+    overflow:auto;
   }
 </style>

@@ -3,7 +3,7 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="section" :style="{height:cHeight}">
-      <el-tabs v-model="activeName">
+      <el-tabs v-model="activeName" style="border:1px #000 solid;">
         <el-tab-pane label="个人信息" name="preference">
           <setting-user-info></setting-user-info>
         </el-tab-pane>
@@ -46,7 +46,7 @@ export default {
 <style scoped>
   .section{
     width:96%;
-    min-width:1300px;
+    min-width:700px;
     min-height:910px;
     position:relative;
     left:4%;
@@ -54,5 +54,6 @@ export default {
     padding:28px 70px 30px 60px;
     box-sizing: border-box;
     background-color: #fff;
+    /* border:1px #000 solid; */
   }
 </style>
