@@ -3,7 +3,7 @@
     <div class="s1">
       <div class="service1">
         <span href="">
-          <img src="../assets/kefu.png" alt="">
+          <img src="../assets/kefu.png">
         </span>
         <p style="font-size:14px">Tel:400-660-4299</p>
       </div>
@@ -13,12 +13,11 @@
       </div>
     </div> 
     <div class="service3">
-      
       <table>
         <tr>
           <td colspan="2">
-              <h4 class="text">*内容描述:</h4>
-              <textarea class="textarea" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。" v-model="content"></textarea>
+            <h4 class="text">*内容描述:</h4>
+            <textarea class="textarea" placeholder="请输入需求、改进建议。反馈程序缺陷。及投诉、举报，200字以内。" v-model="content"></textarea>
           </td>
         </tr>
         <tr>
@@ -42,7 +41,7 @@
           <td colspan="2" style="padding:10px 0 0 20px;text-align:left;">
             <form action="get">
               <input type="file" name="pic" id='file' class="file" @change="tips"/><label for="file">
-              <span  class="uploading">上传图片<i class="el-icon-upload el-icon--right"></i></span>
+              <span class="uploading">上传图片<i class="el-icon-upload el-icon--right"></i></span>
               <br>
               <span style="font-size:8px;" >{{tip}}</span>
               </label>
@@ -161,7 +160,7 @@ export default {
     height:0px;
     opacity: 0;
     display:block;
-    }
+  }
   .submit{
     margin-left:210px;
     margin-top:10px;

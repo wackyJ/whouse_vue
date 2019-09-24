@@ -58,10 +58,9 @@
 </script>
 <style scoped>
   #financeChart{
-    text-align: center;
     width: 100%;
     height:377px;
-    padding:5% 0 0 4%;
+    padding:4% 0 0 4%;
     box-sizing: border-box;
   }
   .charts{

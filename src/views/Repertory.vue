@@ -3,11 +3,11 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="repertory">
-      <el-tabs type="border-card" v-model="activeName">
+      <el-tabs type="border-card" v-model="activeName" >
         <el-tab-pane label="采购入库" name="preference">
           <purchase-table></purchase-table>
         </el-tab-pane>
-        <el-tab-pane label="库存信息" name="goods">
+        <el-tab-pane label="库存信息" name="goods" style="text-align:center">
           <repertory-info></repertory-info>
         </el-tab-pane>
       </el-tabs>

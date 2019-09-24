@@ -24,7 +24,7 @@
             fixed
             prop="onum"
             label="订单编号"
-            width="150">
+            width="140">
         </el-table-column>
         <el-table-column
           prop="cid"
@@ -64,22 +64,22 @@
         <el-table-column
           prop="uid"
           label="操作人员编号"
-          width="120">
+          width="110">
         </el-table-column>
         <el-table-column
           prop="firstAdress"
           label="地址"
-          width="300">
+          width="180">
         </el-table-column>
         <el-table-column
           prop="lastAdress"
           label="详细地址"
-          width="500">
+          width="300">
         </el-table-column>
         <el-table-column
           prop="remark"
           label="备注"
-          width="500">
+          width="150">
         </el-table-column>
         <el-table-column
           fixed="right"

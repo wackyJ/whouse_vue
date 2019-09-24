@@ -115,18 +115,18 @@ export default {
     align-items: center;
     justify-content: space-around;
     padding:15px 0;
-    box-sizing:border-box;
+    box-sizing: border-box;
   }
-  .d-tran,.d-tran {
+  .d-tran,.d-order {
     width:40%;
   }
   .el-autocomplete,.el-input--suffix {
     width:70%;
   }
   .detail {
-    display:flex;
+    display: flex;
     justify-content: space-around;
-    padding-top:1%;
+    padding-top: 1%;
     box-sizing: border-box;
   }
   .pathMap {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="userInfo">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="80px" class="demo-ruleForm">
       <el-form-item label="昵称" prop="uname">
         <el-input v-model="ruleForm.uname"></el-input>
@@ -184,3 +184,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .userInfo {
+    width:70%;
+    margin-left:15%;
+    margin-top:1%;
+  }
+  .el-dialog__wrapper {
+    width:80%;
+    margin-left:10%;
+  }
+</style>

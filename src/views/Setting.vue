@@ -3,7 +3,7 @@
     <main-aside></main-aside>
     <main-header></main-header>
     <div class="section" :style="{height:cHeight}">
-      <el-tabs v-model="activeName" style="border:1px #000 solid;">
+      <el-tabs v-model="activeName">
         <el-tab-pane label="个人信息" name="preference">
           <setting-user-info></setting-user-info>
         </el-tab-pane>

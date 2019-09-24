@@ -1,6 +1,6 @@
 <template>
   <div>
-      <el-table
+    <el-table
       :data="tableData"
       min-height="500"
       :max-height="maxHeight"
@@ -12,73 +12,59 @@
       <el-table-column
         fixed
         prop="repertory_count"
-        label="库存数量"
-        width="100">
+        label="库存数量">
       </el-table-column>
       <el-table-column
         prop="pid"
-        label="商品ID"
-        width="70">
+        label="商品ID">
       </el-table-column>
       <el-table-column
         prop="family_id"
-        label="系列ID"
-        width="70">
+        label="系列ID">
       </el-table-column>
       <el-table-column
         prop="pname"
-        label="商品名称"
-        width="120">
+        label="商品名称">
       </el-table-column>
       <el-table-column
         prop="sell_price"
-        label="价格"
-        width="100">
+        label="价格">
       </el-table-column>
-            <el-table-column
+      <el-table-column
         prop="sold_count"
-        label="已售出的数量"
-        width="120">
+        label="已售出的数量">
       </el-table-column>
       <el-table-column
         prop="memory"
-        label="内存容量"
-        width="100">
+        label="内存容量">
       </el-table-column>
       <el-table-column
         prop="resolution"
-        label="分辨率"
-        width="120">
+        label="分辨率">
       </el-table-column>
       <el-table-column
         prop="cpu"
-        label="处理器"
-        width="120">
+        label="处理器">
       </el-table-column>
       <el-table-column
         prop="video_memory"
-        label="显存容量"
-        width="120">
+        label="显存容量">
       </el-table-column>
       <el-table-column
         prop="category"
-        label="所属分类"
-        width="120">
+        label="所属分类">
       </el-table-column>
       <el-table-column
         prop="disk"
-        label="硬盘容量及类型"
-        width="140">
+        label="硬盘容量及类型">
       </el-table-column>
       <el-table-column
         prop="is_onsale"
-        label="是否促销中"
-        width="100">
+        label="是否促销中">
       </el-table-column>
       <el-table-column
         prop="pv_id"
-        label="供应商ID"
-        width="100">
+        label="供应商ID">
       </el-table-column>
     </el-table>
     <el-pagination
