@@ -19,10 +19,10 @@
         @click="addorderDetail"></i>
       </div>  
       <div class="merge" id="clientInfo">
-        <el-form-item label="客户编号">
+        <el-form-item label="客户名称">
           <el-input v-model="orderForm.cid"></el-input>
         </el-form-item>
-        <el-form-item label="客户备注">
+        <el-form-item label="客户联系方式">
           <el-input v-model="orderForm.remark"></el-input>
         </el-form-item>
         <el-form-item label="操作人员编号">
@@ -59,8 +59,47 @@
       </el-form-item>
       <!-- 物流追踪 -->
       <el-form-item>
-        
+        <!-- `checked` 为 true 或 false -->
+        <el-checkbox v-model="checked">是否进行物流追踪</el-checkbox>
       </el-form-item>
+      <div v-if="checked">
+        <div class="block merge">
+          <el-form-item label="运输公司">
+            <el-autocomplete
+              class="inline-input"
+              v-model="shipper"
+              :fetch-suggestions="querySearch"
+              placeholder="请选择运输公司"
+              @select="handleSelect"
+            ></el-autocomplete>
+          </el-form-item>
+            <el-form-item label="订单编号">
+              <el-input
+                placeholder="请输入快递单号"
+                v-model="LogisticCode"
+                clearable>
+              </el-input>
+          </el-form-item>
+        </div>
+        <div class="merge">
+          <el-form-item label="发货人员">
+            <el-input v-model="zxc"></el-input>
+          </el-form-item>
+          <el-form-item label="发件人手机">
+            <el-input v-model="zxc"></el-input>
+          </el-form-item>
+        </div>
+        <el-form-item label="发货地址">
+          <div class="block merge">
+            <el-cascader style="width:50%;"
+              placeholder="试试搜索：北京"
+              :options="options"
+              filterable
+              @change="getAdress"></el-cascader>
+              <el-input v-model="zxc" placeholder="详细地址"></el-input>
+          </div>
+        </el-form-item>
+      </div>
       <el-form-item label="订单状态">
         <el-radio-group v-model="orderForm.ostatus" size="mini">
           <el-radio border label="待付款"></el-radio>
@@ -82,10 +121,18 @@
 </template>
 
 <script>
+import expressCode from '@/assets/expressCode.json'
 export default {
   props:["options"],
+   mounted(){
+    this.restaurants = this.loadAll();
+  },
   data(){
     return{
+      shipper: '',
+      ShipperCode:'',
+      LogisticCode:'',
+      checked:true,
       i:0,
       orderForm: {
         onum: null,//订单编号
@@ -108,6 +155,23 @@ export default {
     }
   },
   methods: {
+    getNum(val){
+      var ship;
+      var results = this.loadAll();
+      for(var i=0;i<results.length;i++){
+        if(results[i].value==val){
+          ship = results[i].shipNum;
+          break;
+        }
+      } 
+      return ship;
+    },
+    handleSelect(item){
+      this.ShipperCode = item.shipNum;
+    },
+    loadAll() {
+      return expressCode;
+    },
     // 封装一个函数，用来清空对应商品信息输入框的值,并清除对应数组对象中的值
     clearInput(index,propname,){
       this.orderDetail[index][propname]=0;
@@ -269,4 +333,5 @@ export default {
   .el-radio{
     margin:0;
   }
+ 
 </style>
