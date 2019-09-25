@@ -2,7 +2,7 @@
   <div class="service">
     <div class="s1">
       <div class="service1">
-        <span href="">
+        <span>
           <img src="../assets/kefu.png">
         </span>
         <p style="font-size:14px">Tel:400-660-4299</p>

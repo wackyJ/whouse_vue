@@ -19,7 +19,7 @@
         @click="addorderDetail"></i>
       </div>  
       <div class="merge" id="clientInfo">
-        <el-form-item label="客户名称">
+        <el-form-item label="客户编号">
           <el-input v-model="orderForm.cid"></el-input>
         </el-form-item>
         <el-form-item label="客户联系方式">
@@ -83,10 +83,10 @@
         </div>
         <div class="merge">
           <el-form-item label="发货人员">
-            <el-input v-model="zxc"></el-input>
+            <el-input v-model="Sender.Name"></el-input>
           </el-form-item>
           <el-form-item label="发件人手机">
-            <el-input v-model="zxc"></el-input>
+            <el-input v-model="Sender.Mobile"></el-input>
           </el-form-item>
         </div>
         <el-form-item label="发货地址">
@@ -95,8 +95,8 @@
               placeholder="试试搜索：北京"
               :options="options"
               filterable
-              @change="getAdress"></el-cascader>
-              <el-input v-model="zxc" placeholder="详细地址"></el-input>
+              @change="getSenderAdress"></el-cascader>
+              <el-input v-model="Sender.Address" placeholder="详细地址"></el-input>
           </div>
         </el-form-item>
       </div>
@@ -129,6 +129,9 @@ export default {
   },
   data(){
     return{
+      restaurants:"",
+      Sender:{},
+      Receiver:{},
       shipper: '',
       ShipperCode:'',
       LogisticCode:'',
@@ -183,6 +186,20 @@ export default {
       this.orderDetail[index]['total']=this.orderDetail[index]['sell_price']*this.orderDetail[index]['pcount'];
       // 根据数组中的值改名显示的商品总价
       document.querySelector(`[data-i='${index}'][data-prop='total']`).value=this.orderDetail[index]['total'];
+    },
+    //封装一个函数用来对地址编码进行中文解码
+    addressDecoding(decodingAdress,reobj){
+      // 将地址转为中文字符串并按物流订阅要求传递
+      let adress=JSON.parse(JSON.stringify(decodingAdress));//转为json格式，必写
+      let ad2=this.options.filter(val=>val.value==adress[0])[0];
+      // 将收件省传入reobj
+      reobj.ProvinceName=ad2.label;
+      let ad3=ad2.children.filter(val=>val.value==adress[1])[0];
+      // 将收件市传入reobj
+      reobj.CityName=ad3.label;
+      let ad4=ad3.children.filter(val=>val.value==adress[2])[0];
+      // 将收件区/县传入reobj
+      reobj.ExpAreaName=ad4.label;
     },
     unitPrice(e){
       if(e.target.dataset.prop=="pid"){
@@ -276,6 +293,32 @@ export default {
               );
               // 重置表单
               this.reset();
+              if(this.checked==true){
+                this.Receiver.Name=this.orderForm.cid;
+                this.Receiver.Mobile=this.orderForm.remark;
+                this.Receiver.Address=this.orderForm.lastAdress;
+                this.axios.post("/logistics/v1/logisticsTracking",{
+                  params:{
+                    "ShipperCode":this.ShipperCode,
+                    "LogisticCode":this.LogisticCode,
+                    "Sender":this.Sender,
+                    "Receiver":this.Receiver,
+                    "OrderCode":result.data.data
+                  }
+                }).then(result=>{
+                  if(result.data.code==200){
+                    this.$message({
+                    type: 'success',
+                    message: `物流追踪成功`
+                  });
+                  }
+                }).catch(()=>{
+                  this.$message({
+                    type: 'info',
+                    message: `物流追踪失败，失败原因未知`
+                  });
+                })
+              }
             }else{
               this.$message({
                 type: 'info',
@@ -296,6 +339,12 @@ export default {
     },
     getAdress(val){
       this.orderForm.firstAdress=val;
+      // 对选择的地址进行中文解码并传入指定对象中
+      this.addressDecoding(val,this.Receiver);
+    },
+    getSenderAdress(val){
+      // 对选择的地址进行中文解码并传入指定对象中
+      this.addressDecoding(val,this.Sender);
     }
   },
   computed:{
